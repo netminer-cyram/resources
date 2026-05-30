@@ -6,3 +6,5 @@ cd /d/soojin/netminer_info
 git add data/citations.xlsx
 git commit -m "update: citations 추가"
 git push
+
+soojin904.github.io/netminer_info
