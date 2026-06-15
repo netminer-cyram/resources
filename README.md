@@ -7,7 +7,7 @@ git add data/citations.xlsx
 git commit -m "update: citations 추가"
 git push
 
-soojin904.github.io/netminer_info
+soojin904.github.io/netminer_info/nm-reference
 
 2. 임시 페이지
 soojin904.github.io/netminer_info/ax-intro
