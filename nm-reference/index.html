@@ -242,7 +242,7 @@
 
   async function loadData() {
     try {
-      const res = await fetch('data/citations.xlsx');
+      const res = await fetch('citations.xlsx');
       const buf = await res.arrayBuffer();
       const wb = XLSX.read(buf, { type: 'array' });
       const ws = wb.Sheets[wb.SheetNames[0]];
