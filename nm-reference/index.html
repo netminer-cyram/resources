@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NetMiner Citation</title>
+  <title>NetMiner Citation Dashboard</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -242,20 +242,20 @@
 
   async function loadData() {
     try {
-      const res = await fetch('research_metadata.xlsx');
+      const res = await fetch('citations.xlsx');
       const buf = await res.arrayBuffer();
       const wb = XLSX.read(buf, { type: 'array' });
       const ws = wb.Sheets[wb.SheetNames[0]];
       const raw = XLSX.utils.sheet_to_json(ws, { defval: '' });
 
       allRows = raw.map(r => ({
-        year:      String(r.year || '').trim(),
-        title:     String(r.title || '').trim(),
-        authors:   String(r.authors || '').trim(),
-        journal:   String(r.journal || '').trim(),
-        doi:       String(r.doi || '').trim(),
-        wos:       String(r['Web of Science Core Collection'] || '').trim() !== '',
-        gubun:     String(r['구분'] || '').trim(),
+        year:    String(r['year'] || '').trim(),
+        title:   String(r['title'] || '').trim(),
+        authors: String(r['authors'] || '').trim(),
+        journal: String(r['journal'] || '').trim(),
+        doi:     String(r['doi'] || '').trim(),
+        wos:     String(r['Web of Science Core Collection'] || '').trim() !== '',
+        gubun:   String(r['구분'] || '').trim(),
       })).filter(r => r.title && r.gubun !== '검증필요');
 
       buildYearFilter();
