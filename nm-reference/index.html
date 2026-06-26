@@ -91,30 +91,6 @@
       color: white;
     }
 
-    .wos-badge {
-      display: inline-block;
-      font-size: 0.7rem;
-      background: #e8eaf6;
-      color: #1a237e;
-      border-radius: 4px;
-      padding: 1px 6px;
-      font-weight: 600;
-      vertical-align: middle;
-    }
-
-    tr.wos td.title::after {
-      content: 'WoS';
-      display: inline-block;
-      font-size: 0.68rem;
-      background: #e8eaf6;
-      color: #1a237e;
-      border-radius: 4px;
-      padding: 1px 5px;
-      margin-left: 7px;
-      font-weight: 600;
-      vertical-align: middle;
-    }
-
     .result-count {
       font-size: 0.85rem;
       color: #636e72;
@@ -206,6 +182,9 @@
   <button class="wos-toggle" id="wosToggle" onclick="toggleWos()">
     WoS Core Collection only
   </button>
+  <button class="wos-toggle" id="engToggle" onclick="toggleEng()">
+    English only
+  </button>
   <span class="result-count" id="resultCount"></span>
 </div>
 
@@ -233,10 +212,19 @@
 <script>
   let allRows = [];
   let wosOnly = false;
+  let engOnly = false;
+
+  const KOREAN = /[가-힣]/;
 
   function toggleWos() {
     wosOnly = !wosOnly;
     document.getElementById('wosToggle').classList.toggle('active', wosOnly);
+    applyFilters();
+  }
+
+  function toggleEng() {
+    engOnly = !engOnly;
+    document.getElementById('engToggle').classList.toggle('active', engOnly);
     applyFilters();
   }
 
@@ -256,6 +244,7 @@
         doi:     String(r['doi'] || '').trim(),
         wos:     String(r['Web of Science Core Collection'] || '').trim() !== '',
         gubun:   String(r['구분'] || '').trim(),
+        isEng:   !KOREAN.test(String(r['title'] || '')),
       })).filter(r => r.title && r.gubun !== '검증필요');
 
       buildYearFilter();
@@ -299,7 +288,8 @@
         r.authors.toLowerCase().includes(q) ||
         r.journal.toLowerCase().includes(q);
       const matchWos = !wosOnly || r.wos;
-      return matchYear && matchSearch && matchWos;
+      const matchEng = !engOnly || r.isEng;
+      return matchYear && matchSearch && matchWos && matchEng;
     });
 
     renderTable(filtered);
@@ -319,7 +309,7 @@
 
     empty.style.display = 'none';
     tbody.innerHTML = rows.map(r => `
-      <tr${r.wos ? ' class="wos"' : ''}>
+      <tr>
         <td class="year">${esc(r.year)}</td>
         <td class="title">${esc(r.title)}</td>
         <td class="authors">${esc(r.authors)}</td>
