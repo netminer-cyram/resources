@@ -242,7 +242,7 @@
 
   async function loadData() {
     try {
-      const res = await fetch('citations.xlsx');
+      const res = await fetch('research_metadata.xlsx');
       const buf = await res.arrayBuffer();
       const wb = XLSX.read(buf, { type: 'array' });
       const ws = wb.Sheets[wb.SheetNames[0]];
@@ -255,7 +255,8 @@
         journal:   String(r.journal || '').trim(),
         doi:       String(r.doi || '').trim(),
         wos:       String(r['Web of Science Core Collection'] || '').trim() !== '',
-      })).filter(r => r.title);
+        gubun:     String(r['구분'] || '').trim(),
+      })).filter(r => r.title && r.gubun !== '검증필요');
 
       buildYearFilter();
       updateStats();
