@@ -214,7 +214,7 @@
 <script>
   let allRows = [];
   let wosOnly = false;
-  let engOnly = false;
+  let engOnly = new URLSearchParams(window.location.search).get('lang') === 'en';
 
   const KOREAN = /[가-힣]/;
 
@@ -324,6 +324,7 @@
     return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
+  document.getElementById('engToggle').classList.toggle('active', engOnly);
   loadData();
 </script>
 </body>
