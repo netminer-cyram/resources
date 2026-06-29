@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NetMiner in Research</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f6fa;
+      color: #2d3436;
+    }
+
+    header {
+      background: #1a237e;
+      color: white;
+      padding: 32px 40px 24px;
+    }
+
+    header h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 4px; }
+    header p { font-size: 0.9rem; opacity: 0.75; }
+
+    .stats {
+      display: flex;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.12);
+      border-radius: 8px;
+      padding: 10px 20px;
+      text-align: center;
+    }
+
+    .stat .num { font-size: 1.5rem; font-weight: 700; }
+    .stat .label { font-size: 0.75rem; opacity: 0.8; margin-top: 2px; }
+
+    .controls {
+      display: flex;
+      gap: 12px;
+      padding: 20px 40px;
+      background: white;
+      border-bottom: 1px solid #e0e0e0;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .controls input[type="text"] {
+      flex: 1;
+      min-width: 200px;
+      padding: 9px 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+
+    .controls select {
+      padding: 9px 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      background: white;
+      cursor: pointer;
+    }
+
+    .wos-toggle {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 14px;
+      border: 1.5px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      cursor: pointer;
+      background: white;
+      color: #2d3436;
+      white-space: nowrap;
+      transition: all 0.15s;
+      user-select: none;
+    }
+
+    .wos-toggle:hover { border-color: #1a237e; color: #1a237e; }
+
+    .wos-toggle.active {
+      background: #1a237e;
+      border-color: #1a237e;
+      color: white;
+    }
+
+    .result-count {
+      font-size: 0.85rem;
+      color: #636e72;
+      margin-left: auto;
+    }
+
+    .table-wrap {
+      padding: 24px 40px;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      font-size: 0.875rem;
+    }
+
+    thead { background: #1a237e; color: white; }
+    th { padding: 13px 16px; text-align: left; font-weight: 600; white-space: nowrap; }
+
+    tbody tr { border-bottom: 1px solid #f0f0f0; transition: background 0.15s; }
+    tbody tr:hover { background: #f0f4ff; }
+    tbody tr:last-child { border-bottom: none; }
+
+    td { padding: 11px 16px; vertical-align: top; }
+
+    td.year { white-space: nowrap; font-weight: 600; color: #1a237e; }
+    td.title { max-width: 360px; line-height: 1.45; }
+    td.authors { max-width: 200px; color: #636e72; font-size: 0.82rem; }
+    td.journal { max-width: 200px; font-style: italic; color: #455a64; }
+
+    td.doi a {
+      color: #1a237e;
+      text-decoration: none;
+      font-size: 0.8rem;
+      white-space: nowrap;
+    }
+    td.doi a:hover { text-decoration: underline; }
+
+    .loading {
+      text-align: center;
+      padding: 80px;
+      color: #888;
+      font-size: 1rem;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 60px;
+      color: #aaa;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+
+    @media (max-width: 600px) {
+      header { padding: 20px; }
+      .controls { padding: 12px 16px; }
+      .table-wrap { padding: 12px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>NetMiner Citations</h1>
+  <p>A list of papers that cited or used NetMiner</p>
+  <p style="font-size:0.8rem; opacity:0.65; margin-top:4px;">Data sources: KCI, OpenAlex, Web of Science</p>
+  <div class="stats">
+    <div class="stat"><div class="num" id="totalCount">—</div><div class="label">Total Papers</div></div>
+    <div class="stat"><div class="num" id="yearRange">—</div><div class="label">Year Range</div></div>
+    <div class="stat"><div class="num" id="journalCount">—</div><div class="label">Journals</div></div>
+  </div>
+</header>
+
+<div class="controls">
+  <input type="text" id="searchBox" placeholder="Search by title, author, or journal…" oninput="applyFilters()">
+  <select id="yearFilter" onchange="applyFilters()">
+    <option value="">All Years</option>
+  </select>
+  <button class="wos-toggle" id="wosToggle" onclick="toggleWos()">
+    WoS Core Collection only
+  </button>
+  <button class="wos-toggle" id="engToggle" onclick="toggleEng()">
+    English only
+  </button>
+  <span class="result-count" id="resultCount"></span>
+</div>
+
+<div class="table-wrap">
+  <div class="loading" id="loading">Loading data…</div>
+  <table id="mainTable" style="display:none">
+    <thead>
+      <tr>
+        <th>Year</th>
+        <th>Title</th>
+        <th>Authors</th>
+        <th>Journal</th>
+        <th>DOI</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+  <div class="empty" id="emptyMsg" style="display:none">No results found.</div>
+</div>
+
+<footer>
+  <a href="https://www.netminer.com" style="color:#aaa">netminer.com</a>
+  <div style="margin-top:8px; font-size:0.75rem; color:#bbb;">Some records may contain inaccuracies due to automated data collection. Please verify details directly from the original source.</div>
+</footer>
+
+<script>
+  let allRows = [];
+  let wosOnly = false;
+  let engOnly = false;
+
+  const KOREAN = /[가-힣]/;
+
+  function toggleWos() {
+    wosOnly = !wosOnly;
+    document.getElementById('wosToggle').classList.toggle('active', wosOnly);
+    applyFilters();
+  }
+
+  function toggleEng() {
+    engOnly = !engOnly;
+    document.getElementById('engToggle').classList.toggle('active', engOnly);
+    applyFilters();
+  }
+
+  async function loadData() {
+    try {
+      const res = await fetch('citations.xlsx');
+      const buf = await res.arrayBuffer();
+      const wb = XLSX.read(buf, { type: 'array' });
+      const ws = wb.Sheets[wb.SheetNames[0]];
+      const raw = XLSX.utils.sheet_to_json(ws, { defval: '' });
+
+      allRows = raw.map(r => ({
+        year:    String(r['year'] || '').trim(),
+        title:   String(r['title'] || '').trim(),
+        authors: String(r['authors'] || '').trim(),
+        journal: String(r['journal'] || '').trim(),
+        doi:     String(r['doi'] || '').trim(),
+        wos:     String(r['Web of Science Core Collection'] || '').trim() !== '',
+        gubun:   String(r['구분'] || '').trim(),
+        isEng:   !KOREAN.test(String(r['title'] || '')),
+      })).filter(r => r.title && r.gubun !== '검증필요');
+
+      buildYearFilter();
+      updateStats();
+      applyFilters();
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('mainTable').style.display = 'table';
+    } catch (e) {
+      document.getElementById('loading').textContent = 'Failed to load data. ' + e.message;
+    }
+  }
+
+  function buildYearFilter() {
+    const years = [...new Set(allRows.map(r => r.year).filter(Boolean))].sort((a,b) => b - a);
+    const sel = document.getElementById('yearFilter');
+    years.forEach(y => {
+      const opt = document.createElement('option');
+      opt.value = y; opt.textContent = y;
+      sel.appendChild(opt);
+    });
+  }
+
+  function updateStats() {
+    document.getElementById('totalCount').textContent = allRows.length;
+    const years = allRows.map(r => Number(r.year)).filter(Boolean);
+    if (years.length) {
+      document.getElementById('yearRange').textContent = Math.min(...years) + '–' + Math.max(...years);
+    }
+    const journals = new Set(allRows.map(r => r.journal).filter(Boolean));
+    document.getElementById('journalCount').textContent = journals.size;
+  }
+
+  function applyFilters() {
+    const q = document.getElementById('searchBox').value.toLowerCase();
+    const yr = document.getElementById('yearFilter').value;
+
+    const filtered = allRows.filter(r => {
+      const matchYear = !yr || r.year === yr;
+      const matchSearch = !q ||
+        r.title.toLowerCase().includes(q) ||
+        r.authors.toLowerCase().includes(q) ||
+        r.journal.toLowerCase().includes(q);
+      const matchWos = !wosOnly || r.wos;
+      const matchEng = !engOnly || r.isEng;
+      return matchYear && matchSearch && matchWos && matchEng;
+    });
+
+    renderTable(filtered);
+    document.getElementById('resultCount').textContent =
+      filtered.length + ' paper' + (filtered.length !== 1 ? 's' : '');
+  }
+
+  function renderTable(rows) {
+    const tbody = document.getElementById('tableBody');
+    const empty = document.getElementById('emptyMsg');
+
+    if (rows.length === 0) {
+      tbody.innerHTML = '';
+      empty.style.display = 'block';
+      return;
+    }
+
+    empty.style.display = 'none';
+    tbody.innerHTML = rows.map(r => `
+      <tr>
+        <td class="year">${esc(r.year)}</td>
+        <td class="title">${esc(r.title)}</td>
+        <td class="authors">${esc(r.authors)}</td>
+        <td class="journal">${esc(r.journal)}</td>
+        <td class="doi">${r.doi ? `<a href="https://doi.org/${esc(r.doi)}" target="_blank" rel="noopener">${esc(r.doi)}</a>` : ''}</td>
+      </tr>`).join('');
+  }
+
+  function esc(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  loadData();
+</script>
+</body>
+</html>
