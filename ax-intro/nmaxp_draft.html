@@ -78,11 +78,11 @@
       color: #fff;
       font-weight: 700;
       font-size: 12px;
-      padding: 7px 16px;
-      border-radius: 999px;
+      padding: 7px 14px;
+      border-radius: 6px;
       text-decoration: none;
       white-space: nowrap;
-      transition: background 0.35s cubic-bezier(0.32,0.72,0,1), transform 0.3s cubic-bezier(0.32,0.72,0,1);
+      transition: background 0.2s ease, transform 0.15s ease;
     }
 
     .float-cta a:hover {
@@ -104,31 +104,6 @@
     ::selection {
       background: var(--gold-bright);
       color: var(--navy);
-    }
-
-    /* ── SCROLL REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      filter: blur(4px);
-      transition: opacity 0.8s cubic-bezier(0.32, 0.72, 0, 1),
-        transform 0.8s cubic-bezier(0.32, 0.72, 0, 1),
-        filter 0.8s cubic-bezier(0.32, 0.72, 0, 1);
-    }
-
-    .reveal.in-view {
-      opacity: 1;
-      transform: translateY(0);
-      filter: blur(0);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .reveal {
-        opacity: 1;
-        transform: none;
-        filter: none;
-        transition: none;
-      }
     }
 
     .ic {
@@ -244,7 +219,7 @@
 
     /* ── SECTION COMMON ── */
     section {
-      padding: 112px 48px 128px;
+      padding: 72px 48px 84px;
     }
 
     .section-label {
@@ -339,17 +314,16 @@
 
     .bg-card {
       background: #fff;
-      border: 1px solid rgba(229, 225, 216, 0.6);
-      border-left: 3px solid var(--blue);
-      border-radius: 6px 20px 20px 6px;
-      padding: 28px 26px;
-      box-shadow: 0 12px 32px -22px rgba(11, 18, 32, 0.14);
-      transition: transform 0.45s cubic-bezier(0.32,0.72,0,1), box-shadow 0.45s cubic-bezier(0.32,0.72,0,1), border-left-color 0.45s cubic-bezier(0.32,0.72,0,1);
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--blue);
+      border-radius: 4px 14px 14px 4px;
+      padding: 26px 24px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-left-color 0.25s ease;
     }
 
     .bg-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 28px 48px -20px rgba(0, 82, 165, 0.22);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 32px -12px rgba(0, 82, 165, 0.18);
       border-left-color: var(--gold);
     }
 
@@ -429,10 +403,10 @@
       gap: 0;
       max-width: 980px;
       margin: 0;
-      border: 1px solid rgba(229, 225, 216, 0.6);
-      border-radius: 26px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 32px 64px -28px rgba(11, 18, 32, 0.16);
+      box-shadow: 0 20px 48px -24px rgba(11, 18, 32, 0.15);
     }
 
     .vs-col {
@@ -541,10 +515,10 @@
       background-color: var(--gray);
       background-size: cover;
       background-position: top center;
-      border: 1px solid rgba(229, 225, 216, 0.6);
-      border-radius: 22px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 24px 48px -26px rgba(11, 18, 32, 0.22);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
       cursor: pointer;
     }
 
@@ -565,7 +539,7 @@
       gap: 12px;
       background: rgba(11, 18, 32, 0.32);
       color: #fff;
-      transition: background 0.35s cubic-bezier(0.32,0.72,0,1);
+      transition: background 0.2s ease;
     }
 
     .play-overlay:hover {
@@ -768,17 +742,12 @@
     .ex-item {
       position: relative;
       background: #fff;
-      border: 1px solid rgba(229, 225, 216, 0.6);
-      border-radius: 20px;
-      padding: 26px 28px;
-      margin-bottom: 20px;
-      box-shadow: 0 16px 40px -26px rgba(11, 18, 32, 0.18);
-      transition: transform 0.35s cubic-bezier(0.32,0.72,0,1), box-shadow 0.35s cubic-bezier(0.32,0.72,0,1);
-    }
-
-    .ex-item:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 24px 48px -24px rgba(11, 18, 32, 0.22);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-bottom: 18px;
+      box-shadow: 0 10px 24px -18px rgba(11, 18, 32, 0.16);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .ex-item:hover {
@@ -880,10 +849,10 @@
     .step-shot {
       margin-top: 12px;
       max-width: 760px;
-      border: 1px solid rgba(229, 225, 216, 0.6);
-      border-radius: 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 20px 40px -24px rgba(11, 18, 32, 0.24);
+      box-shadow: 0 10px 22px -16px rgba(11, 18, 32, 0.22);
     }
 
     .step-shot img {
@@ -895,10 +864,10 @@
     .result-panel {
       margin-top: 14px;
       background: #fff;
-      border: 1px solid rgba(229, 225, 216, 0.6);
-      border-radius: 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 20px 40px -24px rgba(11, 18, 32, 0.24);
+      box-shadow: 0 10px 22px -16px rgba(11, 18, 32, 0.22);
     }
 
     .rp-head {
@@ -1081,7 +1050,7 @@
       padding: 10px 18px;
       border: 1px solid rgba(255, 255, 255, 0.18);
       border-radius: 5px;
-      transition: border-color 0.35s cubic-bezier(0.32,0.72,0,1), background 0.35s cubic-bezier(0.32,0.72,0,1), transform 0.35s cubic-bezier(0.32,0.72,0,1);
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
     }
 
     .cta-contacts a:hover {
@@ -1282,10 +1251,10 @@
       font-weight: 700;
       font-size: 15px;
       padding: 15px 30px;
-      border-radius: 999px;
+      border-radius: 8px;
       text-decoration: none;
       box-shadow: 0 16px 32px -14px rgba(0, 82, 165, 0.4);
-      transition: background 0.35s cubic-bezier(0.32,0.72,0,1), transform 0.3s cubic-bezier(0.32,0.72,0,1), box-shadow 0.35s cubic-bezier(0.32,0.72,0,1);
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
     }
 
     .demo-btn:hover {
@@ -1872,23 +1841,6 @@
       el.innerHTML = '';
       el.appendChild(img);
     }
-
-    (function () {
-      var targets = document.querySelectorAll(
-        '.bg-card, .ex-item, .vs-wrap, .feat-row, .qa-item, .step-row, .demo-frame-box, .question-box, .gf-chips, .rp-refs'
-      );
-      if (!('IntersectionObserver' in window) || !targets.length) return;
-      targets.forEach(function (el) { el.classList.add('reveal'); });
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-      targets.forEach(function (el) { io.observe(el); });
-    })();
   </script>
 
 </body>
