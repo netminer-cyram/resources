@@ -1052,7 +1052,7 @@
       color: #fff;
       font-size: 28px;
       letter-spacing: -0.4px;
-      margin-bottom: 28px;
+      margin-bottom: 44px;
     }
 
     .cta p {
@@ -1095,7 +1095,7 @@
     }
 
     .cta-note {
-      margin-top: 48px;
+      margin-top: 72px;
       font-size: 12px;
       color: rgba(255, 255, 255, 0.4);
     }
@@ -1138,6 +1138,79 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    .num-badge.gold {
+      background: var(--gold-bright);
+      color: var(--navy);
+      font-size: 16px;
+    }
+
+    .deliver-flat {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 36px;
+      max-width: 980px;
+    }
+
+    .deliver-flat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding-top: 20px;
+      border-top: 3px solid var(--gold-bright);
+    }
+
+    .deliver-flat-item .tile {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+      font-size: 22px;
+    }
+
+    .deliver-flat-item h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.1px;
+    }
+
+    .deliver-flat-item .spec-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .deliver-flat-item .spec {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      font-size: 12.5px;
+      line-height: 1.55;
+    }
+
+    .deliver-flat-item .spec strong {
+      flex-shrink: 0;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-weight: 700;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .deliver-flat-item .spec span {
+      color: var(--muted);
+    }
+
+    .deliver-flat-item p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
     }
 
     .step-row h3 {
@@ -1317,6 +1390,10 @@
       }
 
       .bg-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .deliver-flat {
         grid-template-columns: 1fr;
       }
 
@@ -1587,7 +1664,7 @@
       <div class="ex-item">
         <span class="step-label">Step 1</span>
         <h3>질문 의도·데이터 현황 파악</h3>
-        <p>AI가 질문의 의도('유망 기술 발굴')를 분석하고, 그에 맞는 분석 워크플로우 및 관련 지식 그래프를 탐색하여, 실행 프로세스를 설계합니다.</p>
+        <p>AI가 질문의 의도('유망 기술 발굴')를 분석하고, 그에 맞는 분석 워크플로우 및 관련 지식그래프를 탐색하여, 실행 프로세스를 설계합니다.</p>
         <div class="result">기술 간 연계 네트워크 분석 워크플로우, 관련 지식, NetMiner 기능 탐색 → 연구 질문 해결을 위한 실행 프로세스 수립</div>
       </div>
       <div class="ex-item highlight">
@@ -1748,8 +1825,8 @@
   <!-- SCOPE / DELIVERABLES -->
   <section style="background:#fff;">
     <div class="wrap">
-      <p class="section-label">Engagement</p>
-      <h2>도입 검토를 위한 시범 프로젝트</h2>
+      <p class="section-label">Proposal</p>
+      <h2>시범 프로젝트는 이렇게 진행됩니다</h2>
       <p class="lead" style="margin-bottom:20px;">정해진 범위와 기간 안에서 진행되는 소규모 유상 프로젝트로, 정식 도입에 앞서 연구자·기관의 연구 질문과 데이터에 대한 적용 가능성을 확인합니다.</p>
       <div class="scope-meta">예상 기간 <strong>최대 약 2개월</strong></div>
 
@@ -1766,7 +1843,7 @@
         <div class="step-row">
           <span class="num-badge">02</span>
           <div>
-            <h3>온톨로지 기반 도메인 지식 그래프 구축</h3>
+            <h3>온톨로지 기반 도메인 지식그래프 구축</h3>
             <p>정의된 스키마를 바탕으로 실제 데이터를 구조화합니다.</p>
             <p class="step-example"><strong>예시</strong> "김OO 연구원 – 특허 10-2023-XXXXXX – 반도체" 관계를 지식그래프 노드·엣지로 저장</p>
           </div>
@@ -1774,16 +1851,16 @@
         <div class="step-row">
           <span class="num-badge">03</span>
           <div>
-            <h3>대표 도메인 질문 확인 및 시나리오 설계 검토</h3>
-            <p>도입 기관이 제시한 대표 연구 질문을 바탕으로, 지식 그래프에서 필요한 데이터를 추출·분석하는 시나리오를 설계하고 검증합니다.</p>
-            <p class="step-example"><strong>예시</strong> "반도체 관련하여, 정책 지원이 필요한 유망 기술은 무엇인가?" 질문에 필요한 데이터 추출·분석 시나리오 설계</p>
+            <h3>대표 도메인 질문 확인 및 분석 워크플로우 설계 검토</h3>
+            <p>도입 기관이 제시한 대표 연구 질문을 바탕으로, 지식그래프에서 필요한 데이터를 추출·분석하는 워크플로우를 설계하고 검증합니다.</p>
+            <p class="step-example"><strong>예시</strong> "반도체 관련하여, 정책 지원이 필요한 유망 기술은 무엇인가?" 질문에 필요한 데이터 추출·분석 워크플로우 설계</p>
           </div>
         </div>
         <div class="step-row">
           <span class="num-badge">04</span>
           <div>
-            <h3>핵심 시나리오에 따른 분석 연동 테스트</h3>
-            <p>분석 시나리오에 따라 필요한 NetMiner 기능이 정상적으로 수행되는지 확인합니다.</p>
+            <h3>핵심 분석 워크플로우 연동 테스트</h3>
+            <p>분석 워크플로우에 따라 필요한 NetMiner 기능이 정상적으로 수행되는지 확인합니다.</p>
           </div>
         </div>
         <div class="step-row">
@@ -1795,12 +1872,30 @@
         </div>
       </div>
 
-      <p class="scope-h" style="margin-top:44px;">주요 산출물</p>
-      <ul class="deliver-list">
-        <li>NetMiner AX+ 이용 권한 (1년)</li>
-        <li>기관 맞춤 지식 그래프</li>
-        <li>대표 연구 질문별 분석 워크플로우 (분석 컨설팅)</li>
-      </ul>
+      <p class="scope-h" style="margin-top:56px;">주요 산출물</p>
+      <div class="deliver-flat">
+        <div class="deliver-flat-item">
+          <span class="tile"><svg class="ic"><use href="#i-monitor" /></svg></span>
+          <div>
+            <h3>NetMiner AX+ 이용 권한 (1년)</h3>
+            <p>프로젝트가 끝난 뒤에도 1년간 NetMiner AX+를 자유롭게 사용할 수 있습니다.</p>
+          </div>
+        </div>
+        <div class="deliver-flat-item">
+          <span class="tile"><svg class="ic"><use href="#i-link" /></svg></span>
+          <div>
+            <h3>기관 맞춤 지식그래프</h3>
+            <p>프로젝트가 끝난 뒤에도, 우리 기관의 데이터에 대해 자연어로 자유롭게 묻고 답을 얻을 수 있습니다.<br>Graph RAG를 통해 "OO 연구원과 공동 과제를 수행한 기관은 어디인가?"처럼 여러 단계를 거쳐야 답할 수 있는 질문에도 답할 수 있습니다.</p>
+          </div>
+        </div>
+        <div class="deliver-flat-item">
+          <span class="tile"><svg class="ic"><use href="#i-flask" /></svg></span>
+          <div>
+            <h3>대표 연구 질문별 분석 워크플로우</h3>
+            <p>연구 질문 해결에 필요한 복잡한 분석 워크플로우를 설계·검증까지 마친 상태로 전달받아, 이후 유사한 질문에도 그대로 다시 활용할 수 있습니다.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1813,25 +1908,28 @@
         <div class="qa-item">
           <p class="qa-q">Q. 이 프로젝트를 위해 준비해야 하는 것은 무엇인가요?</p>
           <ul class="qa-bullets">
+            <li>NetMiner 5 라이선스 보유 여부 확인 (미보유 시 별도 구매, NetMiner 4 보유 시 5로 업그레이드 필요)</li>
             <li>분석 데이터 및 관련 자료</li>
             <li>대표 연구 질문과 그에 대해 기대하는 답변</li>
             <li>설계된 분석 워크플로우와 도출된 결과가 원하는 방향에 맞는지에 대한 확인</li>
-            <li>지식 그래프 구축 시, 상용 LLM API 인증키(예: ChatGPT, Gemini 등) 지원</li>
+            <li>지식그래프 구축을 위한 상용 LLM API 인증키(예: ChatGPT, Gemini 등)</li>
           </ul>
+          <p class="scope-note">※ 상용 LLM을 사용하므로, 공개 가능한 데이터를 우선으로 진행합니다.</p>
         </div>
         <div class="qa-item">
           <p class="qa-q">Q. 비용에 포함되지 않는 것은 무엇인가요?</p>
           <ul class="qa-bullets">
-            <li>NetMiner 라이선스</li>
-            <li>시범 프로젝트 이용 권한(1년) 종료 후의 갱신 구독 비용</li>
-            <li>지식 그래프 구축 시 상용 LLM 이용료</li>
+            <li>NetMiner 5 라이선스</li>
+            <li>NetMiner AX+ 이용 권한(1년) 종료 후의 갱신 구독 비용</li>
+            <li>지식그래프 구축 시 상용 LLM 이용료</li>
           </ul>
         </div>
         <div class="qa-item">
           <p class="qa-q">Q. 프로젝트 수행 범위에 포함되지 않는 것은 무엇인가요?</p>
           <ul class="qa-bullets">
             <li>기존 시스템 실시간 연동 및 상용 인프라·서버 구축</li>
-            <li>범위 외 데이터 수집·정제 및 폐쇄망 로컬 LLM 구축</li>
+            <li>범위 외 데이터 수집·정제</li>
+            <li>폐쇄망 로컬 LLM 구축</li>
             <li>초과적인 커스터마이징 개발</li>
             <li>100% 답변 무결성 보장</li>
           </ul>
