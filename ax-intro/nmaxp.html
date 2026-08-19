@@ -1576,7 +1576,7 @@
       <div class="badge">프로젝트 제안서</div>
       <h1>NetMiner AX+</h1>
       <p class="sub">Graph AI</p>
-      <p class="tagline">보유한 데이터를 기관 맞춤형 지식그래프로 구축해, <br>범용 AI로는 알기 어려운 데이터와 관심 분야의 맥락까지 반영해 답하는<br><strong>대화형 Graph AI 분석 전문가</strong>입니다.</p>
+      <p class="tagline">연구 질문에 맞는 분석 워크플로우를 내장해, <br>자연어로 질문하면 자동으로 분석하고 결과까지 해석해주는<br><strong>대화형 Graph AI 분석 전문가</strong>입니다.</p>
     </div>
   </div>
 
@@ -1665,7 +1665,7 @@
       <div class="ex-item">
         <span class="step-label">Step 1</span>
         <h3>질문 의도·데이터 현황 파악</h3>
-        <p>AI가 질문의 의도('유망 기술 발굴')를 분석하고, 그에 맞는 분석 워크플로우 및 관련 지식그래프를 탐색하여, 실행 프로세스를 설계합니다.</p>
+        <p>AI가 질문의 의도('유망 기술 발굴')를 분석하고, 그에 맞는 분석 워크플로우를 탐색하여, 실행 프로세스를 설계합니다.</p>
         <div class="result">기술 간 연계 네트워크 분석 워크플로우, 관련 지식, NetMiner 기능 탐색 → 연구 질문 해결을 위한 실행 프로세스 수립</div>
       </div>
       <div class="ex-item highlight">
@@ -1799,7 +1799,7 @@
           <span class="tag">Intelligence</span>
           <div>
             <h3>분석 의도에 따른 지능형 분석 설계</h3>
-            <p>기관 맞춤형 지식그래프를 기반으로 질문 의도를 파악해, 범용 AI로는 알기 어려운 데이터와 관심 분야의 맥락까지 반영한 분석 방법을 선택합니다.</p>
+            <p>연구 질문에 맞는 분석 워크플로우를 기반으로 질문 의도를 파악해, 범용 AI로는 알기 어려운 데이터와 관심 분야의 맥락까지 반영한 분석 방법을 선택합니다.</p>
             <p class="diff">범용 AI: 일반적인 개념 설명 위주, 실제 워크플로우 설계는 사용자 몫</p>
           </div>
         </div>
@@ -1836,43 +1836,36 @@
         <div class="step-row">
           <span class="num-badge">01</span>
           <div>
-            <h3>도메인 온톨로지 초안 생성 및 스키마 정의</h3>
-            <p>도입 기관의 정형·비정형 데이터에서 핵심 개념과 용어를 추출하고, 관계 구조를 설계합니다.</p>
-            <p class="step-example"><strong>예시</strong> 특허·논문 원문(비정형) + 특허·논문 메타데이터(정형: 국가과제번호, 예산 등) → "발명자–특허–연관 국가과제번호–예산–기술분류" 관계 스키마 도출</p>
+            <h3>고객 데이터 모델링 및 변환</h3>
+            <p>도입 기관의 정형·비정형 데이터를 NetMiner 분석이 가능한 형태로 모델링하고 변환합니다.</p>
+            <p class="step-example"><strong>예시</strong> 특허·논문 원문(비정형) + 특허·논문 메타데이터(정형: 국가과제번호, 예산 등) → "발명자–특허–연관 국가과제번호–예산–기술분류" 관계 구조로 모델링·변환</p>
           </div>
         </div>
         <div class="step-row">
           <span class="num-badge">02</span>
           <div>
-            <h3>온톨로지 기반 도메인 지식그래프 구축</h3>
-            <p>정의된 스키마를 바탕으로 실제 데이터를 구조화합니다.</p>
-            <p class="step-example"><strong>예시</strong> "김OO(발명자) – 26-XXX(특허) – R2024-X(국가과제번호) – 반도체(기술분류)"와 같이 온톨로지 스키마에 맞게 지식그래프 노드·엣지로 저장</p>
+            <h3>대표 도메인 질문 확인 및 분석 워크플로우 설계 검토</h3>
+            <p>도입 기관이 제시한 대표 연구 질문을 바탕으로, 모델링된 데이터에서 필요한 데이터를 추출·분석하는 워크플로우를 설계하고 검증합니다.</p>
+            <p class="step-example"><strong>예시</strong> "반도체 관련하여, 정책 지원이 필요한 유망 기술은 무엇인가?" 질문에 필요한 데이터 추출·분석 워크플로우 설계</p>
           </div>
         </div>
         <div class="step-row">
           <span class="num-badge">03</span>
           <div>
-            <h3>대표 도메인 질문 확인 및 분석 워크플로우 설계 검토</h3>
-            <p>도입 기관이 제시한 대표 연구 질문을 바탕으로, 지식그래프에서 필요한 데이터를 추출·분석하는 워크플로우를 설계하고 검증합니다.</p>
-            <p class="step-example"><strong>예시</strong> "반도체 관련하여, 정책 지원이 필요한 유망 기술은 무엇인가?" 질문에 필요한 데이터 추출·분석 워크플로우 설계</p>
+            <h3>데이터 전처리·정제, 분석 기능 커스텀 개발</h3>
+            <p>설계된 워크플로우 수행에 필요한 경우에 한해, 데이터 전처리·정제 및 단순한 맞춤 분석 기능을 추가로 개발합니다.</p>
+            <p class="scope-note">※ 외부 데이터 수집·정제, 고난도 커스터마이징 개발은 포함하지 않습니다.</p>
           </div>
         </div>
         <div class="step-row">
           <span class="num-badge">04</span>
-          <div>
-            <h3>데이터 전처리·정제, 분석 기능 커스텀 개발</h3>
-            <p>설계된 워크플로우 수행에 필요한 경우에 한해, 데이터 전처리·정제 및 맞춤 분석 기능을 추가로 개발합니다.</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <span class="num-badge">05</span>
           <div>
             <h3>핵심 분석 워크플로우 연동 테스트</h3>
             <p>분석 워크플로우에 따라 필요한 기능이 정상적으로 수행되는지 확인합니다.</p>
           </div>
         </div>
         <div class="step-row">
-          <span class="num-badge">06</span>
+          <span class="num-badge">05</span>
           <div>
             <h3>최종 결과 유용성 검토</h3>
             <p>대표 질문에 대한 응답이 실제로 유용한지 평가합니다.</p>
@@ -1890,17 +1883,17 @@
           </div>
         </div>
         <div class="deliver-flat-item">
-          <span class="tile"><svg class="ic"><use href="#i-link" /></svg></span>
-          <div>
-            <h3>기관 맞춤 지식그래프</h3>
-            <p>NetMiner AX+에 내장되어, 프로젝트가 끝난 뒤에도 보유 데이터에 대해 자연어로 자유롭게 묻고 답을 얻을 수 있습니다.<br>하이브리드 RAG를 통해 "이 기술과 유사한 내용을 다루는 특허는 무엇인가?"처럼 문서 내용 자체를 검색하는 질문에도 답할 수 있습니다.</p>
-          </div>
-        </div>
-        <div class="deliver-flat-item">
           <span class="tile"><svg class="ic"><use href="#i-flask" /></svg></span>
           <div>
             <h3>대표 연구 질문별 분석 워크플로우</h3>
             <p>설계·검증까지 마친 분석 워크플로우를 NetMiner AX+에 내장해, 동일한 분석을 언제든 안정적으로 재현할 수 있습니다. 또한 연구 방법 이해를 위해 상세한 설명 문서도 함께 제공합니다.</p>
+          </div>
+        </div>
+        <div class="deliver-flat-item">
+          <span class="tile"><svg class="ic"><use href="#i-book" /></svg></span>
+          <div>
+            <h3>결과 보고서</h3>
+            <p>대표 질문별 답변 결과와 구현 결과 검증 내용을 포함해, 시범 프로젝트 수행 결과를 정리한 보고서를 제공합니다.</p>
           </div>
         </div>
       </div>
@@ -1916,7 +1909,7 @@
         <div class="qa-item">
           <p class="qa-q">Q. 이 프로젝트를 위해 준비해야 하는 것은 무엇인가요?</p>
           <ul class="qa-bullets">
-            <li>분석 데이터 및 지식그래프용 학습 데이터(PDF, 엑셀, DB 등)</li>
+            <li>분석 데이터(PDF, 엑셀, DB 등)</li>
             <li>대표 연구 질문과 알고자 하는 내용 (예: "AI 관련 국내외 정책 동향에서 가장 주목할만한 키워드는?")</li>
             <li>상용 LLM API 인증키(예: ChatGPT, Gemini 등)</li>
           </ul>
