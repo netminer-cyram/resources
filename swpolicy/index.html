@@ -1,0 +1,1311 @@
+<title>AI 리더 X 동향 리포트</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+  :root {
+    --bg: #f2f3f5;
+    --surface: #ffffff;
+    --surface-2: #eceef2;
+    --ink: #14161a;
+    --ink-muted: #6b6f76;
+    --ink-faint: #9a9ea5;
+    --line: rgba(20, 22, 26, .08);
+    --accent: #3651e0;
+    --accent-ink: #2a3fb8;
+    --accent-soft: #e7eafc;
+    --shadow-lg: 0 24px 60px rgba(20, 22, 30, .10), 0 2px 8px rgba(20, 22, 30, .05);
+    --shadow-sm: 0 10px 26px rgba(20, 22, 30, .07), 0 1px 3px rgba(20, 22, 30, .04);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; font-size: 17px; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans KR', sans-serif;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .grotesk { font-family: 'Space Grotesk', 'Noto Sans KR', sans-serif; font-variant-numeric: tabular-nums; }
+
+  h1, h2, h3 { font-family: 'Noto Sans KR', sans-serif; font-weight: 900; letter-spacing: -.02em; line-height: 1.18; margin: 0; color: var(--ink); text-wrap: balance; }
+  h3 { font-weight: 700; line-height: 1.35; }
+
+  p { margin: 0; }
+  ul, ol { margin: 0; padding: 0; }
+  code {
+    font-family: 'Space Grotesk', monospace;
+    font-size: .9em;
+    background: var(--surface-2);
+    padding: .1em .4em;
+    border-radius: 6px;
+  }
+
+  ::selection { background: var(--accent); color: #fff; }
+
+  .wrap { max-width: 1480px; margin: 0 auto; padding-left: clamp(20px, 4.5vw, 88px); padding-right: clamp(20px, 4.5vw, 88px); }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-ink);
+  }
+
+  /* ---------- fluid island nav ---------- */
+  .rail {
+    position: fixed;
+    right: clamp(10px, 2.4vw, 28px);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: rgba(255, 255, 255, .68);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, .6);
+    border-radius: 28px;
+    padding: 8px;
+    box-shadow: var(--shadow-lg);
+  }
+  .rail a {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    letter-spacing: .02em;
+    font-weight: 500;
+    color: var(--ink-muted);
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 999px;
+    white-space: nowrap;
+    transition: background .35s cubic-bezier(.32,.72,0,1), color .35s cubic-bezier(.32,.72,0,1), transform .25s cubic-bezier(.32,.72,0,1);
+  }
+  .rail a:hover { background: var(--surface-2); color: var(--ink); }
+  .rail a.active { background: var(--accent); color: #fff; transform: scale(1.03); }
+  @media (max-width: 900px) { .rail { display: none; } }
+
+  /* ---------- masthead ---------- */
+  .masthead-bar { padding: 18px 0; }
+  .masthead-bar .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-family: 'Space Grotesk', sans-serif; font-size: 12px; letter-spacing: .04em; color: var(--ink-faint); }
+
+  .hero { position: relative; padding: clamp(40px, 6vw, 72px) 0 clamp(56px, 7vw, 96px); }
+  .hero h1 { font-size: clamp(2.3rem, 4.4vw, 4rem); line-height: 1.08; margin-top: 24px; max-width: none; }
+  .hero-sub { margin-top: 28px; max-width: none; font-size: clamp(1.02rem, 1.1vw, 1.16rem); color: var(--ink-muted); }
+
+  /* double-bezel card */
+  .bezel { padding: 7px; background: linear-gradient(160deg, rgba(255,255,255,.9), rgba(255,255,255,.5)); border: 1px solid rgba(255,255,255,.7); border-radius: 28px; box-shadow: var(--shadow-sm); transition: transform .4s cubic-bezier(.32,.72,0,1), box-shadow .4s cubic-bezier(.32,.72,0,1); align-self: start; }
+  .bezel:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  .bezel-core { background: var(--surface); border-radius: 21px; padding: 24px 26px; box-shadow: inset 0 1px 0 rgba(255,255,255,.6); height: auto; }
+  .card-grid .bezel-core, .result-grid .bezel-core { height: 100%; }
+
+  .meta-cards { margin-top: 44px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 800px) { .meta-cards { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .meta-cards { grid-template-columns: 1fr; } }
+  .meta-cards .bezel-core .k { font-family: 'Space Grotesk', sans-serif; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); font-weight: 600; }
+  .meta-cards .bezel-core .v { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; margin-top: 8px; color: var(--ink); }
+
+  /* ---------- sections ---------- */
+  section.block { padding: clamp(56px, 7vw, 100px) 0; }
+
+  .block-head { margin-bottom: clamp(32px, 3.5vw, 48px); display: grid; grid-template-columns: minmax(200px, 300px) 1fr; gap: clamp(20px, 3vw, 48px); align-items: start; }
+  @media (max-width: 900px) { .block-head { grid-template-columns: 1fr; } }
+  .block-head h2 { font-size: clamp(1.55rem, 2.1vw, 2.1rem); }
+  .block-head .lede { color: var(--ink-muted); max-width: none; width: 100%; font-size: 1.08rem; }
+
+  .reveal { opacity: 0; transform: translateY(28px); filter: blur(6px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1), filter .8s cubic-bezier(.16,1,.3,1); }
+  .reveal.in { opacity: 1; transform: translateY(0); filter: blur(0); }
+
+  /* bento card grid */
+  .card-grid { display: grid; gap: 18px; }
+  .card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .card-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 900px) { .card-grid.cols-3, .card-grid.cols-2 { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .card-grid.cols-3, .card-grid.cols-2 { grid-template-columns: 1fr; } }
+
+  .bezel-core .lbl { font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); font-weight: 600; }
+  .bezel-core .big { font-weight: 900; font-size: 1.35rem; margin-top: 14px; color: var(--ink); letter-spacing: -.01em; }
+  .bezel-core .desc { margin-top: 10px; font-size: .96rem; color: var(--ink-muted); line-height: 1.65; }
+
+  .fact-card dt { font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-faint); font-weight: 600; }
+  .fact-card dd { margin: 10px 0 0; font-size: 1rem; line-height: 1.55; }
+
+  table { border-collapse: collapse; width: 100%; font-size: .93rem; }
+  thead th {
+    text-align: left;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    border-bottom: 1px solid var(--line);
+    padding: 12px 18px;
+  }
+  tbody td { padding: 15px 18px; vertical-align: top; color: var(--ink); border-bottom: 1px solid var(--line); }
+  tbody tr:last-child td { border-bottom: none; }
+  .table-wrap { overflow-x: auto; background: var(--surface); border-radius: 22px; box-shadow: var(--shadow-sm); padding: 6px; }
+
+  .constraint-note { margin-top: 32px; background: var(--surface-2); border-radius: 22px; padding: 26px 30px; }
+  .constraint-note p.lead { font-weight: 700; font-size: .96rem; color: var(--ink); }
+  .constraint-note ul { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; list-style: none; }
+  .constraint-note li { font-size: .93rem; color: var(--ink-muted); padding-left: 18px; position: relative; list-style: none; }
+  .constraint-note li::before { content: "•"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+  .constraint-note ul ul { margin-top: 6px; gap: 6px; padding-left: 4px; }
+  .constraint-note ul ul li { font-size: .88rem; color: var(--ink-muted); }
+  .constraint-note ul ul li::before { content: "-"; color: var(--ink-faint); font-weight: 500; }
+
+  /* preprocessing */
+  .proc { display: flex; flex-direction: column; }
+  .pstep { padding: clamp(32px, 3.5vw, 44px) 0; border-top: 1px solid var(--line); }
+  .pstep:first-child { border-top: none; padding-top: 0; }
+  .pstep-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 18px; flex-wrap: wrap; }
+  .pstep-head .pn { font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: .06em; font-weight: 700; color: var(--accent-ink); background: var(--accent-soft); padding: 6px 14px; border-radius: 999px; }
+  .ai-tag {
+    font-family: 'Space Grotesk', 'Noto Sans KR', sans-serif;
+    font-size: 11px;
+    letter-spacing: .04em;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: #ecfdf5;
+    color: #047857;
+    border: 1px solid #a7f3d0;
+  }
+  .pstep h3 { font-size: 1.32rem; }
+  .pstep .psub { font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: .05em; color: var(--ink-faint); text-transform: uppercase; margin-top: 4px; font-weight: 600; }
+
+  .pstep-content { display: grid; grid-template-columns: 1fr 340px; gap: clamp(28px, 4vw, 52px); align-items: start; }
+  .pstep-content.no-aside { grid-template-columns: 1fr; max-width: 900px; }
+  @media (max-width: 1150px) { .pstep-content { grid-template-columns: 1fr; } }
+  .pside { display: flex; flex-direction: column; gap: 16px; }
+  .pstep .pbody { color: var(--ink-muted); max-width: none; font-size: .98rem; }
+  .pstep .pbody strong { color: var(--ink); font-weight: 700; }
+  .pstep .pbody + .pbody { margin-top: 12px; }
+
+  .pflow { display: flex; align-items: center; gap: 14px; padding: 2px 4px; }
+  .pflow .parrow { font-family: 'Space Grotesk', sans-serif; font-size: 24px; line-height: 1; color: var(--accent-ink); font-weight: 700; }
+  .pflow .plabel { font-size: .84rem; color: var(--ink-muted); }
+  .pflow.dashed .parrow { color: var(--ink-faint); }
+  .pflow.dashed .plabel { color: var(--ink-faint); font-style: italic; }
+  .pstep.linked { border-top: none; padding-top: 0; }
+
+  /* roadmap (향후 일정) */
+  .roadmap-status { background: var(--surface-2); border-radius: 20px; padding: 22px 26px; margin-bottom: 22px; }
+  .roadmap-status .rk { font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent-ink); font-weight: 700; margin-bottom: 10px; }
+  .roadmap { display: flex; flex-direction: column; }
+  .rm-item { display: grid; grid-template-columns: 150px 1fr; gap: 22px; padding: 16px 0; border-top: 1px solid var(--line); }
+  .rm-item:first-child { border-top: none; }
+  .rm-when { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: .92rem; color: var(--accent-ink); }
+  .rm-desc { font-size: .96rem; color: var(--ink-muted); }
+  .rm-desc strong { color: var(--ink); font-weight: 700; }
+  @media (max-width: 560px) { .rm-item { grid-template-columns: 1fr; gap: 6px; } }
+
+  /* analysis section: each step as a distinct white box block, linked by a left-side flow rail */
+  #analysis .proc { gap: 22px; position: relative; padding-left: 34px; }
+  #analysis .proc::before { content: ''; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 2px; background: var(--line); }
+  #analysis .pstep { position: relative; border-top: none; background: var(--surface); border-radius: 24px; box-shadow: var(--shadow-sm); padding: clamp(28px, 3vw, 38px) clamp(26px, 3vw, 40px); }
+  #analysis .pstep::before { content: ''; position: absolute; left: -34px; top: 38px; width: 12px; height: 12px; border-radius: 50%; background: var(--surface); border: 3px solid var(--accent-ink); box-shadow: 0 0 0 4px var(--bg); }
+  #analysis .pflow { position: relative; justify-content: flex-start; padding: 2px 0; }
+  #analysis .pflow .parrow { position: absolute; left: -34px; width: 24px; text-align: center; background: var(--bg); }
+  #analysis .pstep-content.no-aside { max-width: none; }
+
+  .rule-box { background: var(--surface-2); border-radius: 20px; padding: 20px 22px; }
+  .rule-box .rk { font-family: 'Space Grotesk', sans-serif; font-size: 10.5px; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-faint); font-weight: 600; margin-bottom: 12px; }
+  .rule-line { display: flex; gap: 12px; padding: 7px 0; font-size: .9rem; }
+  .rule-line:not(:last-child) { border-bottom: 1px solid var(--line); }
+  .rule-line .cond { font-family: 'Space Grotesk', sans-serif; color: var(--accent-ink); font-weight: 600; flex: none; width: 15ch; }
+  .rule-line .expl { color: var(--ink-muted); }
+
+  .example-box { background: var(--accent-soft); border-radius: 20px; padding: 18px 22px; font-size: .94rem; color: var(--ink); }
+  .example-box .ek { font-family: 'Space Grotesk', sans-serif; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent-ink); font-weight: 700; margin-bottom: 8px; }
+
+  .stat-line { display: flex; flex-direction: column; gap: 0; background: var(--surface); border-radius: 20px; box-shadow: var(--shadow-sm); overflow: hidden; }
+  .stat-item { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 20px; border-bottom: 1px solid var(--line); }
+  .stat-item:last-child { border-bottom: none; }
+  .stat-item .n { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--accent-ink); flex: none; white-space: nowrap; }
+  .stat-item .l { font-size: .84rem; color: var(--ink-muted); text-align: left; line-height: 1.4; }
+
+  .sub-ordered { margin-top: 16px; display: flex; flex-direction: column; gap: 12px; max-width: none; }
+  .sub-ordered li { list-style: none; display: grid; grid-template-columns: 30px 1fr; gap: 10px; font-size: .93rem; color: var(--ink-muted); }
+  .sub-ordered li .si { font-family: 'Space Grotesk', sans-serif; color: #fff; background: var(--accent); font-weight: 700; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; }
+  .sub-ordered li strong { color: var(--ink); font-weight: 700; }
+
+  .kw-details { margin-top: 6px; }
+  .kw-details summary {
+    cursor: pointer;
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: .86rem;
+    font-weight: 600;
+    color: var(--accent-ink);
+  }
+  .kw-details summary::-webkit-details-marker { display: none; }
+  .kw-details summary::before { content: "▸"; font-size: .75rem; transition: transform .2s; }
+  .kw-details[open] summary::before { transform: rotate(90deg); }
+  .kw-details summary:hover { text-decoration: underline; }
+  .kw-group { margin-top: 10px; }
+  .kw-group:first-of-type { margin-top: 12px; }
+  .kw-group-label { font-family: 'Space Grotesk', sans-serif; font-size: .75rem; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-faint); font-weight: 600; margin-bottom: 6px; }
+  .kw-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .kw-chip { font-family: 'Space Grotesk', monospace; font-size: .78rem; background: var(--surface-2); border-radius: 999px; padding: 4px 12px; color: var(--ink-muted); }
+
+  .pbullets { display: flex; flex-direction: column; gap: 11px; max-width: none; }
+  .pbullets li { list-style: none; position: relative; padding-left: 20px; font-size: .97rem; color: var(--ink-muted); }
+  .pbullets li::before { content: "•"; position: absolute; left: 0; top: 0; color: var(--accent-ink); font-weight: 700; }
+  .pbullets li.no-bullet, .pbullets li:has(> details) { padding-left: 0; }
+  .pbullets li.no-bullet::before, .pbullets li:has(> details)::before { display: none; }
+  .pbullets li strong { color: var(--ink); font-weight: 700; }
+  .pbullets ul.pbullets { margin-top: 8px; padding-left: 14px; gap: 8px; }
+  .pbullets + .pbullets { margin-top: 6px; }
+
+  .rule-summary { background: var(--accent-soft); border-radius: 16px; padding: 16px 20px; font-size: .95rem; color: var(--ink); line-height: 1.6; }
+  .rule-summary strong { color: var(--accent-ink); }
+
+  .flow-summary { margin-top: 16px; }
+  .flow-summary .fk { font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); font-weight: 600; margin-bottom: 18px; }
+  .flow-chain { display: flex; flex-wrap: wrap; gap: 10px; font-family: 'Space Grotesk', sans-serif; font-size: .84rem; font-weight: 500; }
+  .flow-chain .fnode { background: var(--surface); box-shadow: var(--shadow-sm); border-radius: 999px; padding: 10px 20px; color: var(--ink); }
+  .flow-final { margin-top: 18px; font-size: 1.05rem; color: var(--ink); }
+  .flow-final .n { color: var(--accent-ink); font-weight: 700; }
+
+  .flow-result { margin-top: 18px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  @media (max-width: 560px) { .flow-result { grid-template-columns: 1fr; } }
+  .flow-result-item { background: var(--surface); border-radius: 16px; box-shadow: var(--shadow-sm); padding: 18px 22px; }
+  .flow-result-item .l { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); font-weight: 600; }
+  .flow-result-item .n { display: block; margin-top: 8px; font-size: 1.5rem; font-weight: 700; color: var(--accent-ink); }
+  .flow-result-item .p { display: block; margin-top: 4px; font-size: .85rem; color: var(--ink-muted); }
+
+  /* analysis */
+  .method-row { display: flex; flex-direction: column; gap: 12px; }
+  .method-row .m-title h3 { font-size: 1.22rem; }
+  .method-row .m-title .mk { display: block; margin-top: 8px; font-family: 'Space Grotesk', sans-serif; font-size: 11px; color: var(--accent-ink); letter-spacing: .06em; font-weight: 600; }
+  .method-row .m-body p { color: var(--ink-muted); font-size: .98rem; }
+
+  .ai-note { margin-top: 32px; }
+  .ai-note .bezel-core { display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: start; }
+  .ai-note ul { display: flex; flex-direction: column; gap: 6px; }
+  .ai-note li { font-size: .93rem; color: var(--ink-muted); }
+  .ai-note li strong { color: var(--ink); }
+  .ai-note .foot { margin-top: 12px; font-size: .85rem; color: var(--ink-faint); }
+  @media (max-width: 560px) { .ai-note .bezel-core { grid-template-columns: 1fr; } }
+
+  /* results */
+  .result-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  .result-sub-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .result-sub-head h3 { font-size: 1.08rem; }
+  .pending-table thead th { color: var(--ink-faint); }
+  .pending-table td { color: var(--ink-faint); border-color: var(--line); }
+  .result-note { margin-top: 12px; font-size: .85rem; color: var(--ink-faint); }
+
+  /* closing */
+  .closing { padding: clamp(56px, 7vw, 100px) 0; }
+  .closing .mark { font-weight: 900; font-size: clamp(1.5rem, 2.2vw, 2rem); max-width: 32ch; line-height: 1.4; letter-spacing: -.01em; }
+  .closing .sign { margin-top: 28px; font-family: 'Space Grotesk', sans-serif; font-size: 12px; color: var(--ink-faint); font-weight: 500; }
+
+  .footer-bar { padding: 22px 0 40px; font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: .02em; color: var(--ink-faint); }
+  .footer-bar .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+  /* quote popup */
+  .quote-btn { font-family: 'Space Grotesk', sans-serif; font-size: .8rem; font-weight: 600; color: var(--accent-ink); background: var(--accent-soft); border: none; border-radius: 999px; padding: 5px 14px; cursor: pointer; white-space: nowrap; }
+  .quote-btn:hover { background: var(--accent); color: #fff; }
+  .quote-modal-overlay { position: fixed; inset: 0; background: rgba(20,22,26,.55); display: none; align-items: center; justify-content: center; z-index: 100; padding: 24px; }
+  .quote-modal-overlay.open { display: flex; }
+  .quote-modal-box { background: var(--surface); border-radius: 20px; box-shadow: var(--shadow-lg); padding: 28px 30px; max-width: 640px; width: 100%; max-height: 80vh; overflow-y: auto; position: relative; }
+  .quote-modal-box.wide { max-width: 900px; }
+  .quote-modal-close { position: absolute; top: 16px; right: 18px; background: none; border: none; font-size: 22px; line-height: 1; color: var(--ink-faint); cursor: pointer; }
+  .quote-modal-close:hover { color: var(--ink); }
+  .quote-modal-box .qm-title { font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); font-weight: 600; margin-bottom: 14px; }
+  .quote-modal-box .pbullets li { font-style: italic; color: var(--ink); }
+</style>
+
+<nav class="rail" id="rail">
+  <a href="#overview">개요</a>
+  <a href="#collect">수집 방법</a>
+  <a href="#preprocess">전처리 절차</a>
+  <a href="#analysis">분석 절차</a>
+  <a href="#results">주요 결과</a>
+  <a href="#review">향후 검토 사항</a>
+  <a href="#closing">향후 일정</a>
+</nav>
+
+<div class="masthead-bar">
+  <div class="wrap">
+    <span>(주) 사이람</span>
+    <span>문서번호 2026-08-26-01 · 1차 보고</span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="pill">1차 결과 보고서 · 2026.08.26</span>
+    <h1>AI 리더 X 계정 소셜 데이터 분석</h1>
+    <p class="hero-sub">AI 분야 주요 인물들의 X(트위터) 게시 동향을 매일 추적해 게시량 추이, 핵심 키워드, 주요 담론, 담론 변화 추이, 신조어 5가지 인사이트로 정리합니다.</p>
+
+  </div>
+</header>
+
+<div class="wrap">
+
+<section class="block" id="overview">
+  <div class="block-head">
+    <h2>개요</h2>
+    <p class="lede">AI 분야 주요 인물 X 계정을 대상으로 일일 게시 동향, 주요 담론, 신규 키워드를 추적하는 분석 체계를 구축했습니다.</p>
+  </div>
+  <div class="reveal card-grid cols-3">
+    <div class="bezel"><div class="bezel-core">
+      <div class="lbl">PIPELINE</div>
+      <div class="big">수집 → 전처리 → 분석</div>
+      <div class="desc">원문 복원과 무관 콘텐츠 필터링을 거친 정제 데이터만 분석에 투입합니다.</div>
+    </div></div>
+    <div class="bezel"><div class="bezel-core">
+      <div class="lbl">OUTPUT</div>
+      <div class="big">5개 인사이트</div>
+      <div class="desc">게시량 추이, 오늘의 발견 키워드, 주요 담론 및 인물 분포, 핵심 키워드, 담론 변화 추이</div>
+    </div></div>
+    <div class="bezel"><div class="bezel-core">
+      <div class="lbl">AI 사용 범위</div>
+      <div class="big">보조적 사용</div>
+      <div class="desc">토픽 한글 주제명 부여, 신조어 후보 선별에 활용</div>
+    </div></div>
+  </div>
+</section>
+
+<section class="block" id="collect">
+  <div class="block-head">
+    <h2>데이터 수집 방법</h2>
+    <p class="lede">AI 분야 주요 인물의 X 계정을 대상으로 데이터를 소급 수집합니다.</p>
+  </div>
+  <div class="reveal">
+    <dl class="card-grid cols-3">
+      <div class="bezel"><div class="bezel-core fact-card"><dt>전체 수집 계획 기간</dt><dd>2026.06.01 ~ 2026.09.30</dd></div></div>
+      <div class="bezel"><div class="bezel-core fact-card">
+        <dt>수집 대상</dt>
+        <dd style="display:flex; flex-direction:column; gap:4px;">
+          <span>AI 분야 주요 인물 X 계정</span>
+          <span>• 1차 후보: <span class="grotesk" style="font-weight:600; color:var(--ink);">130명</span></span>
+          <span>• X 계정 확인: <span class="grotesk" style="font-weight:600; color:var(--ink);">101명</span></span>
+        </dd>
+      </div></div>
+      <div class="bezel"><div class="bezel-core fact-card">
+        <dt>수집 콘텐츠 유형</dt>
+        <dd style="display:flex; flex-direction:column; gap:4px;">
+          <span>• <strong>일반 포스트</strong>: 본인이 직접 작성한 포스트</span>
+          <span>• <strong>인용 포스트</strong>: 타인 글에 의견을 덧붙인 포스트</span>
+          <span>• <strong>리포스트</strong>: 타인의 글을 피드에 공유한 포스트</span>
+          <span>• <strong>답글</strong>: 상기 포스트 하위에 작성된 댓글/답변</span>
+        </dd>
+      </div></div>
+      <div class="bezel"><div class="bezel-core fact-card"><dt>1차 분석 범위</dt><dd>2026.06.01 ~ 2026.07.30<br><span style="font-size:0.86em; color:var(--ink-muted);">(분석 결과 기준일 )</span></dd></div></div>
+      <div class="bezel"><div class="bezel-core fact-card"><dt>1차 범위 내 확인 인원</dt><dd>1차 분석 범위 기준 게시 이력이 있는 <span class="grotesk">77명</span></dd></div></div>
+      <div class="bezel"><div class="bezel-core fact-card">
+        <dt>수집 결과</dt>
+        <dd style="display:flex; flex-direction:column; gap:4px;">
+          <span>포스트 수 <span class="grotesk" style="color:var(--ink); font-weight:600;">9,040건</span></span>
+          <span>답글 수 <span class="grotesk" style="color:var(--ink-faint); font-weight:600;">집계 예정</span></span>
+          <span>포스트당 평균 답글 수 <span class="grotesk" style="color:var(--ink-faint); font-weight:600;">집계 예정</span></span>
+        </dd>
+      </div></div>
+    </dl>
+
+    <div class="constraint-note" style="margin-top:24px;">
+      <p class="lead">비고</p>
+      <ul>
+        <li>수집 언어: 영어만 수집 (<code>lang:en</code>)</li>
+        <li>수집 시간대: UTC+0 (한국 시간 기준 매일 아침 9시)</li>
+        <li>답글 수집: 이번 1차 분석 범위에서는 제외
+          <ul>
+            <li>포스트 게시일과 같은 날 수집</li>
+            <li>포스트당 최대 20~30개 제한 적용</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="preprocess">
+  <div class="block-head">
+    <h2>전처리 절차</h2>
+    <p class="lede">원시 수집 데이터를 분석에 투입하기 전 4단계로 정제합니다.</p>
+  </div>
+
+  <div class="reveal proc">
+    <div class="pstep">
+      <div class="pstep-head"><span class="pn">STEP 01</span></div>
+      <h3>포스트 전문 복원</h3>
+      <p class="psub">TEXT RESTORATION</p>
+      <div class="pstep-content" style="margin-top:20px;">
+        <div class="pmain">
+          <ul class="pbullets">
+            <li><strong>배경</strong>: 리포스트와 인용 포스트의 경우, 원문이 기본 필드(<code>content</code>)가 아닌 별도 필드(<code>retweeted_content</code>, <code>quoted_content</code>)로 분리 수집됨 → 기본 필드(<code>content</code>)만 사용 시 핵심 내용 누락 발생</li>
+          </ul>
+
+          <div class="rule-box" style="margin-top:18px;">
+            <div class="rk">ANALYSIS_TEXT 생성 규칙 및 처리 방식</div>
+            <div class="rule-line"><span class="cond">리포스트</span><span class="expl">리포스트 원문(<code>retweeted_content</code>)을 <code>content</code> 필드로 가져옴</span></div>
+            <div class="rule-line"><span class="cond">인용 포스트</span><span class="expl">코멘트가 작성된 기본 필드(<code>content</code>)와 인용 원문(<code>quoted_content</code>)을 합산</span></div>
+            <div class="rule-line"><span class="cond">일반 포스트</span><span class="expl">기본 필드(<code>content</code>) 그대로 사용</span></div>
+          </div>
+        </div>
+
+        <div class="pside">
+          <div class="example-box">
+            <div class="ek">확인 사례 (인용 포스트)</div>
+            리더 본인 코멘트("Thank you...")보다 핵심 분석 내용(AI 반도체 협력 소식 등)이 인용 원문(<code>quoted_content</code>)에 포함되어 있는 형태 확인
+          </div>
+
+          <div class="stat-line">
+            <div class="stat-item"><span class="l">리포스트</span><span class="n">3,458건</span></div>
+            <div class="stat-item"><span class="l">인용 포스트</span><span class="n">1,865건</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pstep">
+      <div class="pstep-head"><span class="pn">STEP 02</span></div>
+      <h3>무관 콘텐츠 필터링</h3>
+      <p class="psub">DOMAIN FILTERING</p>
+      <div class="pstep-content" style="margin-top:20px;">
+        <div class="pmain">
+          <ul class="pbullets">
+            <li><strong>배경</strong>: 일부 리더의 정치 · 우주항공 · 자동차 · 개인 잡담 리포스트 과다 → 원문 그대로 분석 시 결과 오염</li>
+            <li><strong>활용 정보</strong>: X 수집 결과에 이미 포함된 도메인 태그 정보(<code>context_annotations</code>)</li>
+          </ul>
+
+          <div class="rule-box" style="margin-top:18px;">
+          <div class="rk">필터링 절차 (3단계)</div>
+          <ol class="sub-ordered" style="margin-top:12px;">
+            <li><span class="si">1</span><span><strong>도메인 태그 1차 필터링</strong>: 도메인 태그 정보를 활용해 정치 · 엔터테인먼트/스포츠 · 우주항공 · 자동차 4가지 분야 1차 필터링</span></li>
+            <li><span class="si">2</span><span><strong>본문 키워드 2차 필터링</strong>: 도메인 태그가 붙지 않은 글 중 본문에 무관 주제 필터링 단어(예: usaid, deportations, starship 등)가 포함되어 있는지 확인하여 2차 필터링
+              <details class="kw-details">
+                <summary>필터링 키워드</summary>
+                <div class="kw-group" style="margin-top:10px;">
+                  <div class="kw-group-label">정치</div>
+                <div class="kw-chips">
+                  <span class="kw-chip">invasion</span>
+                  <span class="kw-chip">illegal immigrant(s)</span>
+                  <span class="kw-chip">migrant(s)</span>
+                  <span class="kw-chip">deportation</span>
+                  <span class="kw-chip">border crisis</span>
+                  <span class="kw-chip">democrats</span>
+                  <span class="kw-chip">republicans</span>
+                  <span class="kw-chip">vaccine mandate</span>
+                  <span class="kw-chip">voter fraud</span>
+                  <span class="kw-chip">election fraud</span>
+                  <span class="kw-chip">antifa</span>
+                  <span class="kw-chip">deep state</span>
+                  <span class="kw-chip">fauci</span>
+                  <span class="kw-chip">usaid</span>
+                  <span class="kw-chip">foreign aid / aid cuts</span>
+                  <span class="kw-chip">anti-capitalist</span>
+                  <span class="kw-chip">mail-in ballot(s)</span>
+                  <span class="kw-chip">backdate</span>
+                  <span class="kw-chip">governor candidate</span>
+                  <span class="kw-chip">iran war</span>
+                  <span class="kw-chip">jcpoa</span>
+                  <span class="kw-chip">made in usa fraud</span>
+                  <span class="kw-chip">ebt cards</span>
+                  <span class="kw-chip">ebt cash</span>
+                  <span class="kw-chip">beheading / decapitation</span>
+                  <span class="kw-chip">restore britain</span>
+                  <span class="kw-chip">asylum</span>
+                  <span class="kw-chip">aggravated rape</span>
+                  <span class="kw-chip">murderous migrants</span>
+                  <span class="kw-chip">tariff</span>
+                  <span class="kw-chip">ukraine</span>
+                  <span class="kw-chip">gaza</span>
+                  <span class="kw-chip">islamization</span>
+                  <span class="kw-chip">shia muslims</span>
+                  <span class="kw-chip">burqa</span>
+                  <span class="kw-chip">feminism / toxic masculinity</span>
+                  <span class="kw-chip">george soros</span>
+                  <span class="kw-chip">woke mind virus / woke mob 등</span>
+                  <span class="kw-chip">mass migration</span>
+                  <span class="kw-chip">traitor(s)</span>
+                  <span class="kw-chip">must be expelled</span>
+                </div>
+                </div>
+                <div class="kw-group">
+                  <div class="kw-group-label">우주항공</div>
+                  <div class="kw-chips">
+                    <span class="kw-chip">starship</span>
+                    <span class="kw-chip">heat shield(s)</span>
+                    <span class="kw-chip">falcon 9</span>
+                    <span class="kw-chip">booster(s)</span>
+                    <span class="kw-chip">orbital refuel</span>
+                    <span class="kw-chip">splashdown</span>
+                    <span class="kw-chip">static fire</span>
+                    <span class="kw-chip">raptor engine(s)</span>
+                    <span class="kw-chip">launch pad(s)</span>
+                    <span class="kw-chip">super heavy</span>
+                  </div>
+                </div>
+                <div class="kw-group">
+                  <div class="kw-group-label">자동차</div>
+                  <div class="kw-chips">
+                    <span class="kw-chip">cybertruck</span>
+                    <span class="kw-chip">model 3</span>
+                    <span class="kw-chip">model y</span>
+                    <span class="kw-chip">model s</span>
+                    <span class="kw-chip">tesla earnings</span>
+                    <span class="kw-chip">gigafactory</span>
+                    <span class="kw-chip">tesla diner</span>
+                    <span class="kw-chip">roadster</span>
+                  </div>
+                </div>
+                <div class="kw-group">
+                  <div class="kw-group-label">일반 잡담</div>
+                  <div class="kw-chips">
+                    <span class="kw-chip">lifecycle of an apocalypse</span>
+                  </div>
+                </div>
+              </details>
+            </span></li>
+            <li><span class="si">3</span><span><strong>AI 관련성 판정</strong>: 1 · 2단계에서 필터링 대상으로 분류되었더라도, AI 엔티티나 AI 키워드가 확인되면 최종 분석 대상에 재포함 (FSD · Optimus 등 자동차 · 우주항공 분야 AI 핵심 콘텐츠도 재포함 키워드로 보호)
+              <details class="kw-details">
+                <summary>재포함 키워드 · 엔터티</summary>
+                <div class="kw-group">
+                  <div class="kw-group-label">엔터티 기준</div>
+                  <div class="kw-chips">
+                    <span class="kw-chip">Grok</span>
+                    <span class="kw-chip">Grok Ai</span>
+                    <span class="kw-chip">Grok 4 (이후 버전 포함)</span>
+                    <span class="kw-chip">NVIDIA - AI</span>
+                    <span class="kw-chip">Artificial Intelligence</span>
+                    <span class="kw-chip">Machine Learning</span>
+                    <span class="kw-chip">OpenAI</span>
+                    <span class="kw-chip">ChatGPT</span>
+                  </div>
+                </div>
+                <div class="kw-group">
+                  <div class="kw-group-label">본문 키워드 기준</div>
+                  <div class="kw-chips">
+                    <span class="kw-chip">ai</span>
+                    <span class="kw-chip">xai</span>
+                    <span class="kw-chip">grok</span>
+                    <span class="kw-chip">openai</span>
+                    <span class="kw-chip">chatgpt</span>
+                    <span class="kw-chip">anthropic</span>
+                    <span class="kw-chip">meta ai</span>
+                    <span class="kw-chip">llm</span>
+                    <span class="kw-chip">neural</span>
+                    <span class="kw-chip">machine learning</span>
+                  </div>
+                </div>
+                <div class="kw-group">
+                  <div class="kw-group-label">자동차 · 우주항공 구제 키워드</div>
+                  <div class="kw-chips">
+                    <span class="kw-chip">fsd</span>
+                    <span class="kw-chip">full self-driving</span>
+                    <span class="kw-chip">autopilot</span>
+                    <span class="kw-chip">optimus</span>
+                    <span class="kw-chip">adas</span>
+                    <span class="kw-chip">self-driving</span>
+                    <span class="kw-chip">autonomous</span>
+                    <span class="kw-chip">robotaxi</span>
+                    <span class="kw-chip">humanoid robot</span>
+                  </div>
+                </div>
+              </details>
+            </span></li>
+          </ol>
+          <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--line);">
+            <div style="font-size:.88rem; font-weight:700; color:var(--ink); margin-bottom:8px;">처리 방식</div>
+            <p style="font-size:.96rem; color:var(--ink-muted); margin:0;">1 · 2단계 필터링 대상 글이라도, 본문에 AI 관련 키워드나 엔티티가 있으면 최종적으로 포함. 필터링 대상이면서 동시에 AI 관련성이 없는 경우에만 최종 제외</p>
+          </div>
+          </div>
+        </div>
+
+        <div class="pside">
+          <div class="example-box">
+            <div class="ek">확인 사례</div>
+"정치" 관련으로 필터링 대상이 된 글 170건 중 7건은 실제 AI 관련 내용 → 1·2단계 필터링만으로 일괄 제외하면 안 되고 AI 관련성 확인을 통한 재포함 단계가 필요한 근거
+          </div>
+
+          <div class="stat-line">
+            <div class="stat-item"><span class="l">필터링 대상 검출</span><span class="n">2,302건</span></div>
+            <div class="stat-item"><span class="l">AI 관련성으로 재포함</span><span class="n">381건</span></div>
+            <div class="stat-item"><span class="l">최종 제외 (약 21.3%)</span><span class="n">1,921건</span></div>
+            <div class="stat-item"><span class="l">처리 결과</span><span class="n">7,119건</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pstep">
+      <div class="pstep-head"><span class="pn">STEP 03</span></div>
+      <h3>인용 포스트/리포스트의 비영어 원문 처리</h3>
+      <p class="psub">NON-ENGLISH HANDLING</p>
+      <div class="pstep-content" style="margin-top:20px;">
+        <div class="pmain">
+          <ul class="pbullets">
+            <li><strong>문제</strong>: 수집 시 언어 필터(영어)는 리더 본인 포스트에만 적용. 리포스트 · 인용한 원 포스트는 다른 언어일 수 있음 (한국어 · 프랑스어 원문 인용 사례 확인)</li>
+            <li><strong>판정 근거</strong>: 수집 결과에 리포스트 · 인용 원 포스트의 언어 정보(<code>retweeted_lang</code> / <code>quoted_lang</code>)가 포함되어 있음. 이를 활용해 <code>en</code>이 아니면 비영어로 판정</li>
+            <li><strong>처리</strong>: 리포스트는 글 자체를 삭제. 인용 포스트는 원글은 제외하고 리더 코멘트는 남김</li>
+          </ul>
+        </div>
+
+        <div class="pside">
+          <div class="stat-line">
+            <div class="stat-item"><span class="l">비영어 인용 포스트 (인용 원문만 삭제)</span><span class="n">32건</span></div>
+            <div class="stat-item"><span class="l">비영어 리포스트 (포스트 삭제)</span><span class="n">0건</span></div>
+            <div class="stat-item"><span class="l">처리 결과</span><span class="n">7,119건</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pstep">
+      <div class="pstep-head"><span class="pn">STEP 04</span></div>
+      <h3>정제 및 최종 분석 대상 확정</h3>
+      <p class="psub">TEXT CLEANING &amp; FINALIZATION</p>
+      <div class="pstep-content" style="margin-top:20px;">
+        <div class="pmain">
+          <ul class="pbullets">
+            <li><strong>분석 대상 텍스트 정제</strong>
+              <ul class="pbullets" style="margin-top:10px;">
+                <li>멘션 · URL 등을 제거한 정제 후 텍스트 기준으로 공백 구분 단어가 5개 미만인 짧은 반응성 글(예: "Well said", "True")은 제외</li>
+                <li>03 통과 포스트의 텍스트에서 멘션 → URL → 해시태그 → 이모지 순으로 제거 (캐시태그는 사전 인식용으로 유지)</li>
+              </ul>
+            </li>
+            <li><strong>고유명사 사전 구축</strong>
+              <ul class="pbullets" style="margin-top:10px;">
+                <li>X가 포스트에서 확인한 엔티티 정보(인물명 · 기업명 등)를 모아 별도 고유명사 사전으로 구축</li>
+                <li>"Sam Altman" 같은 이름이 분석 시 하나의 단어로 인식되도록 활용</li>
+                <li class="no-bullet" style="margin-top:2px;">
+                  <details class="kw-details">
+                    <summary>예시 보기</summary>
+                    <div style="margin-top:10px; background:var(--surface-2); border-radius:16px; padding:14px 18px; font-size:.88rem; color:var(--ink);">
+                      <div style="font-weight:700; color:var(--ink); margin-bottom:4px;">포스트 원문 예시</div>
+                      <p style="font-size:.88rem; color:var(--ink-muted); margin-bottom:10px; font-style:italic;">
+                        "Grok 4.5 context window will upgrade to 1M probably by next week"
+                      </p>
+                      <div style="font-size:.78rem; font-weight:700; color:var(--accent-ink); letter-spacing:.05em; text-transform:uppercase; margin-bottom:6px;">X 인지 엔티티 (Entity Extraction)</div>
+                      <div class="kw-chips">
+                        <span class="kw-chip">Elon Musk (Person)</span>
+                        <span class="kw-chip">Grok Ai (Brand)</span>
+                        <span class="kw-chip">Grok 4 (Product)</span>
+                        <span class="kw-chip">Technology (Domain)</span>
+                      </div>
+                    </div>
+                  </details>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pside">
+          <div class="stat-line">
+            <div class="stat-item"><span class="l">초단문 제외</span><span class="n">1,029건</span></div>
+            <div class="stat-item"><span class="l">처리 결과 (텍스트 분석 투입 대상)</span><span class="n">6,090건</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow-result reveal" style="margin-top:32px;">
+    <div class="flow-result-item"><span class="l">게시량 집계 대상</span><span class="n grotesk">7,119건</span><span class="p">전체의 약 78.8%</span></div>
+    <div class="flow-result-item"><span class="l">텍스트 분석 투입 대상</span><span class="n grotesk">6,090건</span><span class="p">전체의 약 67.4%</span></div>
+  </div>
+</section>
+
+<section class="block" id="analysis">
+  <div class="block-head">
+    <h2>분석 절차</h2>
+    <p class="lede">정제된 데이터로부터 5가지 인사이트를 산출합니다.</p>
+  </div>
+
+  <div class="reveal proc">
+    <div class="pstep">
+      <div class="pstep-head"><span class="pn">STEP 01</span></div>
+      <h3>게시량 추이</h3>
+      <p class="psub">VOLUME · 독립 실행</p>
+      <div class="pstep-content no-aside" style="margin-top:20px;">
+        <div class="pmain">
+          <p class="pbody">게시량 집계 대상을 바탕으로 전일 대비 포스트 수 증감을 계산합니다.</p>
+          <ul class="pbullets" style="margin-top:10px;">
+            <li><strong>리더별 순위 산정</strong>: 개인 급증지수 = 어제 포스트 수 ÷ 최근 7일(어제 제외) 일평균 포스트 수로 정렬 (평소 게시가 거의 없던 리더의 경우를 대비해 분모에 최소값(0.5) 적용)
+              <ul class="pbullets" style="margin-top:8px;">
+                <li>평소 게시량이 많은 리더가 조금만 늘어도 항상 상위권을 차지하는 문제를 방지</li>
+                <li>평소보다 이례적으로 활발해진 리더를 정확히 포착 (예: 평소 게시가 없던 리더가 어제 갑자기 여러 건 게시한 경우, 지수가 크게 높아짐)</li>
+                <li>원자료(그제·어제·증감) 값도 참고용으로 함께 표시</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="pstep linked">
+      <div class="pstep-head">
+        <span class="pn">STEP 02</span>
+        <span class="ai-tag">AI 활용 · 신조어 후보 선별</span>
+      </div>
+      <h3>오늘의 발견 키워드 (신조어)</h3>
+      <p class="psub">RAW N-GRAM DETECTION, MULTI-PATH CANDIDATE UNION</p>
+      <div class="pstep-content no-aside" style="margin-top:20px;">
+        <div class="pmain">
+          <p class="pbody">누적 데이터 대비 새롭게 등장한 단어 · 표현을 탐지하기 위해 <strong>원문 철자 보존 방식</strong>과 <strong>형태소 분석 방식</strong> 2가지로 나누어 후보를 수집하고, AI가 최종 선별합니다.</p>
+          
+          <div class="rule-box" style="margin-top:14px;">
+            <div style="font-size:1.05rem; font-weight:700; color:var(--ink); margin-bottom:12px;">① 원문 철자 보존 방식 (원문 그대로 탐지)</div>
+            <p style="font-size:.93rem; color:var(--ink-muted); margin-bottom:12px;">형태소 분석 시 신조어 철자가 변형되는 것을 막기 위해 원문 그대로 단어 및 구문 추출</p>
+            <ul class="pbullets">
+              <li><strong>단일 또는 복합 토큰 분석</strong>: 어제 텍스트를 띄어쓰기로만 나눈 단어 1개 또는 2~3개씩 이어붙여 후보 목록을 만들고, 단어 · 표현별 최초 등장일을 담은 과거 누적 이력에 없었던 것만 채택
+                <ul class="pbullets" style="margin-top:8px;">
+                  <li>최소 2회 이상 언급된 것만 채택해 오탈자 노이즈 제거</li>
+                  <li>모니터링 대상 리더의 이름 · 핸들은 후보에서 제외</li>
+                  <li>후보 정제: 불용어(관사 · 전치사 등)가 포함된 표현은 제외하고, 연속해서 겹치는 단어 표현은 하나의 자연스러운 구문으로 병합</li>
+                </ul>
+              </li>
+              <li><strong>신규 개체명(NER) 감지</strong>: 제품명 · 기관명(예: Rampart, OpenEnv) 개체명 탐지</li>
+              <li><strong>대문자 약어 표기 감지</strong>: 어제 원문에서 전체가 대문자로 쓰인 단어만 추출(연속되면 하나의 구문으로 묶음)해, 대문자 전용 과거 이력과 대조하여 처음 쓰인 경우 채택
+                <ul class="pbullets" style="margin-top:8px;">
+                  <li>소문자 이력과는 완전히 별개로 관리 (예: <code>handbook</code>은 예전부터 흔히 쓰였어도, <code>HANDBOOK</code>처럼 전체 대문자로 강조해 쓴 건 처음이면 별도로 신규 판정)</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <div class="rule-box" style="margin-top:14px;">
+            <div style="font-size:1.05rem; font-weight:700; color:var(--ink); margin-bottom:12px;">② 형태소 분석 방식 (명사구/복합어 탐지)</div>
+            <p style="font-size:.93rem; color:var(--ink-muted); margin-bottom:12px;">명사끼리 새롭게 조합된 의미 있는 복합 구문을 정밀하게 포착하기 위해 품사 태깅 활용</p>
+            <ul class="pbullets">
+              <li><strong>복합어 결합 분석</strong>: 명사 간 신규 조합 표현(예: eureka machine)을 추출 후 과거 누적 이력과 교차 검증</li>
+            </ul>
+          </div>
+
+          <ul class="pbullets" style="margin-top:16px;">
+            <li><strong>후보 통합</strong>: 위에서 뽑아낸 후보를 하나로 합쳐 중복 제거</li>
+            <li><strong>AI 선별 및 사전 자동 등록</strong>: 통합된 후보 중 AI 분야에서 실제 의미 있는 신조어로 볼 만한 것만 AI가 최종 선별하여 고유명사 사전에 자동 등록 (다음 분석 시 단일 단어로 인식)</li>
+          </ul>
+          <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--line);">
+            <span style="font-size:.88rem; font-weight:700; color:var(--ink);">출력</span>
+            <span style="font-size:.96rem; color:var(--ink-muted);"> 신조어 후보(원문), 언급한 리더, 대표 포스트 원문 발췌 3~5건(게시 시각 기준 최신순 자동 선정)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pstep linked">
+      <div class="pstep-head">
+        <span class="pn">STEP 03</span>
+        <span class="ai-tag">AI 활용 · 토픽 한글 주제명 부여</span>
+      </div>
+      <h3>주요 담론 및 인물 분포</h3>
+      <p class="psub">TOPIC CLUSTERING · 갱신된 사전 적용</p>
+      <div class="pstep-content no-aside" style="margin-top:20px;">
+        <div class="pmain">
+          <p class="pbody">정제된 텍스트를 임베딩 기반 토픽 모델링(BERTopic)으로 클러스터링해 오늘의 주요 담론을 도출하고, 담론별 주요 언급 인물을 매핑합니다.</p>
+          <ul class="pbullets" style="margin-top:10px;">
+            <li><strong>의미 기반 주제 분석</strong>: 임베딩 모델을 활용하여 주제를 분석하고, 담론 정체성을 유지하며, 그 추이 흐름을 확인할 수 있음</li>
+            <li><strong>혼재 담론 자동 제외</strong>: 담론 크기가 클수록 무관한 포스트를 함께 묶어버리는 경향이 있어, 하나의 담론으로 묶였지만 실제로는 서로 무관한 내용이 섞인 경우를 걸러냄
+              <ul class="pbullets" style="margin-top:8px;">
+                <li>판정 방식: 담론에 속한 포스트 중 그 담론의 대표 키워드 상위 10개를 하나도 포함하지 않은 포스트의 비율("혼재 비율")을 계산</li>
+                <li>혼재 비율이 40% 이상이면 "주요 담론" 표에서 제외하고 기타로 분류</li>
+              </ul>
+            </li>
+            <li><strong>주제명 부여</strong>: 대표 키워드와 실제 포스트 원문 2~3건을 함께 참조하여 정확하고 자연스러운 한글 주제명 작성 (여러 주제가 섞인 경우 '혼합' 명시)</li>
+            <li><strong>언급 인물 매핑</strong>: 담론에 속한 포스트의 작성자를 역추적해, 이 담론을 주로 누가 언급했는지를 산출</li>
+          </ul>
+          <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--line);">
+            <span style="font-size:.88rem; font-weight:700; color:var(--ink);">출력</span>
+            <span style="font-size:.96rem; color:var(--ink-muted);"> 담론명(한글), 대표 키워드, 비중과 추이, 언급 인물(이름 · 언급 횟수), 대표 포스트 원문 발췌 3~5건(담론 대표 키워드를 가장 많이 포함한 문서 순 자동 선정)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pstep linked">
+      <div class="pstep-head"><span class="pn">STEP 04</span></div>
+      <h3>담론 변화 추이</h3>
+      <p class="psub">SAME MODEL, WIDER TIME SLICE</p>
+      <div class="pstep-content no-aside" style="margin-top:20px;">
+        <div class="pmain">
+          <p class="pbody">STEP 03의 클러스터링 결과를 재실행 없이 최근 7일 · 4주 · 3개월 단위로 담론 비중 변화를 추적합니다.</p>
+          <ul class="pbullets" style="margin-top:10px;">
+            <li>최근 90일 데이터를 일자별로 분석해, 그날그날 담론 내용이 70% 이상 비슷하면 같은 담론으로 이어서 추적 (7일 · 4주 · 3개월 추이를 만들려면 90일치 데이터가 필요)</li>
+            <li>추이는 담론별 날짜 · 게시 건수를 직접 집계하는 방식으로 확인</li>
+            <li>4주 · 3개월 추이는 일자별 분석 결과를 각각 주 단위 · 월 단위로 합산해서 제공</li>
+          </ul>
+          <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--line);">
+            <span style="font-size:.88rem; font-weight:700; color:var(--ink);">출력</span>
+            <span style="font-size:.96rem; color:var(--ink-muted);"> 담론별 최근 7일 날짜별 게시 건수 추이 (4주 · 3개월 비중 추이는 추후 반영 예정)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pstep linked">
+      <div class="pstep-head"><span class="pn">STEP 05</span></div>
+      <h3>핵심 키워드</h3>
+      <p class="psub">KEYWORD FREQUENCY · 갱신된 사전 및 담론 결과 적용</p>
+      <div class="pstep-content no-aside" style="margin-top:20px;">
+        <div class="pmain">
+          <ul class="pbullets">
+            <li><strong>사전 적용 및 형태소 분석</strong>: 정제된 텍스트(리포스트 포함)에 STEP 02에서 갱신된 고유명사 사전을 적용해 형태소 분석으로 명사(보통명사 · 고유명사)만 추출</li>
+            <li><strong>흔한 단어 제외</strong>: 일반적으로 흔히 쓰이는 영어 단어(zipf 지수 기준)는 자동 제외
+              <ul class="pbullets" style="margin-top:8px;">
+                <li>단, 국가명 · 제품명처럼 고유명사로 쓰인 단어는 개체명 인식(NER)으로 확인해 남김 (예: 흔한 단어라도 국가명으로 쓰였으면 제외하지 않음)</li>
+                <li>발표문 상투어 제외: "블로그에 올렸다", "머신러닝 모델" 같이 발표문에서 흔히 반복되는 표현은 실제 사건을 가리키지 않아 별도 관리 목록으로 제외</li>
+              </ul>
+            </li>
+            <li><strong>핵심 키워드 선정</strong>: 남은 키워드에 대해 아래 세 가지를 함께 반영해 최종 순위 산정
+              <ul class="pbullets" style="margin-top:8px;">
+                <li>급증지수: 어제 등장 문서 수 ÷ 어제 제외 최근 7일 평균 등장 문서 수 (한 사람이 같은 단어를 반복 언급해도 부풀려지지 않도록 빈도가 아닌 문서 수 기준)</li>
+                <li>고유 발언자 수: 여러 명이 함께 언급할수록 가중</li>
+                <li>토픽 집중도: STEP 03 담론 결과를 재활용해, 하나의 주제에 몰려있을수록 가중. 집중도가 80% 미만이면 순위와 무관하게 제외 (하나의 사건이 아니라 서로 다른 맥락에서 우연히 같이 쓰인 단어일 가능성이 높기 때문)</li>
+              </ul>
+            </li>
+          </ul>
+          <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--line);">
+            <span style="font-size:.88rem; font-weight:700; color:var(--ink);">출력</span>
+            <span style="font-size:.96rem; color:var(--ink-muted);"> 키워드, 최종 순위 점수, 급증지수, 고유 발언자 수, 토픽 집중도, 대표 포스트 원문 발췌 3~5건(게시 시각 기준 최신순 자동 선정)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="results">
+  <div class="block-head">
+    <h2>주요 결과</h2>
+    <p class="lede">6/29 기준 예시 결과입니다.</p>
+  </div>
+
+  <div class="reveal result-grid">
+    <div class="bezel"><div class="bezel-core">
+      <div class="result-sub-head"><h3>게시량 추이</h3><span class="pill">6/29 예시 데이터</span></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>날짜</th><th>포스트 수</th><th>비고</th></tr></thead>
+          <tbody>
+            <tr><td>6/28</td><td>96</td><td>필터 제외 23건 · 발언 리더 16명</td></tr>
+            <tr><td>6/29</td><td>90</td><td>필터 제외 24건 · 발언 리더 24명</td></tr>
+            <tr><td>증감</td><td>-6 (-6.2%)</td><td>-</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-wrap" style="margin-top:16px;">
+        <table>
+          <thead><tr><th>리더</th><th>6/28</th><th>6/29</th><th>증감(Δ)</th><th>개인 급증지수</th></tr></thead>
+          <tbody>
+            <tr><td>Sam Rodriques</td><td>데이터없음</td><td>5</td><td>-</td><td>10.00</td></tr>
+            <tr><td>echen</td><td>데이터없음</td><td>3</td><td>-</td><td>6.00</td></tr>
+            <tr><td>Andrew Feldman</td><td>1</td><td>3</td><td>+2</td><td>5.25</td></tr>
+            <tr><td>Richard Socher</td><td>1</td><td>2</td><td>+1</td><td>4.00</td></tr>
+            <tr><td>Reid Hoffman</td><td>데이터없음</td><td>2</td><td>-</td><td>3.50</td></tr>
+            <tr><td>Yann LeCun</td><td>1</td><td>5</td><td>+4</td><td>2.19</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="pbullets result-note" style="margin-top:12px;">
+        <li>평소 게시량이 많은 리더(예: Elon Musk)가 조금 늘어난 것보다, 평소 조용하다가 이례적으로 활발해진 리더가 개인 급증지수 기준 상위권에 오릅니다.</li>
+        <li>데이터 없음(신규 발언)이 아닌, 실제로 0건 · 감소한 경우와 구분해 표시됩니다.</li>
+      </ul>
+    </div></div>
+
+    <div class="bezel"><div class="bezel-core">
+      <div class="result-sub-head"><h3>핵심 키워드</h3><span class="pill">6/29 예시 데이터</span></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>키워드</th><th>최종점수</th><th>급증지수</th><th>발언자</th><th>집중도</th><th>비고</th><th>원문</th></tr></thead>
+          <tbody>
+            <tr><td>privacy</td><td>14.14</td><td>10.00</td><td>2명</td><td>100%</td><td>Rampart/Praxis 프라이버시 담론과 대응</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-rampart')">보기</button></td></tr>
+            <tr><td>browser</td><td>11.31</td><td>8.00</td><td>2명</td><td>100%</td><td>온디바이스 프라이버시 관련</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-rampart')">보기</button></td></tr>
+            <tr><td>rampart</td><td>11.31</td><td>8.00</td><td>2명</td><td>100%</td><td>오늘의 발견 키워드(신조어)와 동일 이슈</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-rampart')">보기</button></td></tr>
+            <tr><td>server</td><td>11.31</td><td>8.00</td><td>2명</td><td>100%</td><td>온디바이스 프라이버시 관련</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-rampart')">보기</button></td></tr>
+            <tr><td>v14</td><td>10.00</td><td>10.00</td><td>1명 ⚠</td><td>100%</td><td>Tesla FSD v14, 1인 발언이나 집중도 100%라 순위 유지</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-v14')">보기</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="pbullets result-note" style="margin-top:12px;">
+        <li>단순 등장 빈도가 아니라, 문서 수 기반 급증지수에 발언자 수와 토픽 집중도를 곱한 최종점수로 순위를 매기고 집중도 80% 미만은 하드컷으로 제외하는 방식입니다.</li>
+        <li>원문은 게시 시각 기준 최신 2건입니다.</li>
+      </ul>
+
+      <div style="display:none;">
+        <div id="q-kw-rampart">
+          <ul class="pbullets">
+            <li>ClementDelangue: "Today, we are releasing Rampart: a 14.7MB machine learning model designed to protect citizens' privacy by redacting personal information directly in your browser before it gets sent to any server."</li>
+            <li>pmarca: "Amazing. Today, we are releasing Rampart: a 14.7MB machine learning model designed to protect citizens' privacy by redacting personal information directly in your browser before it gets sent to any server."</li>
+          </ul>
+        </div>
+        <div id="q-kw-v14">
+          <ul class="pbullets">
+            <li>elonmusk: "Think about this, the 7+ year old Teslas with AI3 that are now getting FSD V14 Lite have a more capable self-driving system than any brand-new non-Tesla..."</li>
+            <li>elonmusk: "v14 Lite Release Notes: - Distilled the intelligence from HW4 V14 into HW3..."</li>
+          </ul>
+        </div>
+      </div>
+    </div></div>
+
+    <div class="bezel"><div class="bezel-core">
+      <div class="result-sub-head"><h3>오늘의 발견 키워드 (신조어)</h3><span class="pill">6/29 예시 데이터</span></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>용어</th><th>내용</th><th>원문</th></tr></thead>
+          <tbody>
+            <tr><td>Rampart</td><td>Hugging Face가 발표한 온디바이스 프라이버시 모델. 개인정보를 서버로 보내기 전 브라우저에서 자동으로 삭제</td><td><button class="quote-btn" onclick="openQuoteModal('q-nw-rampart')">보기</button></td></tr>
+            <tr><td>Praxis</td><td>Rampart와는 무관한 다른 팀이 같은 날 소개한 별개의 프라이버시 모델</td><td><button class="quote-btn" onclick="openQuoteModal('q-nw-praxis')">보기</button></td></tr>
+            <tr><td>Brain2Qwerty v2</td><td>비침습 뇌신호 → 텍스트 디코딩 연구의 신규 버전</td><td><button class="quote-btn" onclick="openQuoteModal('q-nw-b2q')">보기</button></td></tr>
+            <tr><td>Kosmos</td><td>AI 사이언티스트, 바이오텍 파트너십 발표</td><td><button class="quote-btn" onclick="openQuoteModal('q-nw-kosmos')">보기</button></td></tr>
+            <tr><td>ALLAM</td><td>중동 지역 특화 모델</td><td><button class="quote-btn" onclick="openQuoteModal('q-nw-allam')">보기</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="pbullets result-note" style="margin-top:12px;">
+        <li>후보 중 정자(正字)가 아니거나(오탈자) 과거 이력에 이미 있던 표현으로 확인된 것은 최종 채택에서 제외됩니다.</li>
+        <li>원문은 게시 시각 기준 최신순으로 선정됩니다.</li>
+      </ul>
+
+      <div style="display:none;">
+        <div id="q-nw-rampart"><p>ClementDelangue: "Today, we are releasing Rampart: a 14.7MB machine learning model designed to protect citizens' privacy by redacting personal information directly in your browser before it gets sent to any server."</p></div>
+        <div id="q-nw-praxis"><p>pmarca: "Interesting. Praxis released two 3 billion parameter models to keep your personal information private from Claude or ChatGPT: praxis-spanfinder-3b and..."</p></div>
+        <div id="q-nw-b2q"><p>alexandr_wang: "We're happy to announce 2 releases today: - Brain2qwerty v1 is published at ... - Brain2Qwerty v2 is now publicly released. Explore how we decode sentences..."</p></div>
+        <div id="q-nw-kosmos"><p>SGRodriques: "At Edison, we are on a mission to leverage AI to prevent or cure all diseases. Today, we are announcing a critical step: our first partnership using our AI scientist, Kosmos, to launch new biotech companies..."</p></div>
+        <div id="q-nw-allam"><p>TareqAmin_: "...When we built ALLAM, we trained a model from scratch. The lessons we learned throughout that journey are invaluable..."</p></div>
+      </div>
+    </div></div>
+
+    <div class="bezel"><div class="bezel-core">
+      <div class="result-sub-head"><h3>주요 담론 및 인물 분포</h3><span class="pill">6/29 예시 데이터</span></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>담론</th><th>대표 키워드/구</th><th>건수</th><th>언급 인물</th><th>원문</th></tr></thead>
+          <tbody>
+            <tr><td>Rampart/Praxis 프라이버시 담론</td><td>privacy, praxis, rampart, personal information</td><td>7건</td><td>ClementDelangue, pmarca</td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-rampart')">보기</button></td></tr>
+            <tr><td>Tesla FSD v14 발표</td><td>v14, v14 lite, fsd, ai3, hw3</td><td>5건</td><td>elonmusk</td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-fsd')">보기</button></td></tr>
+            <tr><td>⚠️ AI 무관 · 원전/방사선 안전성 논쟁</td><td>radiation, nuclear power, low dose, studies</td><td>4건</td><td>pmarca</td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-radiation')">보기</button></td></tr>
+            <tr><td>메모리 · 하드웨어 설계 논의</td><td>memory, wires, ram, registers</td><td>3건</td><td>elonmusk, andrewdfeldman</td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-memory')">보기</button></td></tr>
+            <tr><td>Neuralink 대역폭 논의</td><td>bandwidth, neuralink, brain, output bandwidth</td><td>3건</td><td>elonmusk</td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-neuralink')">보기</button></td></tr>
+            <tr><td>⚠️ AI 무관 · 정치적 설전 잔재</td><td>copium, field moved, 30 years</td><td>3건</td><td>pmarca, ylecun</td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-political')">보기</button></td></tr>
+            <tr><td>△ 경계선 · 커리어 일반론</td><td>ship, roles, pmf</td><td>3건</td><td>pmarca</td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-career')">보기</button></td></tr>
+            <tr><td>AI 결과물 품질 기준 논의</td><td>tokens, headcount, corporate</td><td>3건</td><td>RichardSocher, elonmusk</td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-mixed')">보기</button></td></tr>
+            <tr><td>온디바이스 PII 리덕션 모델 발표</td><td>image, mai, editing</td><td>3건</td><td>ClementDelangue, pmarca</td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-pii')">보기</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="pbullets result-note" style="margin-top:12px;">
+        <li>혼재 담론으로 자동 제외된 담론 2건은 "기타"로 분류됩니다: echen 논문 · Brain2Qwerty 혼합(혼재 40%), 열사병 통계 정치 논쟁(75%).</li>
+        <li>⚠️ 표시 2개 담론은 게이트(담론 내부 일관성만 판정, AI 관련성은 별도 미판정)를 통과했지만 실제로는 AI와 무관한 내용으로 확인됐습니다. 제외하지 않고 투명하게 그대로 표시합니다.</li>
+        <li>△ 표시 1개 담론은 AI 관련성이 애매한 경계선 사례입니다.</li>
+        <li>원문은 담론 대표 키워드를 가장 많이 포함한 문서 순으로 선정됩니다.</li>
+      </ul>
+
+      <div style="display:none;">
+        <div id="q-tp-rampart">
+          <ul class="pbullets">
+            <li>ClementDelangue: "Tired: The US government regulating open-source AI models. Wired: The US government training and releasing open-source AI models. Today, we are releasing Rampart..."</li>
+            <li>ClementDelangue: "Today, we are releasing Rampart: a 14.7MB machine learning model designed to protect citizens' privacy by redacting personal information directly in your browser before it gets sent to any server."</li>
+            <li>pmarca: "Amazing. Today, we are releasing Rampart: a 14.7MB machine learning model designed to protect citizens' privacy by redacting personal information directly in your browser before it gets sent to any server."</li>
+            <li>pmarca: "Interesting. Praxis released two 3 billion parameter models to keep your personal information private from Claude or ChatGPT: praxis-spanfinder-3b and praxis-relevance-3b..."</li>
+            <li>pmarca: "Conversations with AI next."</li>
+          </ul>
+        </div>
+        <div id="q-tp-fsd">
+          <ul class="pbullets">
+            <li>elonmusk: "v14 Lite Release Notes: - Distilled the intelligence from HW4 V14 into HW3. This allows HW3 to directly learn how to handle scenarios using HW4 V14 as a guide..."</li>
+            <li>elonmusk: "Nice work by the team! The AI3 computer only has ~15% of the effective memory bandwidth of AI4, so this was a tough challenge..."</li>
+            <li>elonmusk: "Think about this, the 7+ year old Teslas with AI3 that are now getting FSD V14 Lite have a more capable self-driving system than any brand-new non-Tesla car..."</li>
+            <li>elonmusk: "Tesla FSD v14 Lite is rolling out to customers with our AI3 hardware..."</li>
+            <li>elonmusk: "Really impressive first few drives with FSD v14 lite! Big leap in capability and feature set from v12.6.4..."</li>
+          </ul>
+        </div>
+        <div id="q-tp-radiation">
+          <ul class="pbullets">
+            <li>pmarca: "This paper is totally preposterous. Living near a nuclear power plant apparently raises your chance of getting some cancers in some age ranges, but not others..."</li>
+            <li>pmarca: "Concerning. I was surprised to learn that studies claiming low-dose radiation is harmful are of very poor quality and that, based on current evidence, low-dose nuclear radiation may not actually be dangerous..."</li>
+            <li>pmarca: "Interesting. This paper is totally preposterous. Living near a nuclear power plant apparently raises your chance of getting some cancers in some age ranges..." (리트윗)</li>
+            <li>pmarca: "I was surprised to learn that studies claiming low-dose radiation is harmful are of very poor quality..." (인용)</li>
+          </ul>
+        </div>
+        <div id="q-tp-memory">
+          <ul class="pbullets">
+            <li>elonmusk: "With great power (direct memory management) comes great responsibility"</li>
+            <li>elonmusk: "We are using some assembly (and direct ASIC primitives) for operations that are done trillions of times per second"</li>
+            <li>andrewdfeldman: "True. Moving bits to and from memory. Because of parasitic capacitance+resistance of the wires. The bigger the memory, the longer the wires. The main trick is to organize the memory hierarchically: registers, small on-chip SRAM, caches of various types, and external RAM..."</li>
+          </ul>
+        </div>
+        <div id="q-tp-neuralink">
+          <ul class="pbullets">
+            <li>elonmusk: "Neuralink is needed to solve the super low & lossy output bandwidth of humans. Our input bandwidth, thanks to vision, is many orders of magnitude higher than our output bandwidth, but could also be greatly improved..."</li>
+            <li>elonmusk: "Try SpaceXAI Voice models in the Vercel AI Gateway"</li>
+          </ul>
+        </div>
+        <div id="q-tp-political">
+          <ul class="pbullets">
+            <li>pmarca: "This book was seminal 30 years ago but the field has since moved on from it to less accurate conclusions."</li>
+            <li>pmarca: "Many such cases. 'This book was seminal 30 years ago but the field has since moved on from it to less accurate conclusions.'" (리트윗)</li>
+            <li>ylecun: "More copious copium. Whether you like it or not, everyone thinks you're evil (except for a few fanbois on this platform)."</li>
+          </ul>
+        </div>
+        <div id="q-tp-career">
+          <ul class="pbullets">
+            <li>pmarca: "Learn to ship. Learn to ship. Shipping is a skill distinct from coding. Shipping is designing, coding, QAing, story-telling, teaching, marketing, selling, pivoting, iterating... It used to be that coding dominated in importance because of coding ability scarcity. AI will push you to go further."</li>
+            <li>pmarca: "Interesting. As engineering, product, design, DS, etc. melt into a new kind of role, I was reflecting on what roles might look like in the future..."</li>
+            <li>pmarca: "As engineering, product, design, DS, etc. melt into a new kind of role, I was reflecting on what roles might look like in the future. For example, when I look at the Claude Code team I see what I think is five archetypes..."</li>
+          </ul>
+        </div>
+        <div id="q-tp-mixed">
+          <ul class="pbullets">
+            <li>RichardSocher: "I think in highly competitive environments AI work slop is already unacceptable. In fact, once more people realize that AI can put together better slop than some people, they will have to work even harder..."</li>
+            <li>RichardSocher: "As more people start working with AI the bar for what's an acceptable work product (slides, spreadsheet, documents, etc) will increase. It will be even less acceptable to present poorly thought through results..."</li>
+            <li>elonmusk: "I love optimizing machines. It's like a beautiful puzzle that also achieves true usefulness"</li>
+          </ul>
+        </div>
+        <div id="q-tp-pii">
+          <ul class="pbullets">
+            <li>ClementDelangue: "Tomorrow, we're releasing an ML model for on-device PII redaction, which is far smaller than existing models, but is surprisingly effective. It is a first iteration. Will be live at 12:30!"</li>
+            <li>pmarca: "Tomorrow, we're releasing an ML model for on-device PII redaction, which is far smaller than existing models, but is surprisingly effective. It is a first iteration. Will be live at 12:30!" <em>(인용/재게시)</em></li>
+            <li>ClementDelangue: "Looks like Llama CPP just merged DFLASH support into main! I wonder how this will stack up against MTP"</li>
+          </ul>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="bezel reveal" style="margin-top:20px;"><div class="bezel-core" style="padding:18px 22px;">
+    <div class="result-sub-head" style="margin-bottom:10px;"><h3>담론 등장 추이</h3><span class="pill">6/29 예시 데이터</span></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>담론</th><th>6/23</th><th>6/24</th><th>6/25</th><th>6/26</th><th>6/27</th><th>6/28</th><th>6/29</th></tr></thead>
+        <tbody>
+          <tr><td>Rampart/Praxis 프라이버시 담론</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>7</td></tr>
+          <tr><td>Tesla FSD v14 발표</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>5</td></tr>
+          <tr><td>⚠️ AI 무관 · 원전/방사선 안전성 논쟁</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>4</td></tr>
+          <tr><td>메모리 · 하드웨어 설계 논의</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>3</td></tr>
+          <tr><td>Neuralink 대역폭 논의</td><td>0</td><td>2</td><td>1</td><td>0</td><td>0</td><td>0</td><td>3</td></tr>
+          <tr><td>⚠️ AI 무관 · 정치적 설전 잔재</td><td>0</td><td>3</td><td>1</td><td>0</td><td>0</td><td>1</td><td>3</td></tr>
+          <tr><td>△ 경계선 · 커리어 일반론</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>3</td></tr>
+          <tr><td>AI 결과물 품질 기준 논의</td><td>0</td><td>4</td><td>3</td><td>3</td><td>2</td><td>1</td><td>3</td></tr>
+          <tr><td>온디바이스 PII 리덕션 모델 발표</td><td>1</td><td>0</td><td>4</td><td>1</td><td>0</td><td>3</td><td>3</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="pbullets result-note" style="margin-top:8px;">
+      <li>위 수치는 날짜별 게시 건수를 그대로 집계한 값입니다.</li>
+    </ul>
+  </div></div>
+</section>
+
+<section class="block" id="review" style="padding: clamp(32px, 4vw, 56px) 0;">
+  <div class="block-head" style="margin-bottom:24px;">
+    <h2>향후 검토 사항</h2>
+    <p class="lede">아직 적용하지 않았거나 방식이 확정되지 않아 별도로 검토 중인 항목입니다.</p>
+  </div>
+  <div class="reveal">
+    <div class="bezel"><div class="bezel-core" style="padding:20px 22px;">
+      <div class="rk">데이터 수집</div>
+      <ul class="pbullets" style="gap:6px; margin-top:10px;">
+        <li>일일 분석 범위를 "어제 하루"에서 "최근 2일"로 넓히는 방안 검토 중 (하루 단위 데이터가 얇아 게시량 · 급증지수 수치가 불안정해지는 문제를 완화하기 위함이나, "일일" 리포트의 신선도가 낮아지는 단점도 있어 우선순위 협의 필요)</li>
+      </ul>
+
+      <div class="rk" style="margin-top:20px;">데이터 전처리</div>
+      <ul class="pbullets" style="gap:6px; margin-top:10px;">
+        <li>현재는 새로운 노이즈 패턴이 발견될 때마다 필터 규칙을 사람이 직접 보완하는 방식이라 반영까지 시차가 있을 수 있음. 운영자가 직접 필터 키워드를 추가 · 관리할 수 있는 기능이 필요해 보임</li>
+      </ul>
+
+      <div class="rk" style="margin-top:20px;">분석 방법</div>
+      <ul class="pbullets" style="gap:6px; margin-top:10px;">
+        <li>핵심 키워드 순위에 좋아요 · 리트윗 수(참여도) 반영 여부 검토 중</li>
+        <li>혼재 비율 40% 이상으로 제외된 담론을 AI가 개별 포스트 단위로 다시 확인해(AI/테크 업계 내용인지만 판정) 오판정이면 표에 복귀시키는 2차 검증 단계 도입 여부 검토 중(이번 회차는 자동 판정 결과를 그대로 반영)</li>
+      </ul>
+
+      <div class="rk" style="margin-top:20px;">신규 분석</div>
+      <ul class="pbullets" style="gap:6px; margin-top:10px;">
+        <li>리더 간 상호작용 관계 분석(누가 누구와 자주 얽히는지) 추가 여부 검토 중. 리더-리더 언급 · 리트윗 · 인용 관계를 커뮤니티(그룹)로 묶어보는 시험 분석을 진행함 (<a href="javascript:void(0)" onclick="openQuoteModal('q-community', '리더 간 관계 네트워크 · 라이덴 커뮤니티 분석 샘플')" style="color:var(--accent-ink); text-decoration:underline; cursor:pointer;">샘플 보기</a>)</li>
+      </ul>
+    </div></div>
+  </div>
+</section>
+
+<section class="block" id="closing" style="padding: clamp(32px, 4vw, 56px) 0;">
+  <div class="block-head" style="margin-bottom:24px;">
+    <h2>향후 일정</h2>
+  </div>
+  <div class="reveal">
+    <div class="roadmap-status" style="padding:16px 22px; margin-bottom:14px;">
+      <div class="rk" style="margin-bottom:6px;">현황</div>
+      <ul class="pbullets" style="gap:6px;">
+        <li><strong>포스트</strong>
+          <ul class="pbullets" style="margin-top:4px; gap:4px;">
+            <li>6월 1일~8월 19일 전체 수집 완료</li>
+            <li>8월 20일부터는 일일 수집 진행 중</li>
+          </ul>
+        </li>
+        <li><strong>답글</strong>: 8월 27일까지 수집 완료 (공식 API에서 답글이 누락되는 현상을 발견하여, 웹크롤링을 보완 사용 중)</li>
+      </ul>
+    </div>
+    <div class="bezel"><div class="bezel-core" style="padding:16px 22px;">
+      <div class="roadmap">
+        <div class="rm-item" style="padding:9px 0;">
+          <div class="rm-when">9월 1주</div>
+          <div class="rm-desc">1차 분석 결과 공유</div>
+        </div>
+        <div class="rm-item" style="padding:9px 0;">
+          <div class="rm-when">9월 2주</div>
+          <div class="rm-desc">1차 분석 결과 검토 및 피드백 보완</div>
+        </div>
+        <div class="rm-item" style="padding:9px 0;">
+          <div class="rm-when">9월 1주~4주</div>
+          <div class="rm-desc">분석 엔진, 대시보드 개발</div>
+        </div>
+        <div class="rm-item" style="padding:9px 0;">
+          <div class="rm-when">9월 4주</div>
+          <div class="rm-desc">테스트</div>
+        </div>
+        <div class="rm-item" style="padding:9px 0;">
+          <div class="rm-when">10월 7일</div>
+          <div class="rm-desc"><strong>납품</strong></div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+</div>
+
+<div class="footer-bar">
+  <div class="wrap">
+    <span>(주) 사이람</span>
+    <span>REV. 2026-08-26 · 문서번호 2026-08-26-01</span>
+  </div>
+</div>
+
+<div style="display:none;">
+  <div id="q-community">
+    <svg viewBox="0 0 620 400" style="width:100%; height:auto; max-height:440px; display:block; margin:0 auto 16px;">
+      <circle cx="488" cy="78" r="91" fill="#eef968" fill-opacity="0.05" stroke="#c9cf8a" stroke-width="1"/>
+      <text x="488" y="185" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="12" fill="var(--ink-faint)">1</text>
+      <circle cx="265" cy="297" r="88" fill="#5350ff" fill-opacity="0.04" stroke="#9a98d9" stroke-width="1"/>
+      <text x="265" y="400" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="12" fill="var(--ink-faint)">2</text>
+      <circle cx="169" cy="141" r="60" fill="#a6f93b" fill-opacity="0.05" stroke="#b7d99a" stroke-width="1"/>
+      <text x="169" y="210" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="12" fill="var(--ink-faint)">3</text>
+      <circle cx="305" cy="141" r="63" fill="#ff5d2a" fill-opacity="0.05" stroke="#e0ab93" stroke-width="1"/>
+      <text x="305" y="213" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="12" fill="var(--ink-faint)">4</text>
+
+      <line x1="482" y1="101" x2="523" y2="70" stroke="#c7c7c7" stroke-width="1"/>
+      <line x1="482" y1="101" x2="449" y2="69" stroke="#c7c7c7" stroke-width="1"/>
+      <line x1="482" y1="101" x2="487" y2="34" stroke="#c7c7c7" stroke-width="1"/>
+      <line x1="300" y1="293" x2="144" y2="160" stroke="#c7c7c7" stroke-width="1.4"/>
+      <line x1="334" y1="153" x2="300" y2="293" stroke="#c7c7c7" stroke-width="2"/>
+      <line x1="144" y1="160" x2="191" y2="132" stroke="#c7c7c7" stroke-width="1"/>
+      <line x1="334" y1="153" x2="482" y2="101" stroke="#c7c7c7" stroke-width="1"/>
+      <line x1="300" y1="293" x2="235" y2="330" stroke="#c7c7c7" stroke-width="1"/>
+      <line x1="297" y1="118" x2="300" y2="293" stroke="#c7c7c7" stroke-width="1"/>
+      <line x1="300" y1="293" x2="218" y2="301" stroke="#c7c7c7" stroke-width="1"/>
+      <line x1="334" y1="153" x2="191" y2="132" stroke="#c7c7c7" stroke-width="1"/>
+      <line x1="233" y1="262" x2="300" y2="293" stroke="#c7c7c7" stroke-width="1"/>
+      <line x1="149" y1="118" x2="144" y2="160" stroke="#c7c7c7" stroke-width="1"/>
+
+      <circle cx="523" cy="70" r="4" fill="#c8ce4e"/>
+      <text x="523" y="60" text-anchor="middle" font-size="10.5" fill="var(--ink-muted)">cristianoamon</text>
+      <circle cx="482" cy="101" r="17" fill="#c8ce4e"/>
+      <text x="482" y="128" text-anchor="middle" font-size="11.5" fill="var(--ink)" font-weight="700">ClementDelangue</text>
+      <circle cx="449" cy="69" r="4" fill="#c8ce4e"/>
+      <text x="449" y="59" text-anchor="middle" font-size="10.5" fill="var(--ink-muted)">AravSrinivas</text>
+      <circle cx="487" cy="34" r="4" fill="#c8ce4e"/>
+      <text x="487" y="24" text-anchor="middle" font-size="10.5" fill="var(--ink-muted)">sama</text>
+
+      <circle cx="300" cy="293" r="23" fill="#5350ff" fill-opacity="0.85"/>
+      <text x="300" y="325" text-anchor="middle" font-size="12" fill="var(--ink)" font-weight="700">elonmusk</text>
+      <circle cx="235" cy="330" r="4" fill="#5350ff" fill-opacity="0.85"/>
+      <text x="225" y="345" text-anchor="middle" font-size="10.5" fill="var(--ink-muted)">PalmerLuckey</text>
+      <circle cx="218" cy="301" r="4" fill="#5350ff" fill-opacity="0.85"/>
+      <text x="208" y="316" text-anchor="middle" font-size="10.5" fill="var(--ink-muted)">karpathy</text>
+      <circle cx="233" cy="262" r="4" fill="#5350ff" fill-opacity="0.85"/>
+      <text x="215" y="255" text-anchor="middle" font-size="10.5" fill="var(--ink-muted)">JonathanRoss321</text>
+
+      <circle cx="144" cy="160" r="10" fill="#8fc42a"/>
+      <text x="144" y="182" text-anchor="middle" font-size="11.5" fill="var(--ink)" font-weight="700">pmarca</text>
+      <circle cx="191" cy="132" r="4" fill="#8fc42a"/>
+      <text x="200" y="122" text-anchor="middle" font-size="10.5" fill="var(--ink-muted)">oziadias</text>
+      <circle cx="149" cy="118" r="4" fill="#8fc42a"/>
+      <text x="149" y="108" text-anchor="middle" font-size="10.5" fill="var(--ink-muted)">Grimezsz</text>
+
+      <circle cx="334" cy="153" r="14" fill="#ff5d2a" fill-opacity="0.85"/>
+      <text x="334" y="180" text-anchor="middle" font-size="11.5" fill="var(--ink)" font-weight="700">ylecun</text>
+      <circle cx="297" cy="118" r="4" fill="#ff5d2a" fill-opacity="0.85"/>
+      <text x="297" y="108" text-anchor="middle" font-size="10.5" fill="var(--ink-muted)">andrewdfeldman</text>
+    </svg>
+    <ul class="pbullets" style="font-style:normal;">
+      <li><strong>Community 1</strong>(허브: ClementDelangue): cristianoamon · AravSrinivas · sama와 연결, Hugging Face의 오픈소스 정책 옹호 논쟁이 중심</li>
+      <li><strong>Community 2</strong>(허브: elonmusk): PalmerLuckey · karpathy · JonathanRoss321과 연결, 발언량은 가장 많으나 AI · 제품 관련 내용은 일부이고 정치 콘텐츠 비중이 높음</li>
+      <li><strong>Community 3</strong>(허브: pmarca): oziadias · Grimezsz와 연결, 짧은 촌평 위주의 인용 · 리트윗이 대부분</li>
+      <li><strong>Community 4</strong>(경계선): ylecun · andrewdfeldman 2명뿐인 소규모 그룹으로, elonmusk · ClementDelangue · pmarca 클러스터 모두와 엣지로 연결돼 있어 독립 그룹인지 경계선 사례인지 애매함</li>
+      <li>Community 1을 제외한 나머지는 초허브(elonmusk · pmarca)의 방대한 네트워크에 성격이 다른 인물이 소수 상호작용만으로 편입된 형태로, 표본이 작아 경계선 판정이 발생하기 쉬움</li>
+    </ul>
+  </div>
+</div>
+
+<div class="quote-modal-overlay" id="quoteModal" onclick="if(event.target===this) closeQuoteModal();">
+  <div class="quote-modal-box">
+    <button class="quote-modal-close" onclick="closeQuoteModal();" aria-label="닫기">&times;</button>
+    <div class="qm-title">대표 포스트 원문</div>
+    <div id="quoteModalContent"></div>
+  </div>
+</div>
+
+<script>
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  var railLinks = Array.prototype.slice.call(document.querySelectorAll('#rail a'));
+  var railSections = railLinks.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  function updateRail() {
+    var pos = window.scrollY + window.innerHeight * 0.35;
+    var activeIdx = 0;
+    railSections.forEach(function (s, i) { if (s && s.offsetTop <= pos) activeIdx = i; });
+    railLinks.forEach(function (a, i) { a.classList.toggle('active', i === activeIdx); });
+  }
+  document.addEventListener('scroll', updateRail, { passive: true });
+  updateRail();
+
+  function openQuoteModal(sourceId, title) {
+    var src = document.getElementById(sourceId);
+    if (!src) return;
+    document.getElementById('quoteModalContent').innerHTML = src.innerHTML;
+    document.querySelector('#quoteModal .qm-title').textContent = title || '대표 포스트 원문';
+    document.querySelector('#quoteModal .quote-modal-box').classList.toggle('wide', sourceId === 'q-community');
+    document.getElementById('quoteModal').classList.add('open');
+  }
+  function closeQuoteModal() {
+    document.getElementById('quoteModal').classList.remove('open');
+  }
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeQuoteModal();
+  });
+</script>
