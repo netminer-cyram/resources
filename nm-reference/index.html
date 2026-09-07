@@ -180,9 +180,6 @@
   <select id="yearFilter" onchange="applyFilters()">
     <option value="">All Years</option>
   </select>
-  <button class="wos-toggle" id="wosToggle" onclick="toggleWos()">
-    Web of Science Core Collection
-  </button>
   <button class="wos-toggle" id="engToggle" onclick="toggleEng()">
     English only
   </button>
@@ -213,16 +210,9 @@
 
 <script>
   let allRows = [];
-  let wosOnly = false;
   let engOnly = new URLSearchParams(window.location.search).get('lang') === 'en';
 
   const KOREAN = /[가-힣]/;
-
-  function toggleWos() {
-    wosOnly = !wosOnly;
-    document.getElementById('wosToggle').classList.toggle('active', wosOnly);
-    applyFilters();
-  }
 
   function toggleEng() {
     engOnly = !engOnly;
@@ -244,7 +234,6 @@
         authors: String(r['authors'] || '').trim(),
         journal: String(r['journal'] || '').trim(),
         doi:     String(r['doi'] || '').trim(),
-        wos:     String(r['Web of Science Core Collection'] || '').trim() !== '',
         gubun:   String(r['구분'] || '').trim(),
         isEng:   !KOREAN.test(String(r['title'] || '')),
       })).filter(r => r.title && r.gubun !== '검증필요');
@@ -289,9 +278,8 @@
         r.title.toLowerCase().includes(q) ||
         r.authors.toLowerCase().includes(q) ||
         r.journal.toLowerCase().includes(q);
-      const matchWos = !wosOnly || r.wos;
       const matchEng = !engOnly || r.isEng;
-      return matchYear && matchSearch && matchWos && matchEng;
+      return matchYear && matchSearch && matchEng;
     });
 
     renderTable(filtered);
