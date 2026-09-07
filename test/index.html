@@ -238,6 +238,7 @@
   .stat-line { display: flex; flex-direction: column; gap: 0; background: var(--surface); border-radius: 20px; box-shadow: var(--shadow-sm); overflow: hidden; }
   .stat-item { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 20px; border-bottom: 1px solid var(--line); }
   .stat-item:last-child { border-bottom: none; }
+  .stat-item.result { background: var(--accent-soft); }
   .stat-item .n { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--accent-ink); flex: none; white-space: nowrap; }
   .stat-item .l { font-size: .84rem; color: var(--ink-muted); text-align: left; line-height: 1.4; }
 
@@ -358,7 +359,7 @@
   <div class="wrap">
     <span class="pill">1차 결과 보고서 · 2026.08.26</span>
     <h1>AI 리더 X 계정 소셜 데이터 분석</h1>
-    <p class="hero-sub">AI 분야 주요 인물들의 X(트위터) 게시 동향을 매일 추적해 게시량 추이, 핵심 키워드, 주요 담론, 담론 변화 추이, 신조어 5가지 인사이트로 정리합니다.</p>
+    <p class="hero-sub">AI 분야 주요 인물들의 X(트위터) 게시 동향을 매일 추적해 게시량 추이, 핵심 키워드, 신조어, 주요 담론, 담론 변화 추이 5가지 인사이트로 정리합니다.</p>
 
   </div>
 </header>
@@ -379,7 +380,7 @@
     <div class="bezel"><div class="bezel-core">
       <div class="lbl">OUTPUT</div>
       <div class="big">5개 인사이트</div>
-      <div class="desc">게시량 추이, 오늘의 발견 키워드, 주요 담론 및 인물 분포, 핵심 키워드, 담론 변화 추이</div>
+      <div class="desc">게시량 추이, 핵심 키워드, 오늘의 발견 키워드, 주요 담론 및 인물 분포, 담론 변화 추이</div>
     </div></div>
     <div class="bezel"><div class="bezel-core">
       <div class="lbl">AI 사용 범위</div>
@@ -646,7 +647,7 @@
             <div class="stat-item"><span class="l">필터링 대상 검출</span><span class="n">2,302건</span></div>
             <div class="stat-item"><span class="l">AI 관련성으로 재포함</span><span class="n">381건</span></div>
             <div class="stat-item"><span class="l">최종 제외 (약 21.3%)</span><span class="n">1,921건</span></div>
-            <div class="stat-item"><span class="l">처리 결과</span><span class="n">7,119건</span></div>
+            <div class="stat-item result"><span class="l">처리 결과</span><span class="n">7,119건</span></div>
           </div>
         </div>
       </div>
@@ -669,7 +670,7 @@
           <div class="stat-line">
             <div class="stat-item"><span class="l">비영어 인용 포스트 (인용 원문만 삭제)</span><span class="n">32건</span></div>
             <div class="stat-item"><span class="l">비영어 리포스트 (포스트 삭제)</span><span class="n">0건</span></div>
-            <div class="stat-item"><span class="l">처리 결과</span><span class="n">7,119건</span></div>
+            <div class="stat-item result"><span class="l">처리 결과</span><span class="n">7,119건</span></div>
           </div>
         </div>
       </div>
@@ -718,7 +719,7 @@
         <div class="pside">
           <div class="stat-line">
             <div class="stat-item"><span class="l">초단문 제외</span><span class="n">1,029건</span></div>
-            <div class="stat-item"><span class="l">처리 결과 (텍스트 분석 투입 대상)</span><span class="n">6,090건</span></div>
+            <div class="stat-item result"><span class="l">처리 결과 (텍스트 분석 투입 대상)</span><span class="n">6,090건</span></div>
           </div>
         </div>
       </div>
@@ -803,7 +804,7 @@
           </ul>
           <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--line);">
             <span style="font-size:.88rem; font-weight:700; color:var(--ink);">출력</span>
-            <span style="font-size:.96rem; color:var(--ink-muted);"> 신조어 후보(원문), 언급한 리더, 대표 포스트 원문 발췌 3~5건(게시 시각 기준 최신순 자동 선정)</span>
+            <span style="font-size:.96rem; color:var(--ink-muted);"> 신조어 후보(원문), 언급한 리더, 대표 포스트 원문 발췌 최대 3건(고유 발언자당 1건, 참여도 likeCount+retweetCount 내림차순 자동 선정)</span>
           </div>
         </div>
       </div>
@@ -832,7 +833,7 @@
           </ul>
           <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--line);">
             <span style="font-size:.88rem; font-weight:700; color:var(--ink);">출력</span>
-            <span style="font-size:.96rem; color:var(--ink-muted);"> 담론명(한글), 대표 키워드, 비중과 추이, 언급 인물(이름 · 언급 횟수), 대표 포스트 원문 발췌 3~5건(담론 대표 키워드를 가장 많이 포함한 문서 순 자동 선정)</span>
+            <span style="font-size:.96rem; color:var(--ink-muted);"> 담론명(한글), 대표 키워드, 비중, 언급 인물(이름 · 언급 횟수), 대표 포스트 원문 발췌 3~5건(담론 대표 키워드를 가장 많이 포함한 문서 순 자동 선정)</span>
           </div>
         </div>
       </div>
@@ -882,7 +883,7 @@
           </ul>
           <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--line);">
             <span style="font-size:.88rem; font-weight:700; color:var(--ink);">출력</span>
-            <span style="font-size:.96rem; color:var(--ink-muted);"> 키워드, 최종 순위 점수, 급증지수, 고유 발언자 수, 토픽 집중도, 대표 포스트 원문 발췌 3~5건(게시 시각 기준 최신순 자동 선정)</span>
+            <span style="font-size:.96rem; color:var(--ink-muted);"> 키워드, 최종 순위 점수, 급증지수, 고유 발언자 수, 토픽 집중도, 대표 포스트 원문 발췌 최대 5건(고유 발언자당 1건, 참여도 likeCount+retweetCount 내림차순 자동 선정)</span>
           </div>
         </div>
       </div>
@@ -905,7 +906,7 @@
           <tbody>
             <tr><td>6/28</td><td>119</td><td>23</td><td>96</td><td>16명</td></tr>
             <tr><td>6/29</td><td>114</td><td>24</td><td>90</td><td>24명</td></tr>
-            <tr><td>증감</td><td>-</td><td>-</td><td>-6 (-6.2%)</td><td>-</td></tr>
+            <tr><td>증감</td><td>-5</td><td>+1</td><td>-6 (-6.2%)</td><td>+8명</td></tr>
           </tbody>
         </table>
       </div>
@@ -913,18 +914,17 @@
         <table>
           <thead><tr><th>리더</th><th>6/28</th><th>6/29</th><th>증감(Δ)</th><th>개인 급증지수</th></tr></thead>
           <tbody>
-            <tr><td>Sam Rodriques</td><td>데이터없음</td><td>5</td><td>-</td><td>10.00</td></tr>
-            <tr><td>echen</td><td>데이터없음</td><td>3</td><td>-</td><td>6.00</td></tr>
+            <tr><td>Sam Rodriques</td><td>0</td><td>5</td><td>+5</td><td>10.00</td></tr>
+            <tr><td>echen</td><td>0</td><td>3</td><td>+3</td><td>6.00</td></tr>
             <tr><td>Andrew Feldman</td><td>1</td><td>3</td><td>+2</td><td>5.25</td></tr>
             <tr><td>Richard Socher</td><td>1</td><td>2</td><td>+1</td><td>4.00</td></tr>
-            <tr><td>Reid Hoffman</td><td>데이터없음</td><td>2</td><td>-</td><td>3.50</td></tr>
+            <tr><td>Reid Hoffman</td><td>0</td><td>2</td><td>+2</td><td>3.50</td></tr>
             <tr><td>Yann LeCun</td><td>1</td><td>5</td><td>+4</td><td>2.19</td></tr>
           </tbody>
         </table>
       </div>
       <ul class="pbullets result-note" style="margin-top:12px;">
         <li>평소 게시량이 많은 리더(예: Elon Musk)가 조금 늘어난 것보다, 평소 조용하다가 이례적으로 활발해진 리더가 개인 급증지수 기준 상위권에 오릅니다.</li>
-        <li>데이터 없음(신규 발언)이 아닌, 실제로 0건 · 감소한 경우와 구분해 표시됩니다.</li>
       </ul>
     </div></div>
 
@@ -936,15 +936,20 @@
           <tbody>
             <tr><td>privacy</td><td>14.14</td><td>10.00</td><td>2명</td><td>100%</td><td>Rampart/Praxis 프라이버시 담론과 대응</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-rampart')">보기</button></td></tr>
             <tr><td>browser</td><td>11.31</td><td>8.00</td><td>2명</td><td>100%</td><td>온디바이스 프라이버시 관련</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-rampart')">보기</button></td></tr>
+            <tr><td>mb</td><td>11.31</td><td>8.00</td><td>2명</td><td>100%</td><td>Rampart 발표문의 "14.7MB" 표기</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-rampart')">보기</button></td></tr>
             <tr><td>rampart</td><td>11.31</td><td>8.00</td><td>2명</td><td>100%</td><td>오늘의 발견 키워드(신조어)와 동일 이슈</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-rampart')">보기</button></td></tr>
             <tr><td>server</td><td>11.31</td><td>8.00</td><td>2명</td><td>100%</td><td>온디바이스 프라이버시 관련</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-rampart')">보기</button></td></tr>
             <tr><td>v14</td><td>10.00</td><td>10.00</td><td>1명 ⚠</td><td>100%</td><td>Tesla FSD v14, 1인 발언이나 집중도 100%라 순위 유지</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-v14')">보기</button></td></tr>
+            <tr><td>nature</td><td>8.49</td><td>6.00</td><td>2명</td><td>100%</td><td>Brain2Qwerty 논문 Nature Neuro 게재 소식</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-nature')">보기</button></td></tr>
+            <tr><td>fsd</td><td>8.00</td><td>8.00</td><td>1명 ⚠</td><td>100%</td><td>Tesla FSD v14와 동일 이슈</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-v14')">보기</button></td></tr>
+            <tr><td>lite</td><td>8.00</td><td>8.00</td><td>1명 ⚠</td><td>100%</td><td>"FSD v14 Lite" 제품명의 일부</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-v14')">보기</button></td></tr>
+            <tr><td>cancer</td><td>7.00</td><td>7.00</td><td>1명 ⚠</td><td>100%</td><td>"AI로 암 투병을 이겨낸 창업자" 스토리(주요 담론 표엔 미등재)</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-cancer')">보기</button></td></tr>
           </tbody>
         </table>
       </div>
       <ul class="pbullets result-note" style="margin-top:12px;">
         <li>단순 등장 빈도가 아니라, 문서 수 기반 급증지수에 발언자 수와 토픽 집중도를 곱한 최종점수로 순위를 매기고 집중도 80% 미만은 하드컷으로 제외하는 방식입니다.</li>
-        <li>원문은 게시 시각 기준 최신 2건입니다.</li>
+        <li>원문은 고유 발언자당 1건만 남긴 뒤, 참여도(좋아요+리트윗 수)가 높은 순으로 최대 5건까지 선정됩니다.</li>
       </ul>
 
       <div style="display:none;">
@@ -960,6 +965,17 @@
             <li>elonmusk: "v14 Lite Release Notes: - Distilled the intelligence from HW4 V14 into HW3..."</li>
           </ul>
         </div>
+        <div id="q-kw-nature">
+          <ul class="pbullets">
+            <li>alexandr_wang: "We're happy to announce 2 releases today: - Brain2qwerty v1 is published at ... - Brain2Qwerty v2 is now publicly released. Explore how we decode sentences from non-invasive brain recordings: Links: v1 Nature Neuro: v2 Meta preprint: Code: Data: Blog: Thread:"</li>
+          </ul>
+        </div>
+        <div id="q-kw-cancer">
+          <ul class="pbullets">
+            <li>pmarca: "Interesting. The fittest founder in the room got cancer. Here's how he used AI to fight back."</li>
+            <li>pmarca: "The fittest founder in the room got cancer. Here's how he used AI to fight back." <em>(리트윗)</em></li>
+          </ul>
+        </div>
       </div>
     </div></div>
 
@@ -967,27 +983,32 @@
       <div class="result-sub-head"><h3>오늘의 발견 키워드 (신조어)</h3><span class="pill">6/29 예시 데이터</span></div>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>용어</th><th>내용</th><th>원문</th></tr></thead>
+          <thead><tr><th>용어</th><th>내용</th><th>언급 인물</th><th>원문</th></tr></thead>
           <tbody>
-            <tr><td>Rampart</td><td>Hugging Face가 발표한 온디바이스 프라이버시 모델. 개인정보를 서버로 보내기 전 브라우저에서 자동으로 삭제</td><td><button class="quote-btn" onclick="openQuoteModal('q-nw-rampart')">보기</button></td></tr>
-            <tr><td>Praxis</td><td>Rampart와는 무관한 다른 팀이 같은 날 소개한 별개의 프라이버시 모델</td><td><button class="quote-btn" onclick="openQuoteModal('q-nw-praxis')">보기</button></td></tr>
-            <tr><td>Brain2Qwerty v2</td><td>비침습 뇌신호 → 텍스트 디코딩 연구의 신규 버전</td><td><button class="quote-btn" onclick="openQuoteModal('q-nw-b2q')">보기</button></td></tr>
-            <tr><td>Kosmos</td><td>AI 사이언티스트, 바이오텍 파트너십 발표</td><td><button class="quote-btn" onclick="openQuoteModal('q-nw-kosmos')">보기</button></td></tr>
-            <tr><td>ALLAM</td><td>중동 지역 특화 모델</td><td><button class="quote-btn" onclick="openQuoteModal('q-nw-allam')">보기</button></td></tr>
+            <tr><td>Rampart</td><td>Hugging Face가 발표한 온디바이스 프라이버시 모델. 개인정보를 서버로 보내기 전 브라우저에서 자동으로 삭제</td><td>ClementDelangue, pmarca</td><td><button class="quote-btn" onclick="openQuoteModal('q-nw-rampart')">보기</button></td></tr>
+            <tr><td>Praxis</td><td>Rampart와는 무관한 다른 팀이 같은 날 소개한 별개의 프라이버시 모델</td><td>pmarca</td><td><button class="quote-btn" onclick="openQuoteModal('q-nw-praxis')">보기</button></td></tr>
+            <tr><td>Brain2Qwerty v2</td><td>비침습 뇌신호 → 텍스트 디코딩 연구의 신규 버전</td><td>alexandr_wang</td><td><button class="quote-btn" onclick="openQuoteModal('q-nw-b2q')">보기</button></td></tr>
+            <tr><td>Kosmos</td><td>AI 사이언티스트, 바이오텍 파트너십 발표</td><td>SGRodriques</td><td><button class="quote-btn" onclick="openQuoteModal('q-nw-kosmos')">보기</button></td></tr>
+            <tr><td>ALLAM</td><td>중동 지역 특화 모델</td><td>TareqAmin_</td><td><button class="quote-btn" onclick="openQuoteModal('q-nw-allam')">보기</button></td></tr>
           </tbody>
         </table>
       </div>
       <ul class="pbullets result-note" style="margin-top:12px;">
         <li>후보 중 정자(正字)가 아니거나(오탈자) 과거 이력에 이미 있던 표현으로 확인된 것은 최종 채택에서 제외됩니다.</li>
-        <li>원문은 게시 시각 기준 최신순으로 선정됩니다.</li>
+        <li>원문은 고유 발언자당 1건(중복 리트윗/인용 제거)만 남긴 뒤, 참여도(좋아요+리트윗 수)가 높은 순으로 선정됩니다.</li>
       </ul>
 
       <div style="display:none;">
-        <div id="q-nw-rampart"><p>ClementDelangue: "Today, we are releasing Rampart: a 14.7MB machine learning model designed to protect citizens' privacy by redacting personal information directly in your browser before it gets sent to any server."</p></div>
-        <div id="q-nw-praxis"><p>pmarca: "Interesting. Praxis released two 3 billion parameter models to keep your personal information private from Claude or ChatGPT: praxis-spanfinder-3b and..."</p></div>
-        <div id="q-nw-b2q"><p>alexandr_wang: "We're happy to announce 2 releases today: - Brain2qwerty v1 is published at ... - Brain2Qwerty v2 is now publicly released. Explore how we decode sentences..."</p></div>
-        <div id="q-nw-kosmos"><p>SGRodriques: "At Edison, we are on a mission to leverage AI to prevent or cure all diseases. Today, we are announcing a critical step: our first partnership using our AI scientist, Kosmos, to launch new biotech companies..."</p></div>
-        <div id="q-nw-allam"><p>TareqAmin_: "...When we built ALLAM, we trained a model from scratch. The lessons we learned throughout that journey are invaluable..."</p></div>
+        <div id="q-nw-rampart">
+          <ul class="pbullets">
+            <li>ClementDelangue: "Today, we are releasing Rampart: a 14.7MB machine learning model designed to protect citizens' privacy by redacting personal information directly in your browser before it gets sent to any server."</li>
+            <li>pmarca: "Amazing. Today, we are releasing Rampart: a 14.7MB machine learning model designed to protect citizens' privacy by redacting personal information directly in your browser before it gets sent to any server." <em>(인용)</em></li>
+          </ul>
+        </div>
+        <div id="q-nw-praxis"><p>pmarca: "Interesting. Praxis released two 3 billion parameter models to keep your personal information private from Claude or ChatGPT: praxis-spanfinder-3b and praxis-relevance-3b..."</p></div>
+        <div id="q-nw-b2q"><p>alexandr_wang: "some exciting new work from our AI teams at Meta on non-invasive brain computer interfaces! We're sharing the next major milestone in our non-invasive brain-to-text decoder research..."</p></div>
+        <div id="q-nw-kosmos"><p>SGRodriques: "At Edison, we are on a mission to leverage AI to prevent or cure all diseases. Today, we are announcing a critical step: our first partnership using our AI scientist, Kosmos..."</p></div>
+        <div id="q-nw-allam"><p>TareqAmin_: "There is something special about sports. They bring people together, spark conversations, and create moments that millions experience at the same time. Today, I'm excited to share..."</p></div>
       </div>
     </div></div>
 
@@ -1132,12 +1153,13 @@
       <div class="rk" style="margin-top:20px;">분석 방법</div>
       <ul class="pbullets" style="gap:6px; margin-top:10px;">
         <li>핵심 키워드 순위에 좋아요 · 리트윗 수(참여도) 반영 여부 검토 중</li>
+        <li>핵심 키워드 상위권이 소수 사건(예: Rampart 발표문 한 문장)에서 나온 단어들로 채워지는 경향이 있어 "주요 담론" 결과와 상당 부분 겹침. "핵심 키워드" 섹션 자체를 별도로 유지할 필요가 있는지 검토 중</li>
         <li>혼재 비율 40% 이상으로 제외된 담론을 AI가 개별 포스트 단위로 다시 확인해(AI/테크 업계 내용인지만 판정) 오판정이면 표에 복귀시키는 2차 검증 단계 도입 여부 검토 중(이번 회차는 자동 판정 결과를 그대로 반영)</li>
       </ul>
 
       <div class="rk" style="margin-top:20px;">신규 분석</div>
       <ul class="pbullets" style="gap:6px; margin-top:10px;">
-        <li>리더 간 상호작용 관계 분석(누가 누구와 자주 얽히는지) 추가 여부 검토 중. 리더-리더 언급 · 리트윗 · 인용 관계를 커뮤니티(그룹)로 묶어보는 시험 분석을 진행함 (<a href="javascript:void(0)" onclick="openQuoteModal('q-community', '리더 간 관계 네트워크 · 라이덴 커뮤니티 분석 샘플')" style="color:var(--accent-ink); text-decoration:underline; cursor:pointer;">샘플 보기</a>)</li>
+        <li>리더 간 상호작용 관계 분석(누가 누구와 자주 얽히는지) 추가 여부 검토 중. 리더-리더 언급 · 리트윗 · 인용 관계를 커뮤니티(그룹)로 묶어보는 시험 분석을 진행함(6/23~6/29 7일치, 13명 · 15개 가중 엣지) (<a href="javascript:void(0)" onclick="openQuoteModal('q-community', '리더 간 관계 네트워크 · 라이덴 커뮤니티 분석 샘플')" style="color:var(--accent-ink); text-decoration:underline; cursor:pointer;">샘플 보기</a>)</li>
       </ul>
     </div></div>
   </div>
