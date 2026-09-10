@@ -380,7 +380,7 @@
     <div class="bezel"><div class="bezel-core">
       <div class="lbl">OUTPUT</div>
       <div class="big">5개 인사이트</div>
-      <div class="desc">게시량 추이, 핵심 키워드, 오늘의 발견 키워드, 주요 담론 및 인물 분포, 담론 변화 추이</div>
+      <div class="desc">게시량 추이, 핵심 키워드, 오늘의 발견 키워드, 오늘의 주요 담론 및 인물 분포, 담론 변화 추이</div>
     </div></div>
     <div class="bezel"><div class="bezel-core">
       <div class="lbl">AI 사용 범위</div>
@@ -880,6 +880,7 @@
                 <li>토픽 집중도: STEP 03 담론 결과를 재활용해, 하나의 주제에 몰려있을수록 가중. 집중도가 80% 미만이면 순위와 무관하게 제외 (하나의 사건이 아니라 서로 다른 맥락에서 우연히 같이 쓰인 단어일 가능성이 높기 때문)</li>
               </ul>
             </li>
+            <li><strong>사건 단위 중복 제거</strong>: 같은 사건(예: 발표문 한 문장)에서 여러 단어가 동시에 상위권을 차지하는 것을 방지하기 위해, 등장한 게시물 집합이 완전히 동일한 단어들을 하나로 묶고 최고 점수 하나만 대표로 남김. 묶인 단어가 원문에서 실제로 붙어 나온 경우(예: "FSD"+"v14"+"lite")에는 그 표현 그대로 하나의 구문으로 합쳐서 보여줌</li>
           </ul>
           <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--line);">
             <span style="font-size:.88rem; font-weight:700; color:var(--ink);">출력</span>
@@ -932,23 +933,19 @@
       <div class="result-sub-head"><h3>핵심 키워드</h3><span class="pill">6/29 예시 데이터</span></div>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>키워드</th><th>최종점수</th><th>급증지수</th><th>발언자</th><th>집중도</th><th>비고</th><th>원문</th></tr></thead>
+          <thead><tr><th>순위</th><th>키워드/구문</th><th>최종점수</th><th>급증지수</th><th>발언자</th><th>집중도</th><th>비고</th><th>원문</th></tr></thead>
           <tbody>
-            <tr><td>privacy</td><td>14.14</td><td>10.00</td><td>2명</td><td>100%</td><td>Rampart/Praxis 프라이버시 담론과 대응</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-rampart')">보기</button></td></tr>
-            <tr><td>browser</td><td>11.31</td><td>8.00</td><td>2명</td><td>100%</td><td>온디바이스 프라이버시 관련</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-rampart')">보기</button></td></tr>
-            <tr><td>mb</td><td>11.31</td><td>8.00</td><td>2명</td><td>100%</td><td>Rampart 발표문의 "14.7MB" 표기</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-rampart')">보기</button></td></tr>
-            <tr><td>rampart</td><td>11.31</td><td>8.00</td><td>2명</td><td>100%</td><td>오늘의 발견 키워드(신조어)와 동일 이슈</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-rampart')">보기</button></td></tr>
-            <tr><td>server</td><td>11.31</td><td>8.00</td><td>2명</td><td>100%</td><td>온디바이스 프라이버시 관련</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-rampart')">보기</button></td></tr>
-            <tr><td>v14</td><td>10.00</td><td>10.00</td><td>1명 ⚠</td><td>100%</td><td>Tesla FSD v14, 1인 발언이나 집중도 100%라 순위 유지</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-v14')">보기</button></td></tr>
-            <tr><td>nature</td><td>8.49</td><td>6.00</td><td>2명</td><td>100%</td><td>Brain2Qwerty 논문 Nature Neuro 게재 소식</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-nature')">보기</button></td></tr>
-            <tr><td>fsd</td><td>8.00</td><td>8.00</td><td>1명 ⚠</td><td>100%</td><td>Tesla FSD v14와 동일 이슈</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-v14')">보기</button></td></tr>
-            <tr><td>lite</td><td>8.00</td><td>8.00</td><td>1명 ⚠</td><td>100%</td><td>"FSD v14 Lite" 제품명의 일부</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-v14')">보기</button></td></tr>
-            <tr><td>cancer</td><td>7.00</td><td>7.00</td><td>1명 ⚠</td><td>100%</td><td>"AI로 암 투병을 이겨낸 창업자" 스토리(주요 담론 표엔 미등재)</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-cancer')">보기</button></td></tr>
+            <tr><td>1</td><td>privacy</td><td>14.14</td><td>10.00</td><td>2명</td><td>100%</td><td>Rampart/Praxis 프라이버시 담론과 대응</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-rampart')">보기</button></td></tr>
+            <tr><td>2</td><td>browser</td><td>11.31</td><td>8.00</td><td>2명</td><td>100%</td><td>온디바이스 프라이버시 관련. mb/rampart/server가 등장 게시물이 완전히 동일해 이 항목으로 병합됨</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-rampart')">보기</button></td></tr>
+            <tr><td>3</td><td><strong>FSD v14 lite</strong></td><td>10.00</td><td>10.00</td><td>1명 ⚠</td><td>100%</td><td>Tesla FSD v14 출시. fsd/lite가 v14와 등장 게시물 완전 동일해 원문 표현 그대로 하나로 병합됨</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-v14')">보기</button></td></tr>
+            <tr><td>4</td><td>nature</td><td>8.49</td><td>6.00</td><td>2명</td><td>100%</td><td>Brain2Qwerty 논문 Nature Neuro 게재 소식</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-nature')">보기</button></td></tr>
+            <tr><td>5</td><td>cancer</td><td>7.00</td><td>7.00</td><td>1명 ⚠</td><td>100%</td><td>"AI로 암 투병을 이겨낸 창업자" 스토리(주요 담론 표엔 미등재). 위 항목들과 게시물 집합이 겹치지 않아 독립 유지</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-cancer')">보기</button></td></tr>
           </tbody>
         </table>
       </div>
       <ul class="pbullets result-note" style="margin-top:12px;">
         <li>단순 등장 빈도가 아니라, 문서 수 기반 급증지수에 발언자 수와 토픽 집중도를 곱한 최종점수로 순위를 매기고 집중도 80% 미만은 하드컷으로 제외하는 방식입니다.</li>
+        <li>등장 게시물 집합이 완전히 동일한 키워드는 하나로 병합해 표시합니다(예: mb/rampart/server → browser, fsd/lite → FSD v14 lite). 단순 나열이던 상위 10개가 실제로는 서로 다른 사건 5개로 정리됩니다.</li>
         <li>원문은 고유 발언자당 1건만 남긴 뒤, 참여도(좋아요+리트윗 수)가 높은 순으로 최대 5건까지 선정됩니다.</li>
       </ul>
 
@@ -1013,7 +1010,7 @@
     </div></div>
 
     <div class="bezel"><div class="bezel-core">
-      <div class="result-sub-head"><h3>주요 담론 및 인물 분포</h3><span class="pill">6/29 예시 데이터</span></div>
+      <div class="result-sub-head"><h3>오늘의 주요 담론 및 인물 분포</h3><span class="pill">6/29 예시 데이터</span></div>
       <div class="table-wrap">
         <table>
           <thead><tr><th>담론</th><th>대표 키워드/구</th><th>건수</th><th>언급 인물</th><th>원문</th></tr></thead>
@@ -1140,20 +1137,16 @@
   </div>
   <div class="reveal">
     <div class="bezel"><div class="bezel-core" style="padding:20px 22px;">
-      <div class="rk">데이터 수집</div>
-      <ul class="pbullets" style="gap:6px; margin-top:10px;">
-        <li>일일 분석 범위를 "어제 하루"에서 "최근 2일"로 넓히는 방안 검토 중 (하루 단위 데이터가 얇아 게시량 · 급증지수 수치가 불안정해지는 문제를 완화하기 위함이나, "일일" 리포트의 신선도가 낮아지는 단점도 있어 우선순위 협의 필요)</li>
-      </ul>
-
-      <div class="rk" style="margin-top:20px;">데이터 전처리</div>
+      <div class="rk">데이터 전처리</div>
       <ul class="pbullets" style="gap:6px; margin-top:10px;">
         <li>현재는 새로운 무관 콘텐츠 유형이 발견될 때마다 필터링 키워드를 사람이 직접 보완하는 방식이라 반영까지 시차가 있을 수 있음. 운영자가 직접 필터링 키워드를 추가 · 관리할 수 있는 기능이 필요해 보임</li>
       </ul>
 
       <div class="rk" style="margin-top:20px;">분석 방법</div>
       <ul class="pbullets" style="gap:6px; margin-top:10px;">
+        <li>일일 분석 범위를 "어제 하루"에서 "최근 2일"로 넓히는 방안 검토 중 (하루 단위 데이터가 얇아 게시량 · 급증지수 수치가 불안정해지는 문제를 완화하기 위함이나, "일일" 리포트의 신선도가 낮아지는 단점도 있어 우선순위 협의 필요)</li>
         <li>핵심 키워드 순위에 좋아요 · 리트윗 수(참여도) 반영 여부 검토 중</li>
-        <li>핵심 키워드 상위권이 소수 사건(예: Rampart 발표문 한 문장)에서 나온 단어들로 채워지는 경향이 있어 "주요 담론" 결과와 상당 부분 겹침. "핵심 키워드" 섹션 자체를 별도로 유지할 필요가 있는지 검토 중</li>
+        <li>핵심 키워드 상위권이 소수 사건(예: Rampart 발표문 한 문장)에서 나온 단어들로 채워지는 문제는 "등장 게시물 집합이 완전히 동일한 단어를 하나로 합치는" 중복 제거 방식으로 개선 완료(위 표 참고). 다만 "핵심 키워드" 섹션 자체를 "주요 담론" 섹션과 별도로 유지할 실익이 있는지는 여전히 검토 중</li>
         <li>혼재 비율 40% 이상으로 제외된 담론을 AI가 개별 포스트 단위로 다시 확인해(AI/테크 업계 내용인지만 판정) 오판정이면 표에 복귀시키는 2차 검증 단계 도입 여부 검토 중(이번 회차는 자동 판정 결과를 그대로 반영)</li>
         <li>담론 변화 추이를 7일뿐 아니라 4주 · 3개월 단위로도 안정적으로 이어 보여주는 방법 검토 중. 오늘 하루 새로 나온 작은 담론이 긴 기간과 함께 분석하면 묻혀 버릴 수 있어, 오늘 발견은 지금처럼 짧은 기간으로 민감하게 잡고 이를 이후 누적 추이와 연결하는 방식을 검토하고 있음</li>
       </ul>
