@@ -939,13 +939,12 @@
             <tr><td>2</td><td>browser</td><td>11.31</td><td>8.00</td><td>2명</td><td>100%</td><td>온디바이스 프라이버시 관련. mb/rampart/server가 등장 게시물이 완전히 동일해 이 항목으로 병합됨</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-rampart')">보기</button></td></tr>
             <tr><td>3</td><td><strong>FSD v14 lite</strong></td><td>10.00</td><td>10.00</td><td>1명 ⚠</td><td>100%</td><td>Tesla FSD v14 출시. fsd/lite가 v14와 등장 게시물 완전 동일해 원문 표현 그대로 하나로 병합됨</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-v14')">보기</button></td></tr>
             <tr><td>4</td><td>nature</td><td>8.49</td><td>6.00</td><td>2명</td><td>100%</td><td>Brain2Qwerty 논문 Nature Neuro 게재 소식</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-nature')">보기</button></td></tr>
-            <tr><td>5</td><td>cancer</td><td>7.00</td><td>7.00</td><td>1명 ⚠</td><td>100%</td><td>"AI로 암 투병을 이겨낸 창업자" 스토리(주요 담론 표엔 미등재). 위 항목들과 게시물 집합이 겹치지 않아 독립 유지</td><td><button class="quote-btn" onclick="openQuoteModal('q-kw-cancer')">보기</button></td></tr>
           </tbody>
         </table>
       </div>
       <ul class="pbullets result-note" style="margin-top:12px;">
-        <li>단순 등장 빈도가 아니라, 문서 수 기반 급증지수에 발언자 수와 토픽 집중도를 곱한 최종점수로 순위를 매기고 집중도 80% 미만은 하드컷으로 제외하는 방식입니다.</li>
-        <li>등장 게시물 집합이 완전히 동일한 키워드는 하나로 병합해 표시합니다(예: mb/rampart/server → browser, fsd/lite → FSD v14 lite). 단순 나열이던 상위 10개가 실제로는 서로 다른 사건 5개로 정리됩니다.</li>
+        <li>단순 등장 빈도가 아니라 급증지수 · 발언자 수 · 토픽 집중도를 함께 반영한 최종점수 순입니다(산식은 앞의 분석 절차 참고).</li>
+        <li>같은 사건에서 함께 나온 중복 키워드는 하나로 정리했습니다(정리 방법은 앞의 분석 절차 참고). 그 결과 상위 10개가 실제로는 서로 다른 사건 4개였습니다.</li>
         <li>원문은 고유 발언자당 1건만 남긴 뒤, 참여도(좋아요+리트윗 수)가 높은 순으로 최대 5건까지 선정됩니다.</li>
       </ul>
 
@@ -965,12 +964,6 @@
         <div id="q-kw-nature">
           <ul class="pbullets">
             <li>alexandr_wang: "We're happy to announce 2 releases today: - Brain2qwerty v1 is published at ... - Brain2Qwerty v2 is now publicly released. Explore how we decode sentences from non-invasive brain recordings: Links: v1 Nature Neuro: v2 Meta preprint: Code: Data: Blog: Thread:"</li>
-          </ul>
-        </div>
-        <div id="q-kw-cancer">
-          <ul class="pbullets">
-            <li>pmarca: "Interesting. The fittest founder in the room got cancer. Here's how he used AI to fight back."</li>
-            <li>pmarca: "The fittest founder in the room got cancer. Here's how he used AI to fight back." <em>(리트윗)</em></li>
           </ul>
         </div>
       </div>
