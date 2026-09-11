@@ -644,10 +644,10 @@
           </div>
 
           <div class="stat-line">
-            <div class="stat-item"><span class="l">필터링 대상 검출</span><span class="n">2,302건</span></div>
-            <div class="stat-item"><span class="l">AI 관련성으로 재포함</span><span class="n">381건</span></div>
-            <div class="stat-item"><span class="l">최종 제외 (약 21.3%)</span><span class="n">1,921건</span></div>
-            <div class="stat-item result"><span class="l">처리 결과</span><span class="n">7,119건</span></div>
+            <div class="stat-item"><span class="l">필터링 대상 검출</span><span class="n">2,455건</span></div>
+            <div class="stat-item"><span class="l">AI 관련성으로 재포함</span><span class="n">398건</span></div>
+            <div class="stat-item"><span class="l">최종 제외 (약 22.8%)</span><span class="n">2,057건</span></div>
+            <div class="stat-item result"><span class="l">처리 결과</span><span class="n">6,983건</span></div>
           </div>
         </div>
       </div>
@@ -670,7 +670,7 @@
           <div class="stat-line">
             <div class="stat-item"><span class="l">비영어 인용 포스트 (인용 원문만 삭제)</span><span class="n">32건</span></div>
             <div class="stat-item"><span class="l">비영어 리포스트 (포스트 삭제)</span><span class="n">0건</span></div>
-            <div class="stat-item result"><span class="l">처리 결과</span><span class="n">7,119건</span></div>
+            <div class="stat-item result"><span class="l">처리 결과</span><span class="n">6,983건</span></div>
           </div>
         </div>
       </div>
@@ -719,7 +719,7 @@
         <div class="pside">
           <div class="stat-line">
             <div class="stat-item"><span class="l">초단문 제외</span><span class="n">1,029건</span></div>
-            <div class="stat-item result"><span class="l">처리 결과 (텍스트 분석 투입 대상)</span><span class="n">6,090건</span></div>
+            <div class="stat-item result"><span class="l">처리 결과 (텍스트 분석 투입 대상)</span><span class="n">5,954건</span></div>
           </div>
         </div>
       </div>
@@ -727,8 +727,8 @@
   </div>
 
   <div class="flow-result reveal" style="margin-top:32px;">
-    <div class="flow-result-item"><span class="l">게시량 집계 대상</span><span class="n grotesk">7,119건</span><span class="p">전체의 약 78.8%</span></div>
-    <div class="flow-result-item"><span class="l">텍스트 분석 투입 대상</span><span class="n grotesk">6,090건</span><span class="p">전체의 약 67.4%</span></div>
+    <div class="flow-result-item"><span class="l">게시량 집계 대상</span><span class="n grotesk">6,983건</span><span class="p">전체의 약 77.2%</span></div>
+    <div class="flow-result-item"><span class="l">텍스트 분석 투입 대상</span><span class="n grotesk">5,954건</span><span class="p">전체의 약 65.9%</span></div>
   </div>
 </section>
 
@@ -845,11 +845,10 @@
       <p class="psub">SAME MODEL, WIDER TIME SLICE</p>
       <div class="pstep-content no-aside" style="margin-top:20px;">
         <div class="pmain">
-          <p class="pbody">STEP 03의 클러스터링 결과를 재실행 없이 최근 7일 · 4주 · 3개월 단위로 담론 비중 변화를 추적합니다.</p>
+          <p class="pbody">최근 7일 · 4주 · 3개월 단위로 담론 비중 변화를 추적합니다.</p>
           <ul class="pbullets" style="margin-top:10px;">
-            <li>최근 90일 데이터를 일자별로 분석해, 그날그날 담론 내용이 70% 이상 비슷하면 같은 담론으로 이어서 추적 (7일 · 4주 · 3개월 추이를 만들려면 90일치 데이터가 필요)</li>
-            <li>추이는 담론별 날짜 · 게시 건수를 직접 집계하는 방식으로 확인</li>
-            <li>4주 · 3개월 추이는 일자별 분석 결과를 각각 주 단위 · 월 단위로 합산해서 제공</li>
+            <li>최근 7일 추이는 STEP 03과 동일한 분석 결과에서 담론별 날짜 · 게시 건수를 직접 집계하는 방식으로 확인</li>
+            <li>4주 · 3개월 추이는 오늘의 세부 담론과 억지로 잇지 않고, 더 굵은 단위로 별도 분석한 지형도로 나란히 제공 (검증 완료, 정식 반영 전)</li>
           </ul>
           <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--line);">
             <span style="font-size:.88rem; font-weight:700; color:var(--ink);">출력</span>
@@ -1132,21 +1131,21 @@
     <div class="bezel"><div class="bezel-core" style="padding:20px 22px;">
       <div class="rk">데이터 전처리</div>
       <ul class="pbullets" style="gap:6px; margin-top:10px;">
-        <li>현재는 새로운 무관 콘텐츠 유형이 발견될 때마다 필터링 키워드를 사람이 직접 보완하는 방식이라 반영까지 시차가 있을 수 있음. 운영자가 직접 필터링 키워드를 추가 · 관리할 수 있는 기능이 필요해 보임</li>
+        <li>현재는 새로운 무관 콘텐츠 유형이 발견될 때마다 필터링 키워드를 사람이 직접 보완하는 방식이라 반영까지 시차가 있을 수 있음. 별도 관리 기능은 만들지 않고, 지금처럼 검증(미리보기)을 거쳐 직접 추가 · 반영하는 방식을 유지하기로 확정</li>
       </ul>
 
       <div class="rk" style="margin-top:20px;">분석 방법</div>
       <ul class="pbullets" style="gap:6px; margin-top:10px;">
-        <li>일일 분석 범위를 "어제 하루"에서 "최근 2일"로 넓히는 방안 검토 중 (하루 단위 데이터가 얇아 게시량 · 급증지수 수치가 불안정해지는 문제를 완화하기 위함이나, "일일" 리포트의 신선도가 낮아지는 단점도 있어 우선순위 협의 필요)</li>
+        <li>일일 분석 범위를 "어제 하루"에서 "최근 2일"로 넓히는 방안을 검토했으나, 실측 결과 얻는 효과보다 부작용(무관 담론 유입 증가 등)이 커서 어제 하루(1일) 기준 유지로 확정</li>
         <li>핵심 키워드 순위에 좋아요 · 리트윗 수(참여도) 반영 여부 검토 중</li>
-        <li>핵심 키워드 상위권이 소수 사건(예: Rampart 발표문 한 문장)에서 나온 단어들로 채워지는 문제는 "등장 게시물 집합이 완전히 동일한 단어를 하나로 합치는" 중복 제거 방식으로 개선 완료(위 표 참고). 다만 "핵심 키워드" 섹션 자체를 "주요 담론" 섹션과 별도로 유지할 실익이 있는지는 여전히 검토 중</li>
+        <li>핵심 키워드 상위권이 소수 사건(예: Rampart 발표문 한 문장)에서 나온 단어들로 채워지는 문제는 "등장 게시물 집합이 완전히 동일한 단어를 하나로 합치는" 중복 제거 방식으로 개선 완료(위 표 참고). "핵심 키워드" 섹션은 "주요 담론" 섹션이 놓치는 소량 신호를 보완하는 역할로 계속 유지하기로 확정</li>
         <li>혼재 비율 40% 이상으로 제외된 담론을 AI가 개별 포스트 단위로 다시 확인해(AI/테크 업계 내용인지만 판정) 오판정이면 표에 복귀시키는 2차 검증 단계 도입 여부 검토 중(이번 회차는 자동 판정 결과를 그대로 반영)</li>
-        <li>담론 변화 추이를 7일뿐 아니라 4주 · 3개월 단위로도 안정적으로 이어 보여주는 방법 검토 중. 오늘 하루 새로 나온 작은 담론이 긴 기간과 함께 분석하면 묻혀 버릴 수 있어, 오늘 발견은 지금처럼 짧은 기간으로 민감하게 잡고 이를 이후 누적 추이와 연결하는 방식을 검토하고 있음</li>
+        <li>담론 변화 추이를 7일뿐 아니라 4주 · 3개월 단위로도 보여주는 방법을 검증 중. 오늘 발견되는 세부 담론과 억지로 잇지 않고, 4주 · 3개월은 더 굵은 단위의 별도 지형도로 나란히 보여주는 방식으로 프로토타입 검증까지 마쳤으며, 정식 반영 전 추가 검토 중</li>
       </ul>
 
       <div class="rk" style="margin-top:20px;">신규 분석</div>
       <ul class="pbullets" style="gap:6px; margin-top:10px;">
-        <li>리더 간 상호작용 관계 분석(누가 누구와 자주 얽히는지) 추가 여부 검토 중. 리더-리더 언급 · 리트윗 · 인용 관계를 커뮤니티(그룹)로 묶어보는 시험 분석을 진행함(6/23~6/29 7일치, 13명 · 15개 가중 엣지) (<a href="javascript:void(0)" onclick="openQuoteModal('q-community', '리더 간 관계 네트워크 · 라이덴 커뮤니티 분석 샘플')" style="color:var(--accent-ink); text-decoration:underline; cursor:pointer;">샘플 보기</a>)</li>
+        <li>리더 간 상호작용 관계 분석(누가 누구와 자주 얽히는지)을 정식으로 일일 리포트에 편입할지 검토 중. 분석 기간은 최근 7일로 확정했고, 리더-리더 언급 · 리트윗 · 인용 관계를 커뮤니티(그룹)로 묶어보는 시험 분석을 진행함(6/23~6/29 7일치, 13명 · 15개 가중 엣지) (<a href="javascript:void(0)" onclick="openQuoteModal('q-community', '리더 간 관계 네트워크 · 라이덴 커뮤니티 분석 샘플')" style="color:var(--accent-ink); text-decoration:underline; cursor:pointer;">샘플 보기</a>)</li>
       </ul>
     </div></div>
   </div>
