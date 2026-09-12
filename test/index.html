@@ -644,10 +644,10 @@
           </div>
 
           <div class="stat-line">
-            <div class="stat-item"><span class="l">필터링 대상 검출</span><span class="n">2,455건</span></div>
-            <div class="stat-item"><span class="l">AI 관련성으로 재포함</span><span class="n">398건</span></div>
-            <div class="stat-item"><span class="l">최종 제외 (약 22.8%)</span><span class="n">2,057건</span></div>
-            <div class="stat-item result"><span class="l">처리 결과</span><span class="n">6,983건</span></div>
+            <div class="stat-item"><span class="l">필터링 대상 검출</span><span class="n">2,501건</span></div>
+            <div class="stat-item"><span class="l">AI 관련성으로 재포함</span><span class="n">399건</span></div>
+            <div class="stat-item"><span class="l">최종 제외 (약 23.3%)</span><span class="n">2,102건</span></div>
+            <div class="stat-item result"><span class="l">처리 결과</span><span class="n">6,938건</span></div>
           </div>
         </div>
       </div>
@@ -662,15 +662,15 @@
           <ul class="pbullets">
             <li><strong>문제</strong>: 수집 시 언어 필터(영어)는 리더 본인 포스트에만 적용. 리포스트 · 인용한 원 포스트는 다른 언어일 수 있음 (한국어 · 프랑스어 원문 인용 사례 확인)</li>
             <li><strong>판정 근거</strong>: 수집 결과에 리포스트 · 인용 원 포스트의 언어 정보(<code>retweeted_lang</code> / <code>quoted_lang</code>)가 포함되어 있음. 이를 활용해 <code>en</code>이 아니면 비영어로 판정</li>
-            <li><strong>처리</strong>: 리포스트는 글 자체를 삭제. 인용 포스트는 원글은 제외하고 리더 코멘트는 남김</li>
+            <li><strong>처리</strong>: 리포스트는 글 자체를 삭제. 인용 포스트는 원글은 제외하고 리더 코멘트는 남기되, 리더 코멘트마저 너무 짧으면(20자 미만) 포스트 전체를 텍스트 분석에서 제외</li>
           </ul>
         </div>
 
         <div class="pside">
           <div class="stat-line">
-            <div class="stat-item"><span class="l">비영어 인용 포스트 (인용 원문만 삭제)</span><span class="n">32건</span></div>
-            <div class="stat-item"><span class="l">비영어 리포스트 (포스트 삭제)</span><span class="n">0건</span></div>
-            <div class="stat-item result"><span class="l">처리 결과</span><span class="n">6,983건</span></div>
+            <div class="stat-item"><span class="l">비영어 인용 포스트 (인용 원문만 삭제)</span><span class="n">16건</span></div>
+            <div class="stat-item"><span class="l">비영어 인용 포스트 (리더 코멘트도 부족, 전체 삭제)</span><span class="n">16건</span></div>
+            <div class="stat-item result"><span class="l">처리 결과</span><span class="n">6,938건</span></div>
           </div>
         </div>
       </div>
@@ -718,8 +718,8 @@
 
         <div class="pside">
           <div class="stat-line">
-            <div class="stat-item"><span class="l">초단문 제외</span><span class="n">1,029건</span></div>
-            <div class="stat-item result"><span class="l">처리 결과 (텍스트 분석 투입 대상)</span><span class="n">5,954건</span></div>
+            <div class="stat-item"><span class="l">초단문 제외</span><span class="n">1,012건</span></div>
+            <div class="stat-item result"><span class="l">처리 결과 (텍스트 분석 투입 대상)</span><span class="n">5,910건</span></div>
           </div>
         </div>
       </div>
@@ -727,8 +727,8 @@
   </div>
 
   <div class="flow-result reveal" style="margin-top:32px;">
-    <div class="flow-result-item"><span class="l">게시량 집계 대상</span><span class="n grotesk">6,983건</span><span class="p">전체의 약 77.2%</span></div>
-    <div class="flow-result-item"><span class="l">텍스트 분석 투입 대상</span><span class="n grotesk">5,954건</span><span class="p">전체의 약 65.9%</span></div>
+    <div class="flow-result-item"><span class="l">게시량 집계 대상</span><span class="n grotesk">6,938건</span><span class="p">전체의 약 76.7%</span></div>
+    <div class="flow-result-item"><span class="l">텍스트 분석 투입 대상</span><span class="n grotesk">5,910건</span><span class="p">전체의 약 65.4%</span></div>
   </div>
 </section>
 
