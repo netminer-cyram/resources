@@ -52,6 +52,8 @@
 
   .wrap { max-width: 1480px; margin: 0 auto; padding-left: clamp(20px, 4.5vw, 88px); padding-right: clamp(20px, 4.5vw, 88px); }
 
+  .n-hint { display: block; font-size: .74rem; color: var(--ink-muted); margin-top: 2px; }
+
   .pill {
     display: inline-flex;
     align-items: center;
@@ -888,6 +890,26 @@
         </div>
       </div>
     </div>
+
+    <div class="pstep">
+      <div class="pstep-head"><span class="pn">STEP 06</span></div>
+      <h3>답글 감성분석</h3>
+      <p class="psub">REPLY SENTIMENT · 담론별 대중 반응</p>
+      <div class="pstep-content no-aside" style="margin-top:20px;">
+        <div class="pmain">
+          <p class="pbody">STEP 03에서 담론이 배정된 게시물마다, 그 게시물에 달린 답글(리더 본인 발언이 아닌 대중 반응)을 모아 담론별로 긍정 · 중립 · 부정 비율을 확인합니다.</p>
+          <ul class="pbullets" style="margin-top:10px;">
+            <li>NetMiner 감성분석 기능으로 답글 텍스트를 5단계(매우 긍정 · 약한 긍정 · 중립 · 약한 부정 · 매우 부정)로 판정한 뒤, 담론별로 긍정 · 중립 · 부정 3단계로 묶어 비율 계산</li>
+            <li>신뢰도 점수가 낮은 답글(풍자 · 은어 등으로 오분류 위험이 높은 경우)은 비율 계산에서 제외. 담론 간 긍정/부정 방향 비교는 안정적이나, 근소하게 갈린 담론의 정확한 %는 참고용 추정치로 취급</li>
+            <li>담론에 달린 답글이 없거나 새로 발견된 담론(예: 확률 기반 재검증으로 추가된 담론)은 별도 판정 대상에서 제외</li>
+          </ul>
+          <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--line);">
+            <span style="font-size:.88rem; font-weight:700; color:var(--ink);">출력</span>
+            <span style="font-size:.96rem; color:var(--ink-muted);"> 담론별 답글 유효 건수, 긍정 · 중립 · 부정 비율 (앞 "오늘의 주요 담론" 표에 함께 표시)</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1005,17 +1027,17 @@
       <div class="result-sub-head"><h3>오늘의 주요 담론 및 인물 분포</h3><span class="pill">6/29 예시 데이터</span></div>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>담론</th><th>대표 키워드/구</th><th>건수</th><th>언급 인물</th><th>원문</th></tr></thead>
+          <thead><tr><th>담론</th><th>대표 키워드/구</th><th>건수</th><th>언급 인물</th><th>답글 반응(긍정 · 중립 · 부정)</th><th>원문</th></tr></thead>
           <tbody>
-            <tr><td>Rampart/Praxis 프라이버시 담론</td><td>privacy, praxis, rampart, personal information</td><td>7건</td><td>ClementDelangue, pmarca</td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-rampart')">보기</button></td></tr>
-            <tr><td>Tesla FSD v14 발표</td><td>v14, v14 lite, fsd, ai3, hw3</td><td>5건</td><td>elonmusk</td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-fsd')">보기</button></td></tr>
-            <tr><td>⚠️ AI 무관 · 원전/방사선 안전성 논쟁</td><td>radiation, nuclear power, low dose, studies</td><td>4건</td><td>pmarca</td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-radiation')">보기</button></td></tr>
-            <tr><td>메모리 · 하드웨어 설계 논의</td><td>memory, wires, ram, registers</td><td>3건</td><td>elonmusk, andrewdfeldman</td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-memory')">보기</button></td></tr>
-            <tr><td>Neuralink 대역폭 논의</td><td>bandwidth, neuralink, brain, output bandwidth</td><td>3건</td><td>elonmusk</td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-neuralink')">보기</button></td></tr>
-            <tr><td>⚠️ AI 무관 · 정치적 설전 잔재</td><td>copium, field moved, 30 years</td><td>3건</td><td>pmarca, ylecun</td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-political')">보기</button></td></tr>
-            <tr><td>△ 경계선 · 커리어 일반론</td><td>ship, roles, pmf</td><td>3건</td><td>pmarca</td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-career')">보기</button></td></tr>
-            <tr><td>AI 결과물 품질 기준 논의</td><td>tokens, headcount, corporate</td><td>3건</td><td>RichardSocher, elonmusk</td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-mixed')">보기</button></td></tr>
-            <tr><td>온디바이스 PII 리덕션 모델 발표</td><td>image, mai, editing</td><td>3건</td><td>ClementDelangue, pmarca</td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-pii')">보기</button></td></tr>
+            <tr><td>Rampart/Praxis 프라이버시 담론</td><td>privacy, praxis, rampart, personal information</td><td>7건</td><td>ClementDelangue, pmarca</td><td>47% · 8% · 44%<span class="n-hint">(유효 59건)</span></td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-rampart')">보기</button></td></tr>
+            <tr><td>Tesla FSD v14 발표</td><td>v14, v14 lite, fsd, ai3, hw3</td><td>5건</td><td>elonmusk</td><td><strong>70%</strong> · 3% · 27%<span class="n-hint">(유효 33건)</span></td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-fsd')">보기</button></td></tr>
+            <tr><td>⚠️ AI 무관 · 원전/방사선 안전성 논쟁</td><td>radiation, nuclear power, low dose, studies</td><td>4건</td><td>pmarca</td><td>41% · 9% · 50%<span class="n-hint">(유효 22건)</span></td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-radiation')">보기</button></td></tr>
+            <tr><td>메모리 · 하드웨어 설계 논의</td><td>memory, wires, ram, registers</td><td>3건</td><td>elonmusk, andrewdfeldman</td><td><strong>62%</strong> · 4% · 33%<span class="n-hint">(유효 45건)</span></td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-memory')">보기</button></td></tr>
+            <tr><td>Neuralink 대역폭 논의</td><td>bandwidth, neuralink, brain, output bandwidth</td><td>3건</td><td>elonmusk</td><td>50% · 5% · 45%<span class="n-hint">(유효 20건)</span></td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-neuralink')">보기</button></td></tr>
+            <tr><td>⚠️ AI 무관 · 정치적 설전 잔재</td><td>copium, field moved, 30 years</td><td>3건</td><td>pmarca, ylecun</td><td>22% · 6% · <strong>72%</strong><span class="n-hint">(유효 32건)</span></td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-political')">보기</button></td></tr>
+            <tr><td>△ 경계선 · 커리어 일반론</td><td>ship, roles, pmf</td><td>3건</td><td>pmarca</td><td>44% · 6% · 50%<span class="n-hint">(유효 34건)</span></td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-career')">보기</button></td></tr>
+            <tr><td>AI 결과물 품질 기준 논의</td><td>tokens, headcount, corporate</td><td>3건</td><td>RichardSocher, elonmusk</td><td><strong>63%</strong> · 6% · 31%<span class="n-hint">(유효 35건)</span></td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-mixed')">보기</button></td></tr>
+            <tr><td>온디바이스 PII 리덕션 모델 발표</td><td>image, mai, editing</td><td>3건</td><td>ClementDelangue, pmarca</td><td>미집계<span class="n-hint">(확률 기반 재검증 추가 담론)</span></td><td><button class="quote-btn" onclick="openQuoteModal('q-tp-pii')">보기</button></td></tr>
           </tbody>
         </table>
       </div>
@@ -1024,6 +1046,7 @@
         <li>⚠️ 표시 2개 담론은 게이트(담론 내부 일관성만 판정, AI 관련성은 별도 미판정)를 통과했지만 실제로는 AI와 무관한 내용으로 확인됐습니다. 제외하지 않고 투명하게 그대로 표시합니다.</li>
         <li>△ 표시 1개 담론은 AI 관련성이 애매한 경계선 사례입니다.</li>
         <li>원문은 담론 대표 키워드를 가장 많이 포함한 문서 순으로 선정됩니다.</li>
+        <li>답글 반응은 신뢰도 낮은 답글을 제외한 값입니다. 담론 간 긍정 · 부정 방향 비교는 신뢰할 수 있으나, 근소하게 갈린 담론의 정확한 %는 참고용 추정치로 봐주세요.</li>
       </ul>
 
       <div style="display:none;">
