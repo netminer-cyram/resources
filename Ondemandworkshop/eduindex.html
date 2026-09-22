@@ -16,13 +16,11 @@
 <meta name="description" content="">
 <meta property="og:description" content="" data-dynamic="true">
 <meta property="og:url" content="http://repo.netminer.com/cyram/Ondemandworkshop/Source/html" data-dynamic="true">
-<!-- 대표 이미지 경로 (repo.netminer.com 적용) -->
-<meta property="og:image" content="/cyram/Ondemandworkshop/Source/html/images/og_image.jpg" data-dynamic="true">
+<meta property="og:image" content="images/og_image.jpg" data-dynamic="true">
 
-<!-- CSS 파일 경로 (repo.netminer.com 적용) -->
-<link rel="stylesheet" href="/cyram/Ondemandworkshop/Source/html/css/fonts.css">
-<link rel="stylesheet" type="text/css" href="/cyram/Ondemandworkshop/Source/html/css/common.css?t=202609142">
-<link rel="stylesheet" type="text/css" href="/cyram/Ondemandworkshop/Source/html/css/blue_theme.css?t=202609142">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" type="text/css" href="css/common.css?t=202609142">
+<link rel="stylesheet" type="text/css" href="css/blue_theme.css?t=202609142">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css" integrity="sha512-6qkvBbDyl5TDJtNJiC8foyEVuB6gxMBkrKy67XpqnIDxyvLLPJzmTjAj1dRJfNdmXWqD10VbJoeN4pOQqDwvRA==" crossorigin="anonymous">
 
 <script>
@@ -51,9 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js" integrity="sha512-Yk47FuYNtuINE1w+t/KT4BQ7JaycTCcrvlSvdK/jry6Kcxqg5vN7/svVWCxZykVzzJHaxXk5T9jnFemZHSYgnw==" crossorigin="anonymous"></script>
 
-<!-- JS 파일 경로 (repo.netminer.com 적용) -->
-<script type="text/javascript" src="/cyram/Ondemandworkshop/Source/html/js/common.js?t=202609142"></script>
-<script type="text/javascript" src="/cyram/Ondemandworkshop/Source/html/js/validate.js?t=202609142"></script>
+<script type="text/javascript" src="js/common.js?t=202609142"></script>
+<script type="text/javascript" src="js/validate.js?t=202609142"></script>
 
 <style>
   .simple_header {
@@ -75,8 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <header class="simple_header">
         <h1>
             <a href="https://www.netminer.com" target="_blank" title="메인화면으로 이동">
-                <!-- 상단 로고 이미지 경로 (repo.netminer.com 적용) -->
-                <img src="/cyram/Ondemandworkshop/Source/html/images/logo.jpg" alt="사이람 온라인 교육센터" class="svg_logo">
+                <img src="images/logo.jpg" alt="사이람 온라인 교육센터" class="svg_logo">
             </a>
         </h1>
     </header>
@@ -134,10 +130,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <div class="bg-white rounded-[1.5rem] md:rounded-[2.5rem] shadow-2xl border border-slate-200 overflow-hidden">
                         <table class="w-full text-left border-collapse responsive-table">
-                            <thead class="bg-slate-50 text-slate-500 uppercase text-xs tracking-widest font-bold">
+                            <!-- 헤더 부분: 글자 색상 유지 + 크기 확대 적용 -->
+                            <thead class="bg-slate-50 text-slate-500 font-bold border-b border-slate-200">
                                 <tr>
-                                    <th class="p-6 md:p-8 border-b border-slate-200">구분</th>
-                                    <th class="p-6 md:p-8 border-b border-slate-200">커리큘럼 상세 및 활용 범위</th>
+                                    <th class="p-6 md:p-8 border-b border-slate-200 text-lg md:text-xl">구분</th>
+                                    <th class="p-6 md:p-8 border-b border-slate-200 text-lg md:text-xl">커리큘럼 상세 및 활용 범위</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-100">
