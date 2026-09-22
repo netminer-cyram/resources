@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
 <head>
@@ -15,66 +16,94 @@
 <meta property="og:title" content="사이람 온라인 교육센터 :: 온디맨드 워크숍" data-dynamic="true">
 <meta name="description" content="">
 <meta property="og:description" content="" data-dynamic="true">
-<meta property="og:url" content="/cyram/Ondemandworkshop/Source/html/images/logo.jpg" data-dynamic="true">
-<meta property="og:image" content="/cyram/Ondemandworkshop/Source/html/images/og_image.jpg" data-dynamic="true">
+<meta property="og:url" content="./images/logo.jpg" data-dynamic="true">
+<meta property="og:image" content="./images/og_image.jpg" data-dynamic="true">
 
-<!-- /cyram 경로를 포함한 실제 서버 절대 경로 적용 -->
-<link rel="stylesheet" href="/cyram/Ondemandworkshop/Source/html/css/fonts.css">
-<link rel="stylesheet" type="text/css" href="/cyram/Ondemandworkshop/Source/html/css/common.css?t=202609142">
-<link rel="stylesheet" type="text/css" href="/cyram/Ondemandworkshop/Source/html/css/blue_theme.css?t=202609142">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css" integrity="sha512-6qkvBbDyl5TDJtNJiC8foyEVuB6gxMBkrKy67XpqnIDxyvLLPJzmTjAj1dRJfNdmXWqD10VbJoeN4pOQqDwvRA==" crossorigin="anonymous">
+<!-- CSS -->
+<link rel="stylesheet" href="./css/fonts.css">
+<link rel="stylesheet" type="text/css" href="./css/common.css">
+<link rel="stylesheet" type="text/css" href="./css/blue_theme.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css"
+      integrity="sha512-6qkvBbDyl5TDJtNJiC8foyEVuB6gxMBkrKy67XpqnIDxyvLLPJzmTjAj1dRJfNdmXWqD10VbJoeN4pOQqDwvRA=="
+      crossorigin="anonymous">
 
 <script>
 window.siteFont = 'notoSans';
+
 if('notoSans' === window.siteFont) {
-	window.siteFont = 'Noto Sans KR';
+    window.siteFont = 'Noto Sans KR';
 } else if('SCoreDream' === window.siteFont) {
-	window.siteFont = 'S-CoreDream';
+    window.siteFont = 'S-CoreDream';
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-	if(document.getElementById('site_font_vars')) return;
-	const styleEl = document.createElement('style');
-	styleEl.id = 'site_font_vars';
-	let cssRules = `:root{--main-font: ${window.siteFont};}`;
-	if('NanumSquare' === window.siteFont) {
-		cssRules += '\ninput[type=password]{font-family:sans-serif;}';
-	}
-	styleEl.textContent = cssRules;
-	document.head.appendChild(styleEl);
+    if(document.getElementById('site_font_vars')) return;
+
+    const styleEl = document.createElement('style');
+    styleEl.id = 'site_font_vars';
+
+    let cssRules = `:root{--main-font: ${window.siteFont};}`;
+
+    if('NanumSquare' === window.siteFont) {
+        cssRules += '\ninput[type=password]{font-family:sans-serif;}';
+    }
+
+    styleEl.textContent = cssRules;
+    document.head.appendChild(styleEl);
 });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js" integrity="sha512-DkPsH9LzNzZaZjCszwKrooKwgjArJDiEjA5tTgr3YX4E6TYv93ICS8T41yFHJnnSmGpnf0Mvb5NhScYbwvhn2w==" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/page-scroll-to-id@1.6.8/jquery.malihu.PageScroll2id.js" integrity="sha512-js4Js2WyobW+bnY5YZHl5e2wbFHo4/E/iZtQedptyzjGkT6AHrJQhtlaAPP2UUls4Mkylt8cBRcPIxLTLA71LQ==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js" integrity="sha512-Yk47FuYNtuINE1w+t/KT4BQ7JaycTCcrvlSvdK/jry6Kcxqg5vN7/svVWCxZykVzzJHaxXk5T9jnFemZHSYgnw==" crossorigin="anonymous"></script>
 
-<script type="text/javascript" src="/cyram/Ondemandworkshop/Source/html/js/common.js?t=202609142"></script>
-<script type="text/javascript" src="/cyram/Ondemandworkshop/Source/html/js/validate.js?t=202609142"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"
+        integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ=="
+        crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"
+        integrity="sha512-DkPsH9LzNzZaZjCszwKrooKwgjArJDiEjA5tTgr3YX4E6TYv93ICS8T41yFHJnnSmGpnf0Mvb5NhScYbwvhn2w=="
+        crossorigin="anonymous"></script>
+
+<script src="https://unpkg.com/page-scroll-to-id@1.6.8/jquery.malihu.PageScroll2id.js"
+        integrity="sha512-js4Js2WyobW+bnY5YZHl5e2wbFHo4/E/iZtQedptyzKjTg6AHrJQhtlaAPP2UUls4Mkylt8cBRcPIxLTLA71LQ=="
+        crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"
+        integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe+qZqH+gcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
+        crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"
+        integrity="sha512-Yk47FuYNtuINE1w+t/KT4BQ7JaycTCcrvlSvdK/jry6Kcxqg5vN7/svVWCxZykVzzJHaxXk5T9jnFemZHSYgnw=="
+        crossorigin="anonymous"></script>
+
+<!-- JS -->
+<script type="text/javascript" src="./js/common.js"></script>
+<script type="text/javascript" src="./js/validate.js"></script>
 
 <style>
-  .simple_header {
+.simple_header {
     width: 100%;
     max-width: 1230px;
     margin: 0 auto;
     padding: 20px 15px;
-  }
-  .simple_header img {
+}
+
+.simple_header img {
     height: 40px;
     width: auto;
-  }
+}
 </style>
+
 </head>
+
 <body>
 
 <div id="wrap">
-    
+
     <header class="simple_header">
         <h1>
             <a href="https://www.netminer.com" target="_blank" title="메인화면으로 이동">
-                <!-- 올바른 이미지 경로 적용 -->
-                <img src="/cyram/Ondemandworkshop/Source/html/images/logo.jpg" alt="사이람 온라인 교육센터" class="svg_logo">
+                <img src="./images/logo.jpg"
+                     alt="사이람 온라인 교육센터"
+                     class="svg_logo">
             </a>
         </h1>
     </header>
@@ -83,278 +112,821 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="about_cont contents_in compad w1230">
             <div>
                 <div>
+
+                    <!-- Tailwind CSS -->
                     <script src="https://cdn.tailwindcss.com"></script>
+
                 </div>
             </div>
+
             <style>
                 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
-                #nm-workshop-container{font-family:'Noto Sans KR',sans-serif;word-break:keep-all;line-height:1.5;color:#1e293b;background-color:#f8fafc}
-                #nm-workshop-container .hero-bg{background:linear-gradient(135deg,#1e1b4b 0%,#312e81 100%)}
-                #nm-workshop-container .card-hover:hover{transform:translateY(-5px);transition:all .3s ease}
-                #nm-workshop-container input:focus,#nm-workshop-container textarea:focus,#nm-workshop-container select:focus{border-color:#10b981!important;outline:0;box-shadow:0 0 0 3px rgba(16,185,129,.1)}
-                #nm-workshop-container .curriculum-title{color:#065f46}
-                #nm-workshop-container .specialized-label{color:#94a3b8;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em}
-                @media (max-width:768px){
-                    #nm-workshop-container .responsive-table tr{display:flex;flex-direction:column;border-bottom:1px solid #f1f5f9}
-                    #nm-workshop-container .responsive-table td{width:100%!important;padding:1rem!important}
-                    #nm-workshop-container .responsive-table td:first-child{padding-bottom:.5rem!important;background-color:#f8fafc}
-                    #nm-workshop-container .responsive-table thead{display:none}
-                    #nm-workshop-container .responsive-table .category-header{display:block;width:100%}
+
+                #nm-workshop-container{
+                    font-family:'Noto Sans KR',sans-serif;
+                    word-break:keep-all;
+                    line-height:1.5;
+                    color:#1e293b;
+                    background-color:#f8fafc
                 }
-                #nm-success-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:9999;align-items:center;justify-content:center}
+
+                #nm-workshop-container .hero-bg{
+                    background:linear-gradient(135deg,#1e1b4b 0%,#312e81 100%)
+                }
+
+                #nm-workshop-container .card-hover:hover{
+                    transform:translateY(-5px);
+                    transition:all .3s ease
+                }
+
+                #nm-workshop-container input:focus,
+                #nm-workshop-container textarea:focus,
+                #nm-workshop-container select:focus{
+                    border-color:#10b981!important;
+                    outline:0;
+                    box-shadow:0 0 0 3px rgba(16,185,129,.1)
+                }
+
+                #nm-workshop-container .curriculum-title{
+                    color:#065f46
+                }
+
+                #nm-workshop-container .specialized-label{
+                    color:#94a3b8;
+                    font-size:.75rem;
+                    text-transform:uppercase;
+                    letter-spacing:.05em
+                }
+
+                @media (max-width:768px){
+                    #nm-workshop-container .responsive-table tr{
+                        display:flex;
+                        flex-direction:column;
+                        border-bottom:1px solid #f1f5f9
+                    }
+
+                    #nm-workshop-container .responsive-table td{
+                        width:100%!important;
+                        padding:1rem!important
+                    }
+
+                    #nm-workshop-container .responsive-table td:first-child{
+                        padding-bottom:.5rem!important;
+                        background-color:#f8fafc
+                    }
+
+                    #nm-workshop-container .responsive-table thead{
+                        display:none
+                    }
+
+                    #nm-workshop-container .responsive-table .category-header{
+                        display:block;
+                        width:100%
+                    }
+                }
+
+                #nm-success-modal{
+                    display:none;
+                    position:fixed;
+                    top:0;
+                    left:0;
+                    width:100%;
+                    height:100%;
+                    background:rgba(0,0,0,0.5);
+                    z-index:9999;
+                    align-items:center;
+                    justify-content:center
+                }
             </style>
 
             <div id="nm-workshop-container">
+
                 <header class="hero-bg text-white py-12 md:py-16 px-6 text-center shadow-2xl">
                     <div class="max-w-6xl mx-auto">
-                        <span class="bg-emerald-500/20 text-emerald-400 text-sm font-bold py-1.5 px-4 rounded-full mb-6 inline-block border border-emerald-500/30 tracking-wide">온디맨드 맞춤 교육 서비스</span>
-                        <h1 class="text-3xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-white"><span class="text-emerald-400">'NetMiner 온디맨드 워크숍'</span></h1>
-                        <p class="text-base md:text-2xl text-slate-300 mb-8 md:mb-10 max-w-4xl mx-auto leading-relaxed">연구실, 학과, 기관의 필요와 가용 시간에 맞춰 교육 내용을 구성할 수 있습니다.<br class="hidden md:block" />소셜 네트워크 분석부터 그래프 머신러닝, Python 프로그래밍 기초까지 원하는 모듈을 선택해 보세요.</p>
+
+                        <span class="bg-emerald-500/20 text-emerald-400 text-sm font-bold py-1.5 px-4 rounded-full mb-6 inline-block border border-emerald-500/30 tracking-wide">
+                            온디맨드 맞춤 교육 서비스
+                        </span>
+
+                        <h1 class="text-3xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-white">
+                            <span class="text-emerald-400">'NetMiner 온디맨드 워크숍'</span>
+                        </h1>
+
+                        <p class="text-base md:text-2xl text-slate-300 mb-8 md:mb-10 max-w-4xl mx-auto leading-relaxed">
+                            연구실, 학과, 기관의 필요와 가용 시간에 맞춰 교육 내용을 구성할 수 있습니다.<br class="hidden md:block" />
+                            소셜 네트워크 분석부터 그래프 머신러닝, Python 프로그래밍 기초까지 원하는 모듈을 선택해 보세요.
+                        </p>
+
                         <div class="flex flex-wrap justify-center gap-4 md:gap-6">
-                            <div class="bg-emerald-500 text-white font-bold py-3 md:py-4 px-6 md:px-10 rounded-2xl shadow-lg border border-emerald-400/30 text-base md:text-lg">현장 방문 교육</div>
-                            <div class="bg-indigo-500 text-white font-bold py-3 md:py-4 px-6 md:px-10 rounded-2xl shadow-lg border border-indigo-400/30 text-base md:text-lg">실시간 화상 교육</div>
+                            <div class="bg-emerald-500 text-white font-bold py-3 md:py-4 px-6 md:px-10 rounded-2xl shadow-lg border border-emerald-400/30 text-base md:text-lg">
+                                현장 방문 교육
+                            </div>
+
+                            <div class="bg-indigo-500 text-white font-bold py-3 md:py-4 px-6 md:px-10 rounded-2xl shadow-lg border border-indigo-400/30 text-base md:text-lg">
+                                실시간 화상 교육
+                            </div>
                         </div>
+
                     </div>
                 </header>
 
                 <section class="py-10 md:py-14 px-6 max-w-6xl mx-auto text-center">
                     <div class="bg-white p-8 md:p-14 rounded-[2rem] md:rounded-[3rem] shadow-sm border border-slate-100">
-                        <h3 class="text-xl md:text-3xl font-bold text-indigo-900 mb-6">우리 팀에 꼭 필요한 내용만 골라 담는 유연한 구성</h3>
-                        <p class="text-base md:text-lg text-slate-600 leading-relaxed font-light">사이람이 보유한 전문 커리큘럼 중 <span class="font-bold text-indigo-900 underline decoration-emerald-400 decoration-4">우리 연구팀의 목적과 일정에 맞는 모듈을 선택</span>하여<br class="hidden md:block" />필요한 지식과 기술을 효율적으로 습득할 수 있도록 지원합니다.</p>
+
+                        <h3 class="text-xl md:text-3xl font-bold text-indigo-900 mb-6">
+                            우리 팀에 꼭 필요한 내용만 골라 담는 유연한 구성
+                        </h3>
+
+                        <p class="text-base md:text-lg text-slate-600 leading-relaxed font-light">
+                            사이람이 보유한 전문 커리큘럼 중
+                            <span class="font-bold text-indigo-900 underline decoration-emerald-400 decoration-4">
+                                우리 연구팀의 목적과 일정에 맞는 모듈을 선택
+                            </span>하여<br class="hidden md:block" />
+                            필요한 지식과 기술을 효율적으로 습득할 수 있도록 지원합니다.
+                        </p>
+
                     </div>
                 </section>
 
                 <section class="py-8 md:py-12 px-4 md:px-6 max-w-7xl mx-auto">
+
                     <div class="text-center mb-8 md:mb-12">
-                        <h2 class="text-3xl md:text-4xl font-bold mb-3 italic tracking-tight uppercase text-indigo-950">Selectable Modules</h2>
-                        <p class="text-slate-500 text-base md:text-lg">소셜 네트워크 분석부터 머신러닝, 프로그래밍까지 자유롭게 조합해 보세요.</p>
-                        <div class="h-1.5 w-20 md:w-24 bg-emerald-500 mx-auto rounded-full mt-5" style="display: block;">&nbsp;</div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-3 italic tracking-tight uppercase text-indigo-950">
+                            Selectable Modules
+                        </h2>
+
+                        <p class="text-slate-500 text-base md:text-lg">
+                            소셜 네트워크 분석부터 머신러닝, 프로그래밍까지 자유롭게 조합해 보세요.
+                        </p>
+
+                        <div class="h-1.5 w-20 md:w-24 bg-emerald-500 mx-auto rounded-full mt-5" style="display: block;">
+                            &nbsp;
+                        </div>
                     </div>
+
                     <div class="bg-white rounded-[1.5rem] md:rounded-[2.5rem] shadow-2xl border border-slate-200 overflow-hidden">
+
                         <table class="w-full text-left border-collapse responsive-table">
+
                             <thead class="bg-slate-50 text-slate-500 font-bold border-b border-slate-200">
                                 <tr>
                                     <th class="p-6 md:p-8 border-b border-slate-200 text-lg md:text-xl">구분</th>
                                     <th class="p-6 md:p-8 border-b border-slate-200 text-lg md:text-xl">커리큘럼 상세 및 활용 범위</th>
                                 </tr>
                             </thead>
+
                             <tbody class="divide-y divide-slate-100">
+
                                 <tr class="bg-slate-50/30 category-header">
-                                    <td class="p-4 md:p-5 px-6 md:px-8 text-sm font-bold text-slate-400 uppercase tracking-widest border-b border-slate-200" colspan="2">Social Network Analysis</td>
+                                    <td class="p-4 md:p-5 px-6 md:px-8 text-sm font-bold text-slate-400 uppercase tracking-widest border-b border-slate-200" colspan="2">
+                                        Social Network Analysis
+                                    </td>
                                 </tr>
+
                                 <tr class="hover:bg-slate-50/50 transition-colors">
-                                    <td class="p-6 md:p-8 font-bold text-indigo-900 md:w-72 text-lg md:text-xl leading-tight">SNA 기초 및 심화</td>
-                                    <td class="p-6 md:p-8 text-slate-600 leading-relaxed md:leading-loose text-base md:text-lg">SNA 개요, 데이터 모델링, 중심성 및 응집그룹 분석, 시각화 가이드, <br class="hidden md:block" />역할 및 지위 분석(등위성, 중개자, 블록모델링), 2-모드 네트워크 변환 및 분석 전반</td>
+                                    <td class="p-6 md:p-8 font-bold text-indigo-900 md:w-72 text-lg md:text-xl leading-tight">
+                                        SNA 기초 및 심화
+                                    </td>
+                                    <td class="p-6 md:p-8 text-slate-600 leading-relaxed md:leading-loose text-base md:text-lg">
+                                        SNA 개요, 데이터 모델링, 중심성 및 응집그룹 분석, 시각화 가이드,
+                                        <br class="hidden md:block" />
+                                        역할 및 지위 분석(등위성, 중개자, 블록모델링), 2-모드 네트워크 변환 및 분석 전반
+                                    </td>
                                 </tr>
+
                                 <tr class="hover:bg-slate-50/50 transition-colors">
-                                    <td class="p-6 md:p-8 font-bold text-indigo-900 text-lg md:text-xl leading-tight">가설 검정 및 모형</td>
-                                    <td class="p-6 md:p-8 text-slate-600 leading-relaxed md:leading-loose text-base md:text-lg text-slate-600">고전적 통계(t-test, ANOVA 등)의 Permutation 유의도 검정, <br class="hidden md:block" />MRQAP 분석 및 ERGM(지수 랜덤 그래프 모델) 분석 실습</td>
+                                    <td class="p-6 md:p-8 font-bold text-indigo-900 text-lg md:text-xl leading-tight">
+                                        가설 검정 및 모형
+                                    </td>
+                                    <td class="p-6 md:p-8 text-slate-600 leading-relaxed md:leading-loose text-base md:text-lg">
+                                        고전적 통계(t-test, ANOVA 등)의 Permutation 유의도 검정,
+                                        <br class="hidden md:block" />
+                                        MRQAP 분석 및 ERGM(지수 랜덤 그래프 모델) 분석 실습
+                                    </td>
                                 </tr>
+
                                 <tr class="bg-indigo-50/50 category-header">
-                                    <td class="p-4 md:p-5 px-6 md:px-8 text-sm font-bold text-indigo-600 uppercase tracking-widest border-b border-indigo-100" colspan="2">Graph Machine Learning</td>
+                                    <td class="p-4 md:p-5 px-6 md:px-8 text-sm font-bold text-indigo-600 uppercase tracking-widest border-b border-indigo-100" colspan="2">
+                                        Graph Machine Learning
+                                    </td>
                                 </tr>
+
                                 <tr class="hover:bg-indigo-50/70 transition-colors">
-                                    <td class="p-6 md:p-8 font-bold text-indigo-700 text-lg md:text-xl leading-tight text-indigo-700">그래프 머신러닝</td>
-                                    <td class="p-6 md:p-8 text-slate-600 leading-relaxed md:leading-loose text-base md:text-lg text-slate-600">노드 수준 Feature 생성 기법, 일반 머신러닝(RF, MLP, SVM 등)을 통한 노드 분류,<br class="hidden md:block" />그래프 신경망(GNN: GAT, GCN, GraphSage) 기법 및 모델 해석 방법론</td>
+                                    <td class="p-6 md:p-8 font-bold text-indigo-700 text-lg md:text-xl leading-tight">
+                                        그래프 머신러닝
+                                    </td>
+                                    <td class="p-6 md:p-8 text-slate-600 leading-relaxed md:leading-loose text-base md:text-lg">
+                                        노드 수준 Feature 생성 기법, 일반 머신러닝(RF, MLP, SVM 등)을 통한 노드 분류,
+                                        <br class="hidden md:block" />
+                                        그래프 신경망(GNN: GAT, GCN, GraphSage) 기법 및 모델 해석 방법론
+                                    </td>
                                 </tr>
+
                                 <tr class="bg-emerald-50/20 category-header">
-                                    <td class="p-4 md:p-5 px-6 md:px-8 text-sm font-bold text-emerald-600 uppercase tracking-widest border-b border-emerald-100" colspan="2">Specialized Data Analysis</td>
+                                    <td class="p-4 md:p-5 px-6 md:px-8 text-sm font-bold text-emerald-600 uppercase tracking-widest border-b border-emerald-100" colspan="2">
+                                        Specialized Data Analysis
+                                    </td>
                                 </tr>
+
                                 <tr class="hover:bg-emerald-50/30 transition-colors">
-                                    <td class="p-6 md:p-8 font-bold text-slate-800 text-lg md:text-xl leading-tight text-slate-800"><span class="curriculum-title">텍스트 네트워크 분석</span><br /><span class="specialized-label">Specialized 1</span></td>
-                                    <td class="p-6 md:p-8 text-slate-600 leading-relaxed md:leading-loose text-base md:text-lg text-slate-600">비정형 텍스트 데이터의 토큰화 및 사용자 사전 기반 전처리, <br class="hidden md:block" />의미 네트워크 구성 및 토픽모델링 기반의 결과 해석</td>
+                                    <td class="p-6 md:p-8 font-bold text-slate-800 text-lg md:text-xl leading-tight">
+                                        <span class="curriculum-title">텍스트 네트워크 분석</span><br />
+                                        <span class="specialized-label">Specialized 1</span>
+                                    </td>
+                                    <td class="p-6 md:p-8 text-slate-600 leading-relaxed md:leading-loose text-base md:text-lg">
+                                        비정형 텍스트 데이터의 토큰화 및 사용자 사전 기반 전처리,
+                                        <br class="hidden md:block" />
+                                        의미 네트워크 구성 및 토픽모델링 기반의 결과 해석
+                                    </td>
                                 </tr>
+
                                 <tr class="hover:bg-emerald-50/30 transition-colors text-slate-800">
-                                    <td class="p-6 md:p-8 font-bold text-slate-800 text-lg md:text-xl leading-tight text-slate-800"><span class="curriculum-title">연구동향 분석</span><br /><span class="specialized-label">Specialized 2</span></td>
-                                    <td class="p-6 md:p-8 text-slate-600 leading-relaxed md:leading-loose text-base md:text-lg text-slate-600">Biblio Data Collector를 통한 논문 수집, 토픽모델링, 키워드 동향 분석,<br class="hidden md:block" />연구자/기관 간 공저 네트워크 분석 및 시각화 전반</td>
+                                    <td class="p-6 md:p-8 font-bold text-slate-800 text-lg md:text-xl leading-tight">
+                                        <span class="curriculum-title">연구동향 분석</span><br />
+                                        <span class="specialized-label">Specialized 2</span>
+                                    </td>
+                                    <td class="p-6 md:p-8 text-slate-600 leading-relaxed md:leading-loose text-base md:text-lg">
+                                        Biblio Data Collector를 통한 논문 수집, 토픽모델링, 키워드 동향 분석,
+                                        <br class="hidden md:block" />
+                                        연구자/기관 간 공저 네트워크 분석 및 시각화 전반
+                                    </td>
                                 </tr>
+
                                 <tr class="hover:bg-emerald-50/30 transition-colors text-slate-800">
-                                    <td class="p-6 md:p-8 font-bold text-slate-800 text-lg md:text-xl leading-tight border-b border-emerald-100 text-slate-800"><span class="curriculum-title">유튜브(YouTube) 분석</span><br /><span class="specialized-label">Specialized 3</span></td>
-                                    <td class="p-6 md:p-8 text-slate-600 leading-relaxed md:leading-loose text-base md:text-lg border-b border-emerald-100 text-slate-600">YouTube Data Collector를 통한 수집, 이슈 트렌드(시계열) 분석, <br class="hidden md:block" />이용자 코멘트 네트워크와 내용 분석 결합 해석</td>
+                                    <td class="p-6 md:p-8 font-bold text-slate-800 text-lg md:text-xl leading-tight border-b border-emerald-100">
+                                        <span class="curriculum-title">유튜브(YouTube) 분석</span><br />
+                                        <span class="specialized-label">Specialized 3</span>
+                                    </td>
+                                    <td class="p-6 md:p-8 text-slate-600 leading-relaxed md:leading-loose text-base md:text-lg border-b border-emerald-100">
+                                        YouTube Data Collector를 통한 수집, 이슈 트렌드(시계열) 분석,
+                                        <br class="hidden md:block" />
+                                        이용자 코멘트 네트워크와 내용 분석 결합 해석
+                                    </td>
                                 </tr>
+
                                 <tr class="bg-slate-100/50 category-header">
-                                    <td class="p-4 md:p-5 px-6 md:px-8 text-sm font-bold text-slate-500 uppercase tracking-widest border-b border-slate-200" colspan="2">Python Programming</td>
+                                    <td class="p-4 md:p-5 px-6 md:px-8 text-sm font-bold text-slate-500 uppercase tracking-widest border-b border-slate-200" colspan="2">
+                                        Python Programming
+                                    </td>
                                 </tr>
+
                                 <tr class="hover:bg-slate-100/50 transition-colors">
-                                    <td class="p-6 md:p-8 font-bold text-indigo-900 text-lg md:text-xl leading-tight">Python 프로그래밍 기초</td>
-                                    <td class="p-6 md:p-8 text-slate-600 leading-relaxed md:leading-loose text-base md:text-lg border-b border-amber-100 text-slate-600">Python 기초 문법 실습, API를 활용한 소셜 데이터 수집 기법, 웹 크롤링 방법론, <br class="hidden md:block" />기초 텍스트마이닝 및 수집 데이터의 NetMiner 4 연동 분석 프로세스</td>
+                                    <td class="p-6 md:p-8 font-bold text-indigo-900 text-lg md:text-xl leading-tight">
+                                        Python 프로그래밍 기초
+                                    </td>
+                                    <td class="p-6 md:p-8 text-slate-600 leading-relaxed md:leading-loose text-base md:text-lg border-b border-amber-100">
+                                        Python 기초 문법 실습, API를 활용한 소셜 데이터 수집 기법, 웹 크롤링 방법론,
+                                        <br class="hidden md:block" />
+                                        기초 텍스트마이닝 및 수집 데이터의 NetMiner 4 연동 분석 프로세스
+                                    </td>
                                 </tr>
+
                                 <tr class="bg-indigo-900 text-white font-bold">
-                                    <td class="p-6 md:p-8 font-bold text-xl md:text-2xl italic text-white">Customize</td>
-                                    <td class="p-6 md:p-8 font-medium text-base md:text-lg italic text-white">전 모듈 중 우리 팀의 니즈에 맞춰 자유롭게 항목을 조합하여 구성 가능</td>
+                                    <td class="p-6 md:p-8 font-bold text-xl md:text-2xl italic text-white">
+                                        Customize
+                                    </td>
+                                    <td class="p-6 md:p-8 font-medium text-base md:text-lg italic text-white">
+                                        전 모듈 중 우리 팀의 니즈에 맞춰 자유롭게 항목을 조합하여 구성 가능
+                                    </td>
                                 </tr>
+
                             </tbody>
                         </table>
+
                     </div>
-                    <div class="mt-6 bg-slate-100 p-6 rounded-2xl border-l-8 border-emerald-500 shadow-sm font-medium" style="border-left: 8px solid #10b981;">
-                        <p class="text-sm md:text-base text-slate-700 leading-relaxed text-slate-700">* 본 교육 서비스는 대부분 <span class="text-indigo-800 font-bold">NetMiner 5</span> 기능을 기반으로 구성되어 있으나, NetMiner 4에서 지원되는 커리큘럼의 경우 <span class="text-slate-700">NetMiner 4 기반으로도 강의가 가능</span>합니다.</p>
+
+                    <div class="mt-6 bg-slate-100 p-6 rounded-2xl border-l-8 border-emerald-500 shadow-sm"
+                         style="border-left: 8px solid #10b981;">
+                        <p class="text-sm md:text-base text-slate-700 leading-relaxed">
+                            * 본 교육 서비스는 대부분
+                            <span class="text-indigo-800 font-bold">NetMiner 5</span>
+                            기능을 기반으로 구성되어 있으나,
+                            NetMiner 4에서 지원되는 커리큘럼의 경우
+                            <span class="text-slate-700">NetMiner 4 기반으로도 강의가 가능</span>합니다.
+                        </p>
                     </div>
+
                 </section>
 
                 <section class="py-8 md:py-12 px-6 max-w-7xl mx-auto border-t border-slate-200 bg-slate-50/50">
+
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+
                         <div class="p-6 md:p-8 bg-white rounded-3xl border border-slate-200 shadow-sm transition-all hover:shadow-md text-center md:text-left">
                             <p class="text-xs font-bold text-emerald-700 mb-3 tracking-widest uppercase">TIME</p>
                             <p class="text-indigo-950 font-bold text-lg">각 커리큘럼별<br />최소 2시간 소요</p>
                         </div>
+
                         <div class="p-6 md:p-8 bg-white rounded-3xl border border-slate-100 shadow-sm transition-all hover:shadow-md text-center md:text-left">
                             <p class="text-xs font-bold text-emerald-700 mb-3 tracking-widest uppercase">METHOD</p>
                             <p class="text-indigo-950 font-bold text-lg">이론 및 실습 병행<br />(NetMiner 활용)</p>
                         </div>
+
                         <div class="p-6 md:p-8 bg-white rounded-3xl border border-slate-100 shadow-sm transition-all hover:shadow-md text-center md:text-left">
                             <p class="text-xs font-bold text-emerald-700 mb-3 tracking-widest uppercase">LOCATION</p>
-                            <p class="text-indigo-950 font-bold text-lg">전국 방문 가능<br /><span class="text-slate-500 font-normal text-sm">(수도권 외 출장비 별도)</span></p>
+                            <p class="text-indigo-950 font-bold text-lg">
+                                전국 방문 가능<br />
+                                <span class="text-slate-500 font-normal text-sm">(수도권 외 출장비 별도)</span>
+                            </p>
                         </div>
+
                         <div class="p-6 md:p-8 bg-white rounded-3xl border border-slate-100 shadow-sm transition-all hover:shadow-md text-center md:text-left">
                             <p class="text-xs font-bold text-emerald-700 mb-3 tracking-widest uppercase">FORMAT</p>
-                            <p class="text-indigo-950 font-bold text-lg text-slate-800">현장 방문 또는<br />실시간 화상 중 선택</p>
+                            <p class="text-indigo-950 font-bold text-lg">
+                                현장 방문 또는<br />실시간 화상 중 선택
+                            </p>
                         </div>
+
                     </div>
+
                 </section>
 
                 <section id="inquiry" class="py-8 md:py-12 bg-white px-4 md:px-6">
+
                     <div class="max-w-4xl mx-auto">
+
                         <div class="text-center mb-6 md:mb-10">
-                            <h2 class="text-2xl md:text-3xl font-bold mb-3 text-indigo-950 tracking-tight text-center">워크숍 교육 문의</h2>
-                            <p class="text-slate-500 text-sm md:text-base">아래 양식을 작성해 주시면 담당자가 검토 후 연락 드리겠습니다.</p>
-                            <div class="h-1.5 w-16 bg-emerald-500 mx-auto rounded-full mt-5" style="display: block;">&nbsp;</div>
+
+                            <h2 class="text-2xl md:text-3xl font-bold mb-3 text-indigo-950 tracking-tight text-center">
+                                워크숍 교육 문의
+                            </h2>
+
+                            <p class="text-slate-500 text-sm md:text-base">
+                                아래 양식을 작성해 주시면 담당자가 검토 후 연락 드리겠습니다.
+                            </p>
+
+                            <div class="h-1.5 w-16 bg-emerald-500 mx-auto rounded-full mt-5" style="display: block;">
+                                &nbsp;
+                            </div>
+
                         </div>
-                        <form id="nm-inquiry-form" class="space-y-4 md:space-y-5 bg-slate-50 p-6 md:p-10 rounded-[2rem] border border-slate-100 shadow-sm" action="https://formspree.io/f/mojpvkzq" method="POST">
+
+                        <form id="nm-inquiry-form"
+                              class="space-y-4 md:space-y-5 bg-slate-50 p-6 md:p-10 rounded-[2rem] border border-slate-100 shadow-sm"
+                              action="https://formspree.io/f/mojpvkzq"
+                              method="POST">
+
                             <div>
                                 <h4 class="text-lg md:text-xl font-bold text-indigo-900 mb-3">기관 정보</h4>
+
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div class="text-slate-700"><label class="block text-sm font-bold mb-1">학교/기관명 *</label><input class="w-full p-3 text-base border border-slate-200 rounded-lg bg-white transition-all" name="학교_기관명" required="" type="text" placeholder="예: OO대학교" /></div>
-                                    <div class="text-slate-700"><label class="block text-sm font-bold mb-1">전공/부서명 *</label><input class="w-full p-3 text-base border border-slate-200 rounded-lg bg-white transition-all" name="전공_부서명" required="" type="text" placeholder="예: 데이터사이언스학과" /></div>
-                                </div>
-                            </div>
-                            <div class="pt-4 border-t border-slate-200">
-                                <h4 class="text-lg md:text-xl font-bold text-indigo-900 mb-3">담당자 정보</h4>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 text-slate-700">
-                                    <div><label class="block text-sm font-bold mb-1">성함 *</label><input class="w-full p-3 text-base border border-slate-200 rounded-lg bg-white transition-all" name="담당자_성함" required="" type="text" placeholder="홍길동" /></div>
-                                    <div><label class="block text-sm font-bold mb-1">직함 *</label><input class="w-full p-3 text-base border border-slate-200 rounded-lg bg-white transition-all" name="담당자_직함" required="" type="text" placeholder="예: 교수, 책임연구원" /></div>
-                                </div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-slate-700">
-                                    <div><label class="block text-sm font-bold mb-1">이메일 주소 *</label><input class="w-full p-3 text-base border border-slate-200 rounded-lg bg-white transition-all" name="이메일" required="" type="email" placeholder="example@email.com" /></div>
-                                    <div><label class="block text-sm font-bold mb-1">휴대폰 번호 *</label><input class="w-full p-3 text-base border border-slate-200 rounded-lg bg-white transition-all" name="휴대폰번호" required="" type="tel" placeholder="010-0000-0000" /></div>
-                                </div>
-                            </div>
-                            <div class="pt-4 border-t border-slate-200">
-                                <h4 class="text-lg md:text-xl font-bold text-indigo-900 mb-3">교육 희망 일정 및 방식</h4>
-                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4 text-slate-700">
-                                    <div><label class="block text-sm font-bold mb-1">희망 강의 일자 *</label><input class="w-full p-3 text-base border border-slate-200 rounded-lg bg-white transition-all" name="희망_강의_일자" required="" type="text" placeholder="예: 4월 말 등" /></div>
-                                    <div><label class="block text-sm font-bold mb-1">예상 강의 시간 *</label><input class="w-full p-3 text-base border border-slate-200 rounded-lg bg-white transition-all" name="예상_강의_시간" required="" type="text" placeholder="예: 총 4시간" /></div>
-                                    <div><label class="block text-sm font-bold mb-1">희망 수강 인원 *</label><input class="w-full p-3 text-base border border-slate-200 rounded-lg bg-white transition-all" name="희망_수강_인원" required="" type="text" placeholder="예: 15명 내외" /></div>
-                                </div>
-                                <div class="text-slate-700"><label class="block text-sm font-bold mb-2">희망 교육 방식 *</label>
-                                    <div class="flex flex-wrap gap-3">
-                                        <label class="flex items-center gap-2 cursor-pointer bg-white px-3 py-2 border border-slate-200 rounded-lg hover:bg-emerald-50 transition-colors"><input class="w-4 h-4 accent-emerald-500" name="교육_방식" required="" type="radio" value="현장 방문 교육" /><span class="text-sm font-medium">현장 방문 교육</span></label>
-                                        <label class="flex items-center gap-2 cursor-pointer bg-white px-3 py-2 border border-slate-200 rounded-lg hover:bg-emerald-50 transition-colors"><input class="w-4 h-4 accent-emerald-500" name="교육_방식" type="radio" value="실시간 화상 교육" /><span class="text-sm font-medium">실시간 화상 교육</span></label>
+
+                                    <div class="text-slate-700">
+                                        <label class="block text-sm font-bold mb-1">학교/기관명 *</label>
+                                        <input class="w-full p-3 text-base border border-slate-200 rounded-lg bg-white transition-all"
+                                               name="학교_기관명"
+                                               required
+                                               type="text"
+                                               placeholder="예: OO대학교">
                                     </div>
+
+                                    <div class="text-slate-700">
+                                        <label class="block text-sm font-bold mb-1">전공/부서명 *</label>
+                                        <input class="w-full p-3 text-base border border-slate-200 rounded-lg bg-white transition-all"
+                                               name="전공_부서명"
+                                               required
+                                               type="text"
+                                               placeholder="예: 데이터사이언스학과">
+                                    </div>
+
                                 </div>
                             </div>
+
                             <div class="pt-4 border-t border-slate-200">
-                                <h4 class="text-lg md:text-xl font-bold text-indigo-900 mb-3">희망 커리큘럼 (중복 선택 가능)</h4>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-slate-700">
-                                    <label class="flex items-center gap-2 p-2.5 bg-white rounded-lg border border-slate-200 cursor-pointer hover:bg-emerald-50 group transition-all"><input class="w-4 h-4 accent-emerald-500" name="신청_모듈" type="checkbox" value="SNA 기초 및 심화" /><span class="text-sm font-medium group-hover:text-emerald-700">SNA 기초 및 심화</span></label>
-                                    <label class="flex items-center gap-2 p-2.5 bg-white rounded-lg border border-slate-200 cursor-pointer hover:bg-emerald-50 group transition-all"><input class="w-4 h-4 accent-emerald-500" name="신청_모듈" type="checkbox" value="가설 검정 및 통계 모형" /><span class="text-sm font-medium group-hover:text-emerald-700">가설 검정 및 통계 모형</span></label>
-                                    <label class="flex items-center gap-2 p-2.5 bg-white rounded-lg border border-slate-200 cursor-pointer hover:bg-emerald-50 group transition-all"><input class="w-4 h-4 accent-emerald-500" name="신청_모듈" type="checkbox" value="그래프 머신러닝" /><span class="text-sm font-medium group-hover:text-emerald-700">그래프 머신러닝</span></label>
-                                    <label class="flex items-center gap-2 p-2.5 bg-white rounded-lg border border-slate-200 cursor-pointer hover:bg-emerald-50 group transition-all"><input class="w-4 h-4 accent-emerald-500" name="신청_모듈" type="checkbox" value="텍스트 네트워크 분석" /><span class="text-sm font-medium group-hover:text-emerald-700">텍스트 네트워크 분석</span></label>
-                                    <label class="flex items-center gap-2 p-2.5 bg-white rounded-lg border border-slate-200 cursor-pointer hover:bg-emerald-50 group transition-all"><input class="w-4 h-4 accent-emerald-500" name="신청_모듈" type="checkbox" value="연구동향 분석" /><span class="text-sm font-medium group-hover:text-emerald-700">연구동향 분석</span></label>
-                                    <label class="flex items-center gap-2 p-2.5 bg-white rounded-lg border border-slate-200 cursor-pointer hover:bg-emerald-50 group transition-all"><input class="w-4 h-4 accent-emerald-500" name="신청_모듈" type="checkbox" value="유튜브 분석" /><span class="text-sm font-medium group-hover:text-emerald-700">유튜브 분석</span></label>
-                                    <label class="flex items-center gap-2 p-2.5 bg-white rounded-lg border border-slate-200 cursor-pointer hover:bg-emerald-50 group transition-all"><input class="w-4 h-4 accent-emerald-500" name="신청_모듈" type="checkbox" value="Python 프로그래밍 기초" /><span class="text-sm font-medium group-hover:text-emerald-700">Python 프로그래밍 기초</span></label>
+
+                                <h4 class="text-lg md:text-xl font-bold text-indigo-900 mb-3">담당자 정보</h4>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 text-slate-700">
+
+                                    <div>
+                                        <label class="block text-sm font-bold mb-1">성함 *</label>
+                                        <input class="w-full p-3 text-base border border-slate-200 rounded-lg bg-white transition-all"
+                                               name="담당자_성함"
+                                               required
+                                               type="text"
+                                               placeholder="홍길동">
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm font-bold mb-1">직함 *</label>
+                                        <input class="w-full p-3 text-base border border-slate-200 rounded-lg bg-white transition-all"
+                                               name="담당자_직함"
+                                               required
+                                               type="text"
+                                               placeholder="예: 교수, 책임연구원">
+                                    </div>
+
                                 </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-slate-700">
+
+                                    <div>
+                                        <label class="block text-sm font-bold mb-1">이메일 주소 *</label>
+                                        <input class="w-full p-3 text-base border border-slate-200 rounded-lg bg-white transition-all"
+                                               name="이메일"
+                                               required
+                                               type="email"
+                                               placeholder="example@email.com">
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm font-bold mb-1">휴대폰 번호 *</label>
+                                        <input class="w-full p-3 text-base border border-slate-200 rounded-lg bg-white transition-all"
+                                               name="휴대폰번호"
+                                               required
+                                               type="tel"
+                                               placeholder="010-0000-0000">
+                                    </div>
+
+                                </div>
+
                             </div>
-                            <div class="pt-4 border-t border-slate-200 text-slate-700"><label class="block text-sm font-bold mb-1">추가 문의 사항</label><textarea class="w-full p-3 text-base border border-slate-200 rounded-lg bg-white transition-all" name="상세_문의_내용" rows="3" placeholder="특별히 다루고 싶은 데이터나 강의 주제를 자유롭게 기재해 주세요."></textarea></div>
-                            <div class="pt-4 border-t border-slate-200"><label class="flex items-start gap-2 cursor-pointer group text-slate-600"><input class="w-4 h-4 mt-0.5 accent-emerald-500 border-slate-300 rounded" name="개인정보_활용동의" required="" type="checkbox" value="동의함" /><span class="text-xs md:text-sm leading-tight"> 개인정보보호정책에 따라 개인 정보를 서비스 제공 목적으로 활용하는 것에 동의합니다.</span></label></div>
-                            <div class="text-center pt-2"><button type="submit" id="nm-submit-btn" class="w-full md:w-auto bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 md:py-4 px-10 md:px-20 rounded-xl shadow-lg transform transition-all hover:scale-105 text-lg md:text-xl">워크숍 교육 문의 전송</button>
-                                <p class="mt-2 text-slate-400 text-xs italic text-center">※ 전송 시 입력하신 정보가 [edu@cyram.com]으로 즉시 전달됩니다.</p>
+
+                            <div class="pt-4 border-t border-slate-200">
+
+                                <h4 class="text-lg md:text-xl font-bold text-indigo-900 mb-3">
+                                    교육 희망 일정 및 방식
+                                </h4>
+
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4 text-slate-700">
+
+                                    <div>
+                                        <label class="block text-sm font-bold mb-1">희망 강의 일자 *</label>
+                                        <input class="w-full p-3 text-base border border-slate-200 rounded-lg bg-white transition-all"
+                                               name="희망_강의_일자"
+                                               required
+                                               type="text"
+                                               placeholder="예: 4월 말 등">
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm font-bold mb-1">예상 강의 시간 *</label>
+                                        <input class="w-full p-3 text-base border border-slate-200 rounded-lg bg-white transition-all"
+                                               name="예상_강의_시간"
+                                               required
+                                               type="text"
+                                               placeholder="예: 총 4시간">
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm font-bold mb-1">희망 수강 인원 *</label>
+                                        <input class="w-full p-3 text-base border border-slate-200 rounded-lg bg-white transition-all"
+                                               name="희망_수강_인원"
+                                               required
+                                               type="text"
+                                               placeholder="예: 15명 내외">
+                                    </div>
+
+                                </div>
+
+                                <div class="text-slate-700">
+
+                                    <label class="block text-sm font-bold mb-2">
+                                        희망 교육 방식 *
+                                    </label>
+
+                                    <div class="flex flex-wrap gap-3">
+
+                                        <label class="flex items-center gap-2 cursor-pointer bg-white px-3 py-2 border border-slate-200 rounded-lg hover:bg-emerald-50 transition-colors">
+                                            <input class="w-4 h-4 accent-emerald-500"
+                                                   name="교육_방식"
+                                                   required
+                                                   type="radio"
+                                                   value="현장 방문 교육">
+                                            <span class="text-sm font-medium">현장 방문 교육</span>
+                                        </label>
+
+                                        <label class="flex items-center gap-2 cursor-pointer bg-white px-3 py-2 border border-slate-200 rounded-lg hover:bg-emerald-50 transition-colors">
+                                            <input class="w-4 h-4 accent-emerald-500"
+                                                   name="교육_방식"
+                                                   type="radio"
+                                                   value="실시간 화상 교육">
+                                            <span class="text-sm font-medium">실시간 화상 교육</span>
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
                             </div>
+
+                            <div class="pt-4 border-t border-slate-200">
+
+                                <h4 class="text-lg md:text-xl font-bold text-indigo-900 mb-3">
+                                    희망 커리큘럼 (중복 선택 가능)
+                                </h4>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-slate-700">
+
+                                    <label class="flex items-center gap-2 p-2.5 bg-white rounded-lg border border-slate-200 cursor-pointer hover:bg-emerald-50 group transition-all">
+                                        <input class="w-4 h-4 accent-emerald-500"
+                                               name="신청_모듈"
+                                               type="checkbox"
+                                               value="SNA 기초 및 심화">
+                                        <span class="text-sm font-medium group-hover:text-emerald-700">SNA 기초 및 심화</span>
+                                    </label>
+
+                                    <label class="flex items-center gap-2 p-2.5 bg-white rounded-lg border border-slate-200 cursor-pointer hover:bg-emerald-50 group transition-all">
+                                        <input class="w-4 h-4 accent-emerald-500"
+                                               name="신청_모듈"
+                                               type="checkbox"
+                                               value="가설 검정 및 통계 모형">
+                                        <span class="text-sm font-medium group-hover:text-emerald-700">가설 검정 및 통계 모형</span>
+                                    </label>
+
+                                    <label class="flex items-center gap-2 p-2.5 bg-white rounded-lg border border-slate-200 cursor-pointer hover:bg-emerald-50 group transition-all">
+                                        <input class="w-4 h-4 accent-emerald-500"
+                                               name="신청_모듈"
+                                               type="checkbox"
+                                               value="그래프 머신러닝">
+                                        <span class="text-sm font-medium group-hover:text-emerald-700">그래프 머신러닝</span>
+                                    </label>
+
+                                    <label class="flex items-center gap-2 p-2.5 bg-white rounded-lg border border-slate-200 cursor-pointer hover:bg-emerald-50 group transition-all">
+                                        <input class="w-4 h-4 accent-emerald-500"
+                                               name="신청_모듈"
+                                               type="checkbox"
+                                               value="텍스트 네트워크 분석">
+                                        <span class="text-sm font-medium group-hover:text-emerald-700">텍스트 네트워크 분석</span>
+                                    </label>
+
+                                    <label class="flex items-center gap-2 p-2.5 bg-white rounded-lg border border-slate-200 cursor-pointer hover:bg-emerald-50 group transition-all">
+                                        <input class="w-4 h-4 accent-emerald-500"
+                                               name="신청_모듈"
+                                               type="checkbox"
+                                               value="연구동향 분석">
+                                        <span class="text-sm font-medium group-hover:text-emerald-700">연구동향 분석</span>
+                                    </label>
+
+                                    <label class="flex items-center gap-2 p-2.5 bg-white rounded-lg border border-slate-200 cursor-pointer hover:bg-emerald-50 group transition-all">
+                                        <input class="w-4 h-4 accent-emerald-500"
+                                               name="신청_모듈"
+                                               type="checkbox"
+                                               value="유튜브 분석">
+                                        <span class="text-sm font-medium group-hover:text-emerald-700">유튜브 분석</span>
+                                    </label>
+
+                                    <label class="flex items-center gap-2 p-2.5 bg-white rounded-lg border border-slate-200 cursor-pointer hover:bg-emerald-50 group transition-all">
+                                        <input class="w-4 h-4 accent-emerald-500"
+                                               name="신청_모듈"
+                                               type="checkbox"
+                                               value="Python 프로그래밍 기초">
+                                        <span class="text-sm font-medium group-hover:text-emerald-700">Python 프로그래밍 기초</span>
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                            <div class="pt-4 border-t border-slate-200 text-slate-700">
+
+                                <label class="block text-sm font-bold mb-1">
+                                    추가 문의 사항
+                                </label>
+
+                                <textarea class="w-full p-3 text-base border border-slate-200 rounded-lg bg-white transition-all"
+                                          name="상세_문의_내용"
+                                          rows="3"
+                                          placeholder="특별히 다루고 싶은 데이터나 강의 주제를 자유롭게 기재해 주세요."></textarea>
+
+                            </div>
+
+                            <div class="pt-4 border-t border-slate-200">
+
+                                <label class="flex items-start gap-2 cursor-pointer group text-slate-600">
+
+                                    <input class="w-4 h-4 mt-0.5 accent-emerald-500 border-slate-300 rounded"
+                                           name="개인정보_활용동의"
+                                           required
+                                           type="checkbox"
+                                           value="동의함">
+
+                                    <span class="text-xs md:text-sm leading-tight">
+                                        개인정보보호정책에 따라 개인 정보를 서비스 제공 목적으로 활용하는 것에 동의합니다.
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+                            <div class="text-center pt-2">
+
+                                <button type="submit"
+                                        id="nm-submit-btn"
+                                        class="w-full md:w-auto bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 md:py-4 px-10 md:px-20 rounded-xl shadow-lg transform transition-all hover:scale-105 text-lg md:text-xl">
+                                    워크숍 교육 문의 전송
+                                </button>
+
+                                <p class="mt-2 text-slate-400 text-xs italic text-center">
+                                    ※ 전송 시 입력하신 정보가 [edu@cyram.com]으로 즉시 전달됩니다.
+                                </p>
+
+                            </div>
+
                         </form>
+
                     </div>
+
                 </section>
 
                 <section class="py-10 md:py-16 hero-bg text-white px-6 md:px-12">
+
                     <div class="max-w-6xl mx-auto">
+
                         <div class="grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
+
                             <div class="lg:pl-10">
-                                <h2 class="text-3xl md:text-5xl font-bold mb-6 md:mb-8 leading-tight">상담 및 문의 안내</h2>
-                                <p class="text-slate-300 mb-6 md:mb-10 text-base md:xl leading-relaxed font-light">이메일이나 전화를 통해 직접 문의하실 수 있습니다.</p>
+
+                                <h2 class="text-3xl md:text-5xl font-bold mb-6 md:mb-8 leading-tight">
+                                    상담 및 문의 안내
+                                </h2>
+
+                                <p class="text-slate-300 mb-6 md:mb-10 text-base md:xl leading-relaxed font-light">
+                                    이메일이나 전화를 통해 직접 문의하실 수 있습니다.
+                                </p>
+
                                 <div class="space-y-6 md:space-y-8">
+
                                     <div class="flex items-center gap-4 md:gap-6 group">
-                                        <div class="w-12 h-12 md:w-16 md:h-16 bg-emerald-500 rounded-2xl flex items-center justify-center font-bold text-white shadow-xl text-xl md:text-2xl">E</div>
-                                        <div>
-                                            <p class="text-sm text-slate-400 font-bold tracking-widest mb-1 uppercase">Email Contact</p>
-                                            <span class="text-lg md:text-2xl font-bold">edu@cyram.com</span>
+
+                                        <div class="w-12 h-12 md:w-16 md:h-16 bg-emerald-500 rounded-2xl flex items-center justify-center font-bold text-white shadow-xl text-xl md:text-2xl">
+                                            E
                                         </div>
+
+                                        <div>
+                                            <p class="text-sm text-slate-400 font-bold tracking-widest mb-1 uppercase">
+                                                Email Contact
+                                            </p>
+                                            <span class="text-lg md:text-2xl font-bold">
+                                                edu@cyram.com
+                                            </span>
+                                        </div>
+
                                     </div>
+
                                     <div class="flex items-center gap-4 md:gap-6 group">
-                                        <div class="w-12 h-12 md:w-16 md:h-16 bg-indigo-500 rounded-2xl flex items-center justify-center font-bold text-white shadow-xl text-xl md:text-2xl">T</div>
-                                        <div>
-                                            <p class="text-sm text-slate-400 font-bold tracking-widest mb-1 uppercase">Main Support</p>
-                                            <span class="text-lg md:text-2xl font-bold">1660-4230</span>
+
+                                        <div class="w-12 h-12 md:w-16 md:h-16 bg-indigo-500 rounded-2xl flex items-center justify-center font-bold text-white shadow-xl text-xl md:text-2xl">
+                                            T
                                         </div>
+
+                                        <div>
+                                            <p class="text-sm text-slate-400 font-bold tracking-widest mb-1 uppercase">
+                                                Main Support
+                                            </p>
+                                            <span class="text-lg md:text-2xl font-bold">
+                                                1660-4230
+                                            </span>
+                                        </div>
+
                                     </div>
+
                                 </div>
+
                             </div>
+
                             <div class="bg-white p-8 md:p-14 rounded-[2rem] md:rounded-[3rem] shadow-2xl text-slate-900 border border-slate-100 relative overflow-hidden">
-                                <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full -mr-16 -mt-16">&nbsp;</div>
-                                <div class="flex items-center gap-3 mb-6 md:mb-8">
-                                    <h4 class="text-xl md:text-2xl font-bold italic tracking-tighter text-indigo-900">Price &amp; Consultation</h4>
+
+                                <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full -mr-16 -mt-16">
+                                    &nbsp;
                                 </div>
-                                <p class="text-base md:text-lg text-slate-600 mb-6 md:mb-8 leading-relaxed font-medium">교육 비용은 <span class="font-bold text-indigo-900">소속 기관(대학&middot;교육기관 / 일반&middot;기업)</span> 및 교육 시간에 따라 산정되며, <span class="text-emerald-600 font-bold underline decoration-indigo-200">상세 상담을 통해 최종 안내</span>해 드리고 있습니다.</p>
-                                <p class="text-sm text-slate-400 text-center italic font-medium">※ 연구 지원을 위한 교육기관 특별 할인이 적용됩니다.</p>
+
+                                <div class="flex items-center gap-3 mb-6 md:mb-8">
+
+                                    <h4 class="text-xl md:text-2xl font-bold italic tracking-tighter text-indigo-900">
+                                        Price &amp; Consultation
+                                    </h4>
+
+                                </div>
+
+                                <p class="text-base md:text-lg text-slate-600 mb-6 md:mb-8 leading-relaxed font-medium">
+                                    교육 비용은
+                                    <span class="font-bold text-indigo-900">
+                                        소속 기관(대학&middot;교육기관 / 일반&middot;기업)
+                                    </span>
+                                    및 교육 시간에 따라 산정되며,
+                                    <span class="text-emerald-600 font-bold underline decoration-indigo-200">
+                                        상세 상담을 통해 최종 안내
+                                    </span>
+                                    해 드리고 있습니다.
+                                </p>
+
+                                <p class="text-sm text-slate-400 text-center italic font-medium">
+                                    ※ 연구 지원을 위한 교육기관 특별 할인이 적용됩니다.
+                                </p>
+
                             </div>
+
                         </div>
+
                     </div>
+
                 </section>
 
                 <div id="nm-success-modal">
+
                     <div class="bg-white p-10 rounded-3xl shadow-2xl text-center max-w-sm mx-4">
-                        <div class="w-20 h-20 bg-emerald-100 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">✓</div>
-                        <h3 class="text-2xl font-bold text-slate-900 mb-4">문의 접수 완료</h3>
-                        <p class="text-slate-600 mb-8 leading-relaxed">교육 문의가 정상적으로 접수되었습니다.<br />담당자가 검토 후 신속히 연락드리겠습니다.</p>
-                        <button onclick="document.getElementById('nm-success-modal').style.display='none'" class="w-full bg-slate-900 text-white font-bold py-4 rounded-xl">확인</button>
+
+                        <div class="w-20 h-20 bg-emerald-100 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">
+                            ✓
+                        </div>
+
+                        <h3 class="text-2xl font-bold text-slate-900 mb-4">
+                            문의 접수 완료
+                        </h3>
+
+                        <p class="text-slate-600 mb-8 leading-relaxed">
+                            교육 문의가 정상적으로 접수되었습니다.<br />
+                            담당자가 검토 후 신속히 연락드리겠습니다.
+                        </p>
+
+                        <button onclick="document.getElementById('nm-success-modal').style.display='none'"
+                                class="w-full bg-slate-900 text-white font-bold py-4 rounded-xl">
+                            확인
+                        </button>
+
                     </div>
+
                 </div>
 
                 <script>
-                    var form=document.getElementById("nm-inquiry-form");
-                    var btn=document.getElementById("nm-submit-btn");
-                    var modal=document.getElementById("nm-success-modal");
-                    async function handleSubmit(e){
-                        e.preventDefault();
-                        btn.disabled=true;
-                        btn.innerText="전송 중...";
-                        var data=new FormData(e.target);
-                        fetch(e.target.action,{method:form.method,body:data,headers:{'Accept':'application/json'}}).then(response=>{
-                            if(response.ok){
-                                modal.style.display="flex";
-                                form.reset();
-                                btn.disabled=false;
-                                btn.innerText="워크숍 교육 문의 전송"
-                            }else{
-                                response.json().then(data=>{
-                                    if(Object.hasOwn(data,'errors')){
-                                        alert(data["errors"].map(error=>error["message"]).join(", "))
-                                    }else{
-                                        alert("전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.")
-                                    }
-                                })
-                            }
-                        }).catch(error=>{
-                            alert("전송 중 오류가 발생했습니다. 네트워크 상태를 확인해주세요.");
-                            btn.disabled=false;
-                            btn.innerText="워크숍 교육 문의 전송"
-                        })
-                    }
-                    form.addEventListener("submit",handleSubmit);
+                var form = document.getElementById("nm-inquiry-form");
+                var btn = document.getElementById("nm-submit-btn");
+                var modal = document.getElementById("nm-success-modal");
+
+                async function handleSubmit(e) {
+
+                    e.preventDefault();
+
+                    btn.disabled = true;
+                    btn.innerText = "전송 중...";
+
+                    var data = new FormData(e.target);
+
+                    fetch(e.target.action, {
+                        method: form.method,
+                        body: data,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    }).then(response => {
+
+                        if(response.ok) {
+
+                            modal.style.display = "flex";
+                            form.reset();
+
+                            btn.disabled = false;
+                            btn.innerText = "워크숍 교육 문의 전송";
+
+                        } else {
+
+                            response.json().then(data => {
+
+                                if(Object.hasOwn(data, 'errors')) {
+
+                                    alert(
+                                        data["errors"]
+                                            .map(error => error["message"])
+                                            .join(", ")
+                                    );
+
+                                } else {
+
+                                    alert("전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+
+                                }
+
+                            });
+
+                        }
+
+                    }).catch(error => {
+
+                        alert("전송 중 오류가 발생했습니다. 네트워크 상태를 확인해주세요.");
+
+                        btn.disabled = false;
+                        btn.innerText = "워크숍 교육 문의 전송";
+
+                    });
+
+                }
+
+                form.addEventListener("submit", handleSubmit);
                 </script>
+
             </div>
         </div>
     </div>
 
-    <iframe src="" name="sysfrm" id="sysfrm" style="position:absolute;width:0;height:0;border:0;"></iframe>
+    <iframe src=""
+            name="sysfrm"
+            id="sysfrm"
+            style="position:absolute;width:0;height:0;border:0;">
+    </iframe>
+
 </div>
 
 </body>
 </html>
+```
