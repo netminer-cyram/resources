@@ -200,7 +200,6 @@ footer{margin-top:0; padding-bottom:64px; padding-top:18px; border-top:1px solid
     <div class="tablewrap">
       <table>
         <tr><th>영어 기사 제외</th><td>본문 중 한글 비율이 20% 미만인 기사를 영어 기사로 판단하여 제외함.<br><span style="color:var(--muted);font-size:13px">(조선일보 6,421건, 경향신문 1,279건, 한겨레 52건)</span></td></tr>
-        <tr><th>잡음 제거</th><td>기자 서명, 이메일 주소, 링크, 광고 스크립트, 뉴스레터 구독 문구를 삭제함.</td></tr>
         <tr><th>전처리 결과</th><td><b class="num">15,132건</b></td></tr>
       </table>
     </div>
@@ -215,7 +214,8 @@ footer{margin-top:0; padding-bottom:64px; padding-top:18px; border-top:1px solid
     <ol class="steps">
       <li>
         <h3>기사를 문장으로 분리</h3>
-        <p>기사 본문을 문장 단위로 자르고 앞뒤 문장을 함께 저장함. 앞뒤 문장은 해당 문장이 어떤 내용인지 판단하는 데 활용함. 중복 문장을 제거한 결과 전체 280,122개 문장이 만들어짐.</p>
+        <p>기사 본문을 문장 단위로 분리하고 앞뒤 문장을 함께 저장함. 앞뒤 문장은 해당 문장이 어떤 내용인지 판단하는 데 활용함.</p>
+        <p class="small">분리 전: 본문 속 기자 서명과 광고 글자를 삭제함.<br>분리 후: 이메일 주소, 링크, 광고 스크립트, 뉴스레터 구독 문구가 들어간 문장과 8자 미만의 짧은 문장을 제거함.<br>중복 문장은 처음 나온 것만 남겨 전체 280,122개 문장이 만들어짐. 이 단계에서 기사 자체가 제외되지는 않음.</p>
       </li>
       <li>
         <h3>요구 표현이 있는 문장을 탐색</h3>
