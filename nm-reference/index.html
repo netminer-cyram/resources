@@ -235,7 +235,7 @@
         journal: String(r['journal'] || '').trim(),
         doi:     String(r['doi'] || '').trim(),
         gubun:   String(r['구분'] || '').trim(),
-        isEng:   !KOREAN.test(String(r['title'] || '')),
+        isEng:   !KOREAN.test(String(r['title'] || '') + String(r['authors'] || '') + String(r['journal'] || '')),
       })).filter(r => r.title && r.gubun !== '검증필요');
 
       buildYearFilter();
