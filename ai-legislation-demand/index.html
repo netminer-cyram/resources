@@ -388,7 +388,7 @@ footer{margin-top:0; padding-bottom:64px; padding-top:18px; border-top:1px solid
       </li>
       <li>
         <h3>유사 문장을 묶어 세부 주제 생성</h3>
-        <p>남은 4,549개 문장의 의미를 숫자로 변환하여 비슷한 문장끼리 자동으로 묶어 세부 주제 52개를 만듦. 어느 세부 주제에도 속하지 못한 문장은 가장 가까운 세부 주제에 배정하였고, 세부 주제 이름은 대표 키워드와 대표 문장 5개를 직접 읽고 부여함. 내용이 비슷한 세부 주제는 다시 대주제로 묶었고, 서로 다른 내용이 섞인 세부 주제는 기타로 분류함. 결과는 3장 참조.</p>
+        <p>남은 4,549개 문장의 의미를 숫자로 변환하여 비슷한 문장끼리 자동으로 묶어 세부 주제 52개를 만듦. 어느 세부 주제에도 속하지 못한 문장은 가장 가까운 세부 주제에 배정함. 세부 주제 이름은 대표 키워드와 대표 문장을 바탕으로 부여함. 내용이 비슷한 세부 주제는 다시 대주제로 묶었고, 서로 다른 내용이 섞인 세부 주제는 기타로 분류함. 결과는 3장 참조.</p>
       </li>
     </ol>
     <div class="exgrid">
@@ -518,7 +518,7 @@ footer{margin-top:0; padding-bottom:64px; padding-top:18px; border-top:1px solid
   var mmax = Math.max.apply(null, D.months.map(function(m){return m.n;}));
   bars('barMonth15', D.months.map(function(m){ return {l:m.name, v:m.n, v2:m.keep}; }), mmax, '40px');
   var INTRO = {
-    area: ['AI 정책영역 대분류', '용어사전의 정책영역(안전·책임, 산업육성, 노동·교육, 윤리, 저작권, 개인정보)을 기준으로 세부 주제별 대표 문장을 직접 읽고 분류함. 어느 영역인지 애매하거나 여러 내용이 섞인 세부 주제는 기타로 분류함.'],
+    area: ['AI 정책영역 대분류', '용어사전의 정책영역(안전·책임, 산업육성, 노동·교육, 윤리, 저작권, 개인정보)을 기준으로 세부 주제를 분류함. 어느 영역인지 애매하거나 여러 내용이 섞인 세부 주제는 기타로 분류함.'],
     content: ['내용 유사 묶음', '정책영역과 관계없이 내용이 비슷한 세부 주제끼리 묶음. 서로 다른 내용이 섞인 세부 주제는 기타로 분류함.']
   };
   var tmax = Math.max.apply(null, D.views.content.themes.concat(D.views.area.themes).map(function(t){ return t.topics[0].count; }).concat(D.etc.topics.map(function(t){ return t.count; })));
